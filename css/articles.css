@@ -6,7 +6,7 @@
 .articles-header {
   padding: 60px 0 40px;
   text-align: center;
-  background: linear-gradient(135deg, var(--navy) 0%, #0d1f3c 50%, #1a2d52 100%);
+  background: linear-gradient(135deg, var(--pvl-black) 0%, var(--bg-secondary) 50%, var(--bg-card) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -18,7 +18,7 @@
   right: -20%;
   width: 60%;
   height: 200%;
-  background: radial-gradient(ellipse, rgba(212, 168, 67, 0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(246, 184, 22, 0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .articles-header h1 .accent {
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .articles-header p {
@@ -78,19 +78,37 @@
   flex-direction: column;
   text-decoration: none;
   color: inherit;
+  position: relative;
+}
+
+.article-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--grad-pvl);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  z-index: 2;
 }
 
 .article-card:hover {
   border-color: var(--border-color-hover);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(246, 184, 22, 0.06);
   transform: translateY(-4px);
   color: inherit;
+}
+
+.article-card:hover::before {
+  opacity: 1;
 }
 
 .article-card .card-thumb {
   width: 100%;
   aspect-ratio: 16/9;
-  background: var(--navy-mid);
+  background: var(--bg-card);
   position: relative;
   overflow: hidden;
 }
@@ -107,7 +125,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
   font-size: 2.5rem;
   opacity: 0.3;
 }
@@ -125,11 +143,12 @@
   z-index: 2;
 }
 
-.category-badge.recap { background: rgba(46, 204, 113, 0.9); color: var(--navy); }
-.category-badge.feature { background: rgba(155, 89, 182, 0.9); color: var(--white); }
-.category-badge.news { background: rgba(52, 152, 219, 0.9); color: var(--white); }
-.category-badge.opinion { background: rgba(243, 156, 18, 0.9); color: var(--navy); }
-.category-badge.analysis { background: rgba(231, 76, 60, 0.9); color: var(--white); }
+/* PVL-colored category badges */
+.category-badge.recap { background: var(--pvl-red); color: var(--white); }
+.category-badge.feature { background: var(--pvl-gold); color: var(--pvl-black); }
+.category-badge.news { background: #1abc9c; color: var(--white); }
+.category-badge.opinion { background: #9b59b6; color: var(--white); }
+.category-badge.analysis { background: var(--pvl-blue); color: var(--white); }
 
 .article-card .tier-lock {
   position: absolute;
@@ -183,7 +202,7 @@
 .article-card .read-more {
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--pvl-gold);
   display: flex;
   align-items: center;
   gap: 4px;

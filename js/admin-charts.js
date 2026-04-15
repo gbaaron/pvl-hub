@@ -8,12 +8,12 @@
    ========================================== */
 
 const PVL_COLORS = {
-  gold:       '#d4a843',
-  goldLight:  '#f0c75e',
-  goldDark:   '#b8922e',
-  navy:       '#0a1628',
-  navyLight:  '#121f3d',
-  navyMid:    '#1a2d52',
+  gold:       '#f6b816',
+  goldLight:  '#f9cd4a',
+  goldDark:   '#d49e0e',
+  navy:       '#040707',
+  navyLight:  '#0d1117',
+  navyMid:    '#161b22',
   white:      '#ffffff',
   gray100:    '#f4f5f7',
   gray300:    '#c5c9d2',
@@ -21,15 +21,16 @@ const PVL_COLORS = {
   gray500:    '#5a6271',
   gray700:    '#2a3040',
   green:      '#2ecc71',
-  red:        '#e74c3c',
-  blue:       '#3498db',
+  red:        '#ed1f24',
+  blue:       '#045397',
+  blueLight:  '#1a6fc2',
   orange:     '#f39c12',
   purple:     '#9b59b6',
   teal:       '#1abc9c',
   tierFree:   '#8b92a0',
-  tierFan:    '#3498db',
+  tierFan:    '#045397',
   tierSuperfan: '#9b59b6',
-  tierVip:    '#d4a843'
+  tierVip:    '#f6b816'
 };
 
 // Ordered color cycle for multi-series charts
@@ -46,17 +47,17 @@ const CHART_PALETTE = [
 
 // Set Chart.js global defaults for dark theme
 Chart.defaults.color = PVL_COLORS.gray400;
-Chart.defaults.borderColor = 'rgba(212, 168, 67, 0.08)';
+Chart.defaults.borderColor = 'rgba(246, 184, 22, 0.08)';
 Chart.defaults.font.family = "'Outfit', 'Rajdhani', sans-serif";
 Chart.defaults.font.size = 12;
 Chart.defaults.plugins.legend.labels.color = PVL_COLORS.gray300;
 Chart.defaults.plugins.legend.labels.padding = 16;
 Chart.defaults.plugins.legend.labels.usePointStyle = true;
 Chart.defaults.plugins.legend.labels.pointStyleWidth = 10;
-Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(10, 22, 40, 0.95)';
+Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(4, 7, 7, 0.95)';
 Chart.defaults.plugins.tooltip.titleColor = PVL_COLORS.white;
 Chart.defaults.plugins.tooltip.bodyColor = PVL_COLORS.gray300;
-Chart.defaults.plugins.tooltip.borderColor = 'rgba(212, 168, 67, 0.25)';
+Chart.defaults.plugins.tooltip.borderColor = 'rgba(246, 184, 22, 0.25)';
 Chart.defaults.plugins.tooltip.borderWidth = 1;
 Chart.defaults.plugins.tooltip.padding = 12;
 Chart.defaults.plugins.tooltip.cornerRadius = 8;
@@ -71,7 +72,7 @@ Chart.defaults.elements.bar.borderRadius = 4;
 Chart.defaults.elements.arc.borderWidth = 2;
 Chart.defaults.elements.arc.borderColor = PVL_COLORS.navyLight;
 Chart.defaults.scale.grid = {
-  color: 'rgba(255, 255, 255, 0.04)',
+  color: 'rgba(246, 184, 22, 0.04)',
   drawBorder: false
 };
 Chart.defaults.scale.ticks = {

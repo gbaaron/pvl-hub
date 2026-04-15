@@ -19,9 +19,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 30% 20%, rgba(212, 168, 67, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 80%, rgba(212, 168, 67, 0.04) 0%, transparent 50%),
-    linear-gradient(180deg, var(--bg-primary) 0%, var(--navy-light) 100%);
+    radial-gradient(ellipse at 30% 20%, rgba(246, 184, 22, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(246, 184, 22, 0.04) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   z-index: 0;
 }
 
@@ -43,10 +43,10 @@
   content: '';
   position: absolute;
   top: 0;
-  left: 32px;
-  right: 32px;
+  left: 0;
+  right: 0;
   height: 3px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  background: linear-gradient(90deg, var(--pvl-red), var(--pvl-gold), var(--pvl-blue-light));
   border-radius: 0 0 4px 4px;
 }
 
@@ -54,8 +54,8 @@
   width: 64px;
   height: 64px;
   margin: 0 auto 20px;
-  background: rgba(212, 168, 67, 0.1);
-  border: 1px solid rgba(212, 168, 67, 0.25);
+  background: rgba(246, 184, 22, 0.1);
+  border: 1px solid rgba(246, 184, 22, 0.25);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -71,7 +71,7 @@
 }
 
 .gate-card h1 span {
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .gate-card p {
@@ -95,7 +95,7 @@
 
 .gate-error {
   font-size: 0.82rem;
-  color: var(--red);
+  color: var(--pvl-red);
   min-height: 20px;
   opacity: 0;
   transition: opacity var(--transition-fast);
@@ -113,8 +113,8 @@
   font-family: var(--font-heading);
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  background: var(--gold);
-  color: var(--navy);
+  background: var(--pvl-gold);
+  color: var(--pvl-black);
   border: none;
   border-radius: var(--btn-radius);
   cursor: pointer;
@@ -122,9 +122,9 @@
 }
 
 .gate-submit:hover {
-  background: var(--gold-light);
+  background: var(--pvl-gold-light);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(212, 168, 67, 0.35);
+  box-shadow: 0 4px 20px rgba(246, 184, 22, 0.35);
 }
 
 /* --- Admin Header --- */
@@ -132,7 +132,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10, 22, 40, 0.95);
+  background: rgba(4, 7, 7, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-color);
@@ -157,7 +157,7 @@
 }
 
 .admin-header-left .logo-text span {
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .admin-badge {
@@ -166,9 +166,9 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  background: rgba(212, 168, 67, 0.15);
-  color: var(--gold);
-  border: 1px solid rgba(212, 168, 67, 0.3);
+  background: rgba(246, 184, 22, 0.15);
+  color: var(--pvl-gold);
+  border: 1px solid rgba(246, 184, 22, 0.3);
   border-radius: 4px;
 }
 
@@ -186,7 +186,7 @@
 }
 
 .admin-header-right .back-link:hover {
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .admin-timestamp {
@@ -234,7 +234,7 @@
 }
 
 .dash-section-header h2 .accent {
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .dash-section-header .section-label {
@@ -269,7 +269,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--gold);
+  background: linear-gradient(90deg, var(--pvl-red), var(--pvl-gold), var(--pvl-blue-light));
   opacity: 0;
   transition: opacity var(--transition-fast);
 }
@@ -318,8 +318,8 @@
 }
 
 .card-trend.down {
-  color: var(--red);
-  background: rgba(231, 76, 60, 0.1);
+  color: var(--pvl-red);
+  background: rgba(237, 31, 36, 0.1);
 }
 
 .card-trend .arrow {
@@ -414,7 +414,7 @@
 .insight-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-left: 4px solid var(--gold);
+  border-left: 4px solid var(--pvl-gold);
   border-radius: 0 var(--card-radius) var(--card-radius) 0;
   padding: 20px 24px;
   transition: all var(--transition-med);
@@ -423,7 +423,7 @@
 
 .insight-card:hover {
   border-color: var(--border-color-hover);
-  border-left-color: var(--gold-light);
+  border-left-color: var(--pvl-gold-light);
   box-shadow: var(--shadow-gold);
   transform: translateY(-2px);
 }
@@ -431,7 +431,7 @@
 .insight-card .insight-icon {
   width: 36px;
   height: 36px;
-  background: rgba(212, 168, 67, 0.1);
+  background: rgba(246, 184, 22, 0.1);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -443,7 +443,7 @@
 .insight-card .insight-stat {
   font-family: var(--font-display);
   font-size: 1.5rem;
-  color: var(--gold);
+  color: var(--pvl-gold);
   letter-spacing: 1px;
   margin-bottom: 4px;
 }
@@ -455,7 +455,7 @@
 }
 
 .insight-card .insight-highlight {
-  color: var(--gold);
+  color: var(--pvl-gold);
   font-weight: 700;
 }
 
@@ -487,17 +487,17 @@
 .word-tag.size-xl {
   font-size: 1.4rem;
   padding: 8px 22px;
-  background: rgba(212, 168, 67, 0.2);
-  color: var(--gold);
-  border: 1px solid rgba(212, 168, 67, 0.35);
+  background: rgba(246, 184, 22, 0.2);
+  color: var(--pvl-gold);
+  border: 1px solid rgba(246, 184, 22, 0.35);
 }
 
 .word-tag.size-lg {
   font-size: 1.1rem;
   padding: 7px 18px;
-  background: rgba(52, 152, 219, 0.15);
-  color: var(--blue);
-  border: 1px solid rgba(52, 152, 219, 0.25);
+  background: rgba(4, 83, 151, 0.15);
+  color: var(--pvl-blue-light);
+  border: 1px solid rgba(4, 83, 151, 0.25);
 }
 
 .word-tag.size-md {
@@ -574,9 +574,9 @@
 
 .funnel-step-2 {
   width: 72%;
-  background: rgba(52, 152, 219, 0.15);
-  color: var(--blue);
-  border: 1px solid rgba(52, 152, 219, 0.25);
+  background: rgba(4, 83, 151, 0.15);
+  color: var(--pvl-blue-light);
+  border: 1px solid rgba(4, 83, 151, 0.25);
 }
 
 .funnel-step-3 {
@@ -588,9 +588,9 @@
 
 .funnel-step-4 {
   width: 22%;
-  background: rgba(212, 168, 67, 0.2);
-  color: var(--gold);
-  border: 1px solid rgba(212, 168, 67, 0.35);
+  background: rgba(246, 184, 22, 0.2);
+  color: var(--pvl-gold);
+  border: 1px solid rgba(246, 184, 22, 0.35);
   box-shadow: var(--shadow-gold);
 }
 
@@ -610,7 +610,7 @@
 }
 
 .funnel-conversion span {
-  color: var(--gold);
+  color: var(--pvl-gold);
   font-weight: 700;
 }
 

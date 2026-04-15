@@ -6,7 +6,7 @@
 .podcast-header {
   padding: 60px 0 40px;
   text-align: center;
-  background: linear-gradient(135deg, var(--navy) 0%, #0d1f3c 50%, #1a2d52 100%);
+  background: linear-gradient(135deg, var(--pvl-black) 0%, var(--bg-secondary) 50%, var(--bg-card) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -19,7 +19,7 @@
   transform: translateX(-50%);
   width: 80%;
   height: 200%;
-  background: radial-gradient(ellipse, rgba(212, 168, 67, 0.05) 0%, transparent 60%);
+  background: radial-gradient(ellipse, rgba(4, 83, 151, 0.05) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .podcast-header h1 .accent {
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .podcast-header h1 .divider {
@@ -80,11 +80,21 @@
 .featured-ep-card::before {
   content: '';
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--grad-ocean);
+}
+
+.featured-ep-card::after {
+  content: '';
+  position: absolute;
   top: -50%;
   right: -20%;
   width: 50%;
   height: 200%;
-  background: radial-gradient(ellipse, rgba(212, 168, 67, 0.04) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(4, 83, 151, 0.04) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -92,7 +102,7 @@
   width: 220px;
   height: 220px;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--navy-mid), var(--gold-dark));
+  background: linear-gradient(135deg, var(--pvl-blue), var(--pvl-blue-light));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,8 +120,8 @@
   top: 12px;
   right: 12px;
   padding: 4px 12px;
-  background: var(--gold);
-  color: var(--navy);
+  background: var(--pvl-gold);
+  color: var(--pvl-black);
   font-size: 0.72rem;
   font-weight: 700;
   border-radius: 4px;
@@ -130,14 +140,14 @@
   align-items: center;
   gap: 8px;
   padding: 5px 14px;
-  background: rgba(212, 168, 67, 0.1);
-  border: 1px solid rgba(212, 168, 67, 0.2);
+  background: rgba(4, 83, 151, 0.1);
+  border: 1px solid rgba(4, 83, 151, 0.2);
   border-radius: 20px;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--gold);
+  color: var(--pvl-blue-light);
   margin-bottom: 16px;
 }
 
@@ -188,8 +198,8 @@
   align-items: center;
   gap: 10px;
   padding: 14px 32px;
-  background: var(--gold);
-  color: var(--navy);
+  background: var(--pvl-blue);
+  color: var(--white);
   border-radius: 24px;
   font-weight: 700;
   font-size: 0.95rem;
@@ -199,9 +209,9 @@
 }
 
 .podcast-play-btn:hover {
-  background: var(--gold-light);
+  background: var(--pvl-blue-light);
   transform: scale(1.03);
-  color: var(--navy);
+  color: var(--white);
 }
 
 .ep-meta-info {
@@ -232,7 +242,7 @@
 }
 
 .episodes-section .section-title .accent {
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .episode-list {
@@ -244,6 +254,7 @@
 .episode-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
+  border-left: 3px solid var(--pvl-blue);
   border-radius: var(--card-radius);
   padding: 24px;
   display: flex;
@@ -253,8 +264,9 @@
 }
 
 .episode-card:hover {
-  border-color: var(--border-color-hover);
-  box-shadow: var(--shadow-sm);
+  border-color: var(--pvl-blue-light);
+  border-left-color: var(--pvl-blue-light);
+  box-shadow: var(--shadow-sm), 0 0 16px rgba(4, 83, 151, 0.06);
   transform: translateX(4px);
 }
 
@@ -262,15 +274,15 @@
   width: 52px;
   height: 52px;
   border-radius: 12px;
-  background: rgba(212, 168, 67, 0.1);
-  border: 1px solid rgba(212, 168, 67, 0.2);
+  background: rgba(4, 83, 151, 0.1);
+  border: 1px solid rgba(4, 83, 151, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   font-family: var(--font-display);
   font-size: 1.2rem;
-  color: var(--gold);
+  color: var(--pvl-blue-light);
   letter-spacing: 1px;
 }
 
@@ -318,11 +330,11 @@
 }
 
 .episode-card .ep-rating .star-rating .star.filled {
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .episode-card .ep-rating .star-rating .star:hover {
-  color: var(--gold-light);
+  color: var(--pvl-gold-light);
 }
 
 .episode-card .ep-rating .rating-label {
@@ -336,11 +348,11 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--pvl-blue);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--navy);
+  color: var(--white);
   font-size: 1rem;
   flex-shrink: 0;
   transition: all var(--transition-fast);
@@ -349,8 +361,9 @@
 }
 
 .episode-card .ep-play-btn:hover {
-  background: var(--gold-light);
+  background: var(--pvl-blue-light);
   transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(4, 83, 151, 0.3);
 }
 
 /* Per-Episode Comments */
@@ -374,8 +387,8 @@
 
 /* Subscribe CTA */
 .subscribe-cta {
-  background: linear-gradient(135deg, #1a2d52 0%, #0d1f3c 100%);
-  border: 1px solid rgba(212, 168, 67, 0.2);
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+  border: 1px solid rgba(4, 83, 151, 0.2);
   border-radius: 16px;
   padding: 40px;
   text-align: center;
@@ -387,11 +400,21 @@
 .subscribe-cta::before {
   content: '';
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--grad-ocean);
+}
+
+.subscribe-cta::after {
+  content: '';
+  position: absolute;
   top: -50%;
   left: -25%;
   width: 150%;
   height: 200%;
-  background: radial-gradient(ellipse, rgba(212, 168, 67, 0.04) 0%, transparent 60%);
+  background: radial-gradient(ellipse, rgba(4, 83, 151, 0.04) 0%, transparent 60%);
 }
 
 .subscribe-cta h3 {
@@ -429,9 +452,9 @@
 }
 
 .subscribe-cta .subscribe-links a:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  background: rgba(212, 168, 67, 0.08);
+  border-color: var(--pvl-blue);
+  color: var(--pvl-blue-light);
+  background: rgba(4, 83, 151, 0.08);
 }
 
 /* Responsive */

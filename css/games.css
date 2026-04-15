@@ -10,9 +10,9 @@
   padding: 72px 0 56px;
   background: linear-gradient(
     135deg,
-    rgba(10, 22, 40, 0.97) 0%,
-    rgba(26, 45, 82, 0.95) 40%,
-    rgba(212, 168, 67, 0.12) 100%
+    rgba(4, 7, 7, 0.97) 0%,
+    rgba(4, 83, 151, 0.15) 40%,
+    rgba(246, 184, 22, 0.12) 100%
   );
   border-bottom: 1px solid var(--border-color);
   overflow: hidden;
@@ -23,9 +23,19 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 80%, rgba(212, 168, 67, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(52, 152, 219, 0.06) 0%, transparent 50%);
+    radial-gradient(circle at 20% 80%, rgba(246, 184, 22, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(4, 83, 151, 0.06) 0%, transparent 50%);
   pointer-events: none;
+}
+
+.game-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--grad-pvl);
 }
 
 [data-theme="light"] .game-hero {
@@ -33,7 +43,7 @@
     135deg,
     rgba(240, 242, 245, 1) 0%,
     rgba(255, 255, 255, 1) 40%,
-    rgba(212, 168, 67, 0.08) 100%
+    rgba(246, 184, 22, 0.08) 100%
   );
 }
 
@@ -58,7 +68,7 @@
 }
 
 .game-hero h1 span {
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .game-hero .game-subtitle {
@@ -89,12 +99,35 @@
   padding: 32px 24px;
   text-align: center;
   transition: all var(--transition-med);
+  position: relative;
+  overflow: hidden;
 }
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--pvl-gold);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+/* Colored accent variants for feature cards */
+.feature-card.accent-gold::before { background: var(--pvl-gold); }
+.feature-card.accent-red::before { background: var(--pvl-red); }
+.feature-card.accent-blue::before { background: var(--pvl-blue); }
 
 .feature-card:hover {
   border-color: var(--border-color-hover);
   box-shadow: var(--shadow-md);
   transform: translateY(-6px);
+}
+
+.feature-card:hover::before {
+  opacity: 1;
 }
 
 .feature-card .feature-icon {
@@ -108,7 +141,7 @@
   font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--pvl-gold);
   margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -122,8 +155,8 @@
 
 /* --- Credits Integration Notice --- */
 .credits-notice {
-  background: rgba(212, 168, 67, 0.06);
-  border: 1px solid rgba(212, 168, 67, 0.25);
+  background: rgba(246, 184, 22, 0.06);
+  border: 1px solid rgba(246, 184, 22, 0.25);
   border-radius: var(--card-radius);
   padding: 20px 28px;
   display: flex;
@@ -144,12 +177,12 @@
 }
 
 .credits-notice .notice-text strong {
-  color: var(--gold);
+  color: var(--pvl-gold);
   font-weight: 600;
 }
 
 [data-theme="light"] .credits-notice {
-  background: rgba(212, 168, 67, 0.08);
+  background: rgba(246, 184, 22, 0.08);
 }
 
 /* --- Action Buttons --- */
@@ -172,20 +205,20 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: var(--navy);
+  background: linear-gradient(135deg, var(--pvl-red), var(--pvl-red-light));
+  color: var(--white);
   border: none;
   border-radius: var(--btn-radius);
   cursor: pointer;
   transition: all var(--transition-fast);
-  box-shadow: 0 4px 20px rgba(212, 168, 67, 0.25);
+  box-shadow: 0 4px 20px rgba(237, 31, 36, 0.25);
 }
 
 .btn-play:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(212, 168, 67, 0.4);
-  background: linear-gradient(135deg, var(--gold-light), var(--gold));
-  color: var(--navy);
+  box-shadow: 0 8px 32px rgba(237, 31, 36, 0.4);
+  background: linear-gradient(135deg, var(--pvl-red-light), var(--pvl-red));
+  color: var(--white);
 }
 
 .btn-play:active {
@@ -212,9 +245,9 @@
 }
 
 .btn-howto:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  background: rgba(212, 168, 67, 0.06);
+  border-color: var(--pvl-blue);
+  color: var(--pvl-blue-light);
+  background: rgba(4, 83, 151, 0.06);
 }
 
 /* --- Game Container --- */
@@ -243,12 +276,12 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: rgba(212, 168, 67, 0.1);
-  border: 1px solid rgba(212, 168, 67, 0.2);
+  background: rgba(246, 184, 22, 0.1);
+  border: 1px solid rgba(246, 184, 22, 0.2);
   border-radius: 20px;
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .game-container-label .game-credits .coin-icon {
@@ -259,14 +292,14 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: var(--navy);
+  background: var(--pvl-black);
   border: 2px solid var(--border-color);
   border-radius: var(--card-radius);
   overflow: hidden;
 }
 
 [data-theme="light"] .game-wrapper {
-  background: #1a2d52;
+  background: var(--bg-card);
 }
 
 .game-wrapper iframe {
@@ -283,7 +316,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(10, 22, 40, 0.98) 0%, rgba(26, 45, 82, 0.95) 100%);
+  background: linear-gradient(180deg, rgba(4, 7, 7, 0.98) 0%, rgba(4, 83, 151, 0.15) 100%);
   padding: 32px;
 }
 
@@ -293,8 +326,8 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--gold);
-  background: rgba(212, 168, 67, 0.12);
+  color: var(--pvl-gold);
+  background: rgba(246, 184, 22, 0.12);
   padding: 6px 16px;
   border-radius: 4px;
   margin-bottom: 24px;
@@ -323,7 +356,7 @@
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--pvl-gold);
   letter-spacing: 1px;
 }
 
@@ -352,7 +385,7 @@
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--pvl-blue-light);
   width: 32px;
   text-align: center;
   letter-spacing: 0.5px;
@@ -374,8 +407,8 @@
 .mock-player-row .mock-ovr {
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--gold);
-  background: rgba(212, 168, 67, 0.12);
+  color: var(--pvl-gold);
+  background: rgba(246, 184, 22, 0.12);
   padding: 3px 10px;
   border-radius: 4px;
 }
@@ -403,7 +436,7 @@
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--pvl-gold);
   letter-spacing: 1px;
 }
 
@@ -447,8 +480,8 @@
 }
 
 .mock-card.rarity-rare {
-  background: linear-gradient(180deg, #1a3a5c 0%, #122a42 100%);
-  border-color: rgba(52, 152, 219, 0.4);
+  background: linear-gradient(180deg, #0a3358 0%, #072842 100%);
+  border-color: rgba(4, 83, 151, 0.4);
 }
 
 .mock-card.rarity-epic {
@@ -458,8 +491,8 @@
 
 .mock-card.rarity-legendary {
   background: linear-gradient(180deg, #3a2a0a 0%, #2a1e06 100%);
-  border-color: rgba(212, 168, 67, 0.5);
-  box-shadow: 0 0 12px rgba(212, 168, 67, 0.15);
+  border-color: rgba(246, 184, 22, 0.5);
+  box-shadow: var(--shadow-glow-gold);
 }
 
 .mock-card .card-emoji {
@@ -484,15 +517,15 @@
 }
 
 .mock-card.rarity-common .card-rarity { color: var(--gray-400); }
-.mock-card.rarity-rare .card-rarity { color: var(--blue); }
+.mock-card.rarity-rare .card-rarity { color: var(--pvl-blue-light); }
 .mock-card.rarity-epic .card-rarity { color: var(--purple); }
-.mock-card.rarity-legendary .card-rarity { color: var(--gold); }
+.mock-card.rarity-legendary .card-rarity { color: var(--pvl-gold); }
 
 /* --- Game Credentials Panel --- */
 .game-credentials {
   background: var(--bg-card);
-  border: 1px solid rgba(212, 168, 67, 0.3);
-  border-left: 4px solid var(--gold);
+  border: 1px solid rgba(246, 184, 22, 0.3);
+  border-left: 4px solid var(--pvl-gold);
   border-radius: var(--card-radius);
   padding: 20px 24px;
   margin-bottom: 24px;
@@ -542,24 +575,24 @@
   font-family: var(--font-display);
   font-size: 1.4rem;
   letter-spacing: 4px;
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .credential-copy {
   padding: 4px 12px;
   font-size: 0.75rem;
   font-weight: 600;
-  background: rgba(212, 168, 67, 0.1);
-  border: 1px solid rgba(212, 168, 67, 0.25);
+  background: rgba(246, 184, 22, 0.1);
+  border: 1px solid rgba(246, 184, 22, 0.25);
   border-radius: 6px;
-  color: var(--gold);
+  color: var(--pvl-gold);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .credential-copy:hover {
-  background: rgba(212, 168, 67, 0.2);
-  border-color: var(--gold);
+  background: rgba(246, 184, 22, 0.2);
+  border-color: var(--pvl-gold);
 }
 
 .credentials-note {

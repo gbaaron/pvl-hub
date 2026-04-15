@@ -7,7 +7,7 @@
 .profile-banner {
   position: relative;
   height: 220px;
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+  background: var(--grad-pvl);
   border-radius: var(--card-radius) var(--card-radius) 0 0;
   overflow: hidden;
 }
@@ -16,7 +16,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(10, 22, 40, 0.6));
+  background: linear-gradient(180deg, transparent 40%, rgba(4, 7, 7, 0.6));
 }
 
 .profile-banner-pattern {
@@ -58,13 +58,13 @@
   height: 120px;
   border-radius: 50%;
   border: 4px solid var(--bg-card);
-  background: var(--navy-mid);
+  background: var(--bg-card);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
   font-size: 3rem;
-  color: var(--gold);
+  color: var(--pvl-gold);
   flex-shrink: 0;
   box-shadow: var(--shadow-md);
 }
@@ -139,7 +139,24 @@
   padding: 28px;
   text-align: center;
   transition: all var(--transition-med);
+  position: relative;
+  overflow: hidden;
 }
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--pvl-gold);
+}
+
+/* Colored accent variants */
+.stat-card.accent-gold::before { background: var(--pvl-gold); }
+.stat-card.accent-red::before { background: var(--pvl-red); }
+.stat-card.accent-blue::before { background: var(--pvl-blue); }
 
 .stat-card:hover {
   border-color: var(--border-color-hover);
@@ -156,10 +173,13 @@
   font-family: var(--font-display);
   font-size: 2.75rem;
   letter-spacing: 2px;
-  color: var(--gold);
+  color: var(--pvl-gold);
   line-height: 1;
   margin-bottom: 6px;
 }
+
+.stat-card.accent-red .stat-card-value { color: var(--pvl-red); }
+.stat-card.accent-blue .stat-card-value { color: var(--pvl-blue-light); }
 
 .stat-card-label {
   font-family: var(--font-heading);
@@ -210,7 +230,7 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: conic-gradient(var(--gold) 0deg, var(--gold) var(--accuracy-deg, 0deg), rgba(255,255,255,0.06) var(--accuracy-deg, 0deg));
+  background: conic-gradient(var(--pvl-gold) 0deg, var(--pvl-gold) var(--accuracy-deg, 0deg), rgba(255,255,255,0.06) var(--accuracy-deg, 0deg));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -230,7 +250,7 @@
 .accuracy-value {
   font-family: var(--font-display);
   font-size: 1.5rem;
-  color: var(--gold);
+  color: var(--pvl-gold);
   line-height: 1;
 }
 
@@ -271,12 +291,12 @@
 
 .activity-tab:hover {
   color: var(--text-primary);
-  background: rgba(212, 168, 67, 0.04);
+  background: rgba(246, 184, 22, 0.04);
 }
 
 .activity-tab.active {
-  color: var(--gold);
-  border-bottom-color: var(--gold);
+  color: var(--pvl-gold);
+  border-bottom-color: var(--pvl-gold);
 }
 
 .activity-content {
@@ -322,8 +342,8 @@
 }
 
 .prediction-result.wrong {
-  background: rgba(231, 76, 60, 0.15);
-  color: var(--red);
+  background: rgba(237, 31, 36, 0.15);
+  color: var(--pvl-red);
 }
 
 .prediction-result.pending {
@@ -356,7 +376,7 @@
 .prediction-credits {
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--pvl-gold);
   white-space: nowrap;
 }
 
@@ -377,7 +397,7 @@
 }
 
 .profile-comment-context a {
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .profile-comment-text {
@@ -422,8 +442,8 @@
 }
 
 .transaction-icon.spend {
-  background: rgba(231, 76, 60, 0.12);
-  color: var(--red);
+  background: rgba(237, 31, 36, 0.12);
+  color: var(--pvl-red);
 }
 
 .transaction-details {
@@ -453,7 +473,7 @@
 }
 
 .transaction-amount.negative {
-  color: var(--red);
+  color: var(--pvl-red);
 }
 
 /* --- Achievement Badges --- */
@@ -463,6 +483,18 @@
   border-radius: var(--card-radius);
   padding: 28px;
   margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.achievements-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--grad-fire);
 }
 
 .achievements-title {
@@ -476,7 +508,7 @@
 }
 
 .achievements-title .accent {
-  color: var(--gold);
+  color: var(--pvl-gold);
 }
 
 .achievements-grid {
@@ -499,13 +531,13 @@
 }
 
 .achievement-badge.unlocked {
-  border-color: rgba(212, 168, 67, 0.3);
-  background: rgba(212, 168, 67, 0.06);
+  border-color: rgba(246, 184, 22, 0.3);
+  background: rgba(246, 184, 22, 0.06);
 }
 
 .achievement-badge.unlocked:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-gold);
+  box-shadow: var(--shadow-glow-gold);
 }
 
 .achievement-badge.locked {
@@ -539,6 +571,15 @@
   font-size: 0.72rem;
   color: var(--text-muted);
   margin-top: 2px;
+}
+
+/* --- Tier Badge Styles --- */
+.tier-badge-free { color: var(--tier-free); }
+.tier-badge-fan { color: var(--tier-fan); }
+.tier-badge-superfan { color: var(--tier-superfan); }
+.tier-badge-vip {
+  color: var(--pvl-gold);
+  text-shadow: 0 0 8px rgba(246, 184, 22, 0.3);
 }
 
 /* --- Edit Profile Modal --- */
