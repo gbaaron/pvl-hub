@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PVL Hub — Manager Game</title>
+  <meta name="description" content="PVL Manager Game: Build your dynasty, manage your team, and win championships in the ultimate PVL management simulation.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/games.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html" class="active">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <!-- Hero Banner -->
+    <section class="game-hero">
+      <div class="container">
+        <div class="page-icon">&#128203;</div>
+        <h1>PVL <span>MANAGER GAME</span></h1>
+        <p class="game-subtitle">Build your dynasty. Manage your team. Win championships.</p>
+      </div>
+    </section>
+
+    <!-- Feature Cards -->
+    <section class="game-features">
+      <div class="container">
+        <div class="features-grid">
+
+          <div class="feature-card">
+            <span class="feature-icon">&#129309;</span>
+            <h3 class="feature-title">Draft &amp; Trade</h3>
+            <p class="feature-desc">Build your perfect roster from 200+ PVL players. Scout talent, make trades, and assemble a championship-caliber squad.</p>
+          </div>
+
+          <div class="feature-card">
+            <span class="feature-icon">&#128250;</span>
+            <h3 class="feature-title">Live Matches</h3>
+            <p class="feature-desc">Watch your strategies play out in real-time simulated matches. Adjust lineups, call timeouts, and outcoach your opponents.</p>
+          </div>
+
+          <div class="feature-card">
+            <span class="feature-icon">&#x1FA99;</span>
+            <h3 class="feature-title">Earn Credits</h3>
+            <p class="feature-desc">Win achievements and earn credits to use across PVL Hub. Climb the rankings to unlock bonus rewards every season.</p>
+          </div>
+
+        </div>
+
+        <!-- Credits Integration Notice -->
+        <div class="credits-notice">
+          <span class="notice-icon">&#128176;</span>
+          <p class="notice-text">
+            <strong>Credits earned here can be spent in the Card Game, Predictions, or Shop!</strong>
+            Your balance syncs across the entire PVL Hub platform. Play smart, earn big.
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="game-actions">
+          <button class="btn-play" id="play-now-btn" onclick="launchGame()">
+            &#9654; Play Now
+          </button>
+          <button class="btn-howto" onclick="showHowToPlay()">
+            &#128218; How to Play
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Game Container -->
+    <section class="game-container-section">
+      <div class="container">
+        <div class="game-container-label">
+          <h3>&#127918; Game Arena</h3>
+          <div class="game-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span class="credits-balance" id="game-credits-amount">0</span>
+            Credits
+          </div>
+        </div>
+
+        <div class="game-wrapper" id="game-wrapper">
+          <iframe id="game-iframe" src="" data-src="https://pvl-manager-game.netlify.app" title="PVL Manager Game" allow="fullscreen" loading="lazy"></iframe>
+
+          <!-- Placeholder (shown when game not loaded) -->
+          <div class="game-placeholder" id="game-placeholder">
+            <span class="placeholder-label">Manager Game loads here</span>
+
+            <div class="mock-ui">
+              <div class="mock-ui-header">
+                <span class="mock-team-name">MY TEAM &mdash; Cool Smashers</span>
+                <span class="mock-record">Record: 8-2 | Rank #3</span>
+              </div>
+              <div class="mock-roster">
+                <div class="mock-player-row">
+                  <span class="mock-pos">S</span>
+                  <span class="mock-name">Jia De Guzman</span>
+                  <span class="mock-stat">AST 8.4</span>
+                  <span class="mock-ovr">94</span>
+                </div>
+                <div class="mock-player-row">
+                  <span class="mock-pos">OH</span>
+                  <span class="mock-name">Alyssa Valdez</span>
+                  <span class="mock-stat">PTS 18.2</span>
+                  <span class="mock-ovr">96</span>
+                </div>
+                <div class="mock-player-row">
+                  <span class="mock-pos">OH</span>
+                  <span class="mock-name">Tots Carlos</span>
+                  <span class="mock-stat">PTS 15.7</span>
+                  <span class="mock-ovr">93</span>
+                </div>
+                <div class="mock-player-row">
+                  <span class="mock-pos">MB</span>
+                  <span class="mock-name">Jema Galanza</span>
+                  <span class="mock-stat">BLK 2.1</span>
+                  <span class="mock-ovr">91</span>
+                </div>
+                <div class="mock-player-row">
+                  <span class="mock-pos">MB</span>
+                  <span class="mock-name">Pangs Panaga</span>
+                  <span class="mock-stat">BLK 1.8</span>
+                  <span class="mock-ovr">88</span>
+                </div>
+                <div class="mock-player-row">
+                  <span class="mock-pos">L</span>
+                  <span class="mock-name">Kyla Atienza</span>
+                  <span class="mock-stat">DIG 5.6</span>
+                  <span class="mock-ovr">90</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">PVL <span>HUB</span></div>
+            <p>The ultimate fan engagement platform for the Philippine Volleyball League. Play predictions, collect cards, manage teams, and earn rewards.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Content</h4>
+            <a href="articles.html">Articles</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+          </div>
+          <div class="footer-col">
+            <h4>Play</h4>
+            <a href="predictions.html">Predictions</a>
+            <a href="cards.html">Card Game</a>
+            <a href="manager.html">Manager Game</a>
+            <a href="shop.html">Shop</a>
+          </div>
+          <div class="footer-col">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Log In</a>
+            <a href="register.html">Sign Up</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 PVL Hub. Powered by Globally Ballin.</span>
+          <span>Not officially affiliated with the PVL.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/tracking.js"></script>
+  <script>
+    // --- Manager Game Page Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+      Tracking.pageView('manager');
+      syncCreditsDisplay();
+    });
+
+    // Sync credits from nav to game area
+    function syncCreditsDisplay() {
+      const navCredits = document.getElementById('nav-credits-amount');
+      const gameCredits = document.getElementById('game-credits-amount');
+      if (navCredits && gameCredits) {
+        gameCredits.textContent = navCredits.textContent;
+        // Observe changes to nav credits
+        const observer = new MutationObserver(() => {
+          gameCredits.textContent = navCredits.textContent;
+        });
+        observer.observe(navCredits, { childList: true, characterData: true, subtree: true });
+      }
+    }
+
+    // Launch the manager game
+    function launchGame() {
+      const iframe = document.getElementById('game-iframe');
+      const placeholder = document.getElementById('game-placeholder');
+      const gameSrc = iframe.dataset.src;
+
+      if (gameSrc) {
+        iframe.src = gameSrc;
+        if (placeholder) {
+          placeholder.style.opacity = '0';
+          setTimeout(() => { placeholder.style.display = 'none'; }, 400);
+        }
+        Tracking.managerGamePlay();
+        Toast.show('Loading Manager Game...', 'info');
+      }
+    }
+
+    // Show how-to-play info
+    function showHowToPlay() {
+      Toast.show('How to Play guide coming soon!', 'info');
+    }
+  </script>
+</body>
+</html>

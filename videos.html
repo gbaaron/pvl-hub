@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Videos — PVL Hub</title>
+  <meta name="description" content="PVL Videos: Interviews, highlights, analysis breakdowns, and behind-the-scenes content from the Philippine Volleyball League.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/videos.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <!-- Page Header -->
+    <section class="videos-header">
+      <div class="container">
+        <h1>PVL <span class="accent">VIDEOS</span></h1>
+        <p>Interviews, highlights, tactical breakdowns, and exclusive behind-the-scenes footage</p>
+      </div>
+    </section>
+
+    <!-- Filters & Grid -->
+    <section class="videos-filters">
+      <div class="container">
+        <div class="filter-bar" id="video-filters">
+          <button class="filter-btn active" data-type="all">All</button>
+          <button class="filter-btn" data-type="interview">Interview</button>
+          <button class="filter-btn" data-type="highlight">Highlight</button>
+          <button class="filter-btn" data-type="analysis">Analysis</button>
+          <button class="filter-btn" data-type="bts">Behind the Scenes</button>
+        </div>
+
+        <div class="videos-grid" id="videos-grid">
+          <!-- Video 1 -->
+          <div class="video-card-full" data-type="interview" onclick="Tracking.videoWatch(1, 'Exclusive: Alyssa Valdez on Her Legacy')">
+            <div class="video-thumb">
+              <div class="thumb-placeholder">&#127909;</div>
+              <div class="play-overlay">
+                <div class="play-circle">&#9654;</div>
+              </div>
+              <span class="video-duration">12:34</span>
+              <div class="type-badge"><span class="badge badge-blue">Interview</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span>Apr 13, 2026</span>
+                <span>42K views</span>
+              </div>
+              <div class="card-title">Exclusive: Alyssa Valdez on Her Legacy and Future Goals</div>
+              <p class="card-description">The Phenom opens up about her journey, leadership philosophy, and what drives her in her 10th professional season.</p>
+            </div>
+          </div>
+
+          <!-- Video 2 -->
+          <div class="video-card-full" data-type="highlight" onclick="Tracking.videoWatch(2, 'Top 10 Plays of the Week')">
+            <div class="video-thumb">
+              <div class="thumb-placeholder">&#127909;</div>
+              <div class="play-overlay">
+                <div class="play-circle">&#9654;</div>
+              </div>
+              <span class="video-duration">8:21</span>
+              <div class="type-badge"><span class="badge badge-green">Highlight</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span>Apr 12, 2026</span>
+                <span>68K views</span>
+              </div>
+              <div class="card-title">Top 10 Plays of the Week | PVL 2026 Week 3</div>
+              <p class="card-description">Monster blocks, diving saves, and thunderous kills. The best moments from Week 3 of PVL action.</p>
+            </div>
+          </div>
+
+          <!-- Video 3 -->
+          <div class="video-card-full" data-type="analysis" onclick="Tracking.videoWatch(3, 'Film Breakdown: Cignal Block Defense')">
+            <div class="video-thumb">
+              <div class="thumb-placeholder">&#127909;</div>
+              <div class="play-overlay">
+                <div class="play-circle">&#9654;</div>
+              </div>
+              <span class="video-duration">18:45</span>
+              <div class="type-badge"><span class="badge badge-purple">Analysis</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span>Apr 11, 2026</span>
+                <span>15K views</span>
+              </div>
+              <div class="card-title">Film Breakdown: Why Cignal's Block Defense is Elite</div>
+              <p class="card-description">Breaking down the X's and O's of the HD Spikers' blocking scheme that has opponents averaging just .180 hitting.</p>
+            </div>
+          </div>
+
+          <!-- Video 4 -->
+          <div class="video-card-full" data-type="bts" onclick="Tracking.videoWatch(4, 'Game Day Vlog: Choco Mucho')">
+            <div class="video-thumb">
+              <div class="thumb-placeholder">&#127909;</div>
+              <div class="play-overlay">
+                <div class="play-circle">&#9654;</div>
+              </div>
+              <span class="video-duration">15:08</span>
+              <div class="type-badge"><span class="badge badge-gold">Behind the Scenes</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span>Apr 10, 2026</span>
+                <span>31K views</span>
+              </div>
+              <div class="card-title">Game Day Vlog: Inside Choco Mucho's Championship Preparation</div>
+              <p class="card-description">Follow the Flying Titans from morning shootaround to post-game celebrations in this exclusive behind-the-scenes vlog.</p>
+            </div>
+          </div>
+
+          <!-- Video 5 -->
+          <div class="video-card-full" data-type="interview" onclick="Tracking.videoWatch(5, 'Post-Game: Coach Almadro Reacts')">
+            <div class="video-thumb">
+              <div class="thumb-placeholder">&#127909;</div>
+              <div class="play-overlay">
+                <div class="play-circle">&#9654;</div>
+              </div>
+              <span class="video-duration">6:52</span>
+              <div class="type-badge"><span class="badge badge-blue">Interview</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span>Apr 9, 2026</span>
+                <span>22K views</span>
+              </div>
+              <div class="card-title">Post-Game: Coach Almadro Reacts to Creamline's Dominant Sweep</div>
+              <p class="card-description">The veteran coach breaks down key adjustments and praises his team's defensive intensity after their 3-0 victory.</p>
+            </div>
+          </div>
+
+          <!-- Video 6 -->
+          <div class="video-card-full" data-type="highlight" onclick="Tracking.videoWatch(6, 'Jia De Guzman Season Highlights')">
+            <div class="video-thumb">
+              <div class="thumb-placeholder">&#127909;</div>
+              <div class="play-overlay">
+                <div class="play-circle">&#9654;</div>
+              </div>
+              <span class="video-duration">10:16</span>
+              <div class="type-badge"><span class="badge badge-green">Highlight</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span>Apr 8, 2026</span>
+                <span>55K views</span>
+              </div>
+              <div class="card-title">Jia De Guzman's Best Assists: 2026 Season Highlights So Far</div>
+              <p class="card-description">The league's premier setter showcases her incredible court vision and creativity in this highlight compilation.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="load-more-wrap">
+          <button class="btn btn-secondary" onclick="Toast.show('More videos coming soon!', 'info')">Load More Videos</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="videos-engage">
+      <div class="container">
+        <div class="engage-card">
+          <h2>DISCUSSION</h2>
+          <div id="videos-comments"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">PVL <span>HUB</span></div>
+            <p>The ultimate fan engagement platform for the Philippine Volleyball League. Play predictions, collect cards, manage teams, and earn rewards.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Content</h4>
+            <a href="articles.html">Articles</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+          </div>
+          <div class="footer-col">
+            <h4>Play</h4>
+            <a href="predictions.html">Predictions</a>
+            <a href="cards.html">Card Game</a>
+            <a href="manager.html">Manager Game</a>
+            <a href="shop.html">Shop</a>
+          </div>
+          <div class="footer-col">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Log In</a>
+            <a href="register.html">Sign Up</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 PVL Hub. Powered by Globally Ballin.</span>
+          <span>Not officially affiliated with the PVL.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/tracking.js"></script>
+  <script src="js/comments.js"></script>
+  <script src="js/ratings.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Tracking.pageView('videos');
+
+      // Type filter logic
+      const filterBtns = document.querySelectorAll('#video-filters .filter-btn');
+      const cards = document.querySelectorAll('.video-card-full');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const type = btn.dataset.type;
+
+          cards.forEach(card => {
+            if (type === 'all') {
+              card.style.display = '';
+            } else {
+              card.style.display = card.dataset.type === type ? '' : 'none';
+            }
+          });
+        });
+      });
+
+      // Render comments
+      const commentsContainer = document.getElementById('videos-comments');
+      if (commentsContainer) {
+        Comments.render(commentsContainer, 'videos_page', 1);
+      }
+    });
+  </script>
+</body>
+</html>

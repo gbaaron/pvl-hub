@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In — PVL Hub</title>
+  <meta name="description" content="Log in to PVL Hub to access predictions, card games, fantasy manager, and more.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <!-- Auth Section -->
+    <section class="auth-page">
+      <div class="auth-card">
+        <!-- Header -->
+        <div class="auth-header">
+          <div class="auth-logo">PVL <span>HUB</span></div>
+          <h1>Welcome Back</h1>
+          <p>Log in to continue to your command center</p>
+        </div>
+
+        <!-- Login Form -->
+        <form class="auth-form" id="login-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <div class="input-wrapper">
+              <span class="input-icon">&#9993;</span>
+              <input
+                type="email"
+                id="email"
+                class="form-input"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              >
+            </div>
+            <span class="field-error" id="email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon">&#128274;</span>
+              <input
+                type="password"
+                id="password"
+                class="form-input"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+              >
+              <button type="button" class="password-toggle" id="toggle-password" title="Show password">&#128065;</button>
+            </div>
+            <span class="field-error" id="password-error"></span>
+          </div>
+
+          <button type="submit" class="auth-submit" id="login-btn">
+            <span class="btn-spinner"></span>
+            <span class="btn-text">Log In</span>
+          </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="auth-footer">
+          <p>Don't have an account? <a href="register.html">Create one free</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">PVL <span>HUB</span></div>
+            <p>The ultimate fan engagement platform for the Philippine Volleyball League. Play predictions, collect cards, manage teams, and earn rewards.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Content</h4>
+            <a href="articles.html">Articles</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+          </div>
+          <div class="footer-col">
+            <h4>Play</h4>
+            <a href="predictions.html">Predictions</a>
+            <a href="cards.html">Card Game</a>
+            <a href="manager.html">Manager Game</a>
+            <a href="shop.html">Shop</a>
+          </div>
+          <div class="footer-col">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Log In</a>
+            <a href="register.html">Sign Up</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 PVL Hub. Powered by Globally Ballin.</span>
+          <span>Not officially affiliated with the PVL.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // If already logged in, redirect away
+      if (PVLApi.isLoggedIn()) {
+        const redirect = new URLSearchParams(window.location.search).get('redirect') || 'index.html';
+        window.location.href = redirect;
+        return;
+      }
+
+      const form = document.getElementById('login-form');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const loginBtn = document.getElementById('login-btn');
+      const togglePwdBtn = document.getElementById('toggle-password');
+
+      // Toggle password visibility
+      togglePwdBtn.addEventListener('click', () => {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        togglePwdBtn.innerHTML = isPassword ? '&#128064;' : '&#128065;';
+        togglePwdBtn.title = isPassword ? 'Hide password' : 'Show password';
+      });
+
+      // Clear errors on input
+      emailInput.addEventListener('input', () => clearFieldError('email'));
+      passwordInput.addEventListener('input', () => clearFieldError('password'));
+
+      // Form submit
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearAllErrors();
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        // Validate
+        let hasError = false;
+
+        if (!email) {
+          showFieldError('email', 'Email is required');
+          hasError = true;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showFieldError('email', 'Enter a valid email address');
+          hasError = true;
+        }
+
+        if (!password) {
+          showFieldError('password', 'Password is required');
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        // Submit
+        setLoading(true);
+        try {
+          await PVLApi.login(email, password);
+          Toast.show('Welcome back!', 'success');
+
+          const redirect = new URLSearchParams(window.location.search).get('redirect') || 'index.html';
+          setTimeout(() => {
+            window.location.href = redirect;
+          }, 600);
+        } catch (err) {
+          Toast.show(err.message || 'Login failed. Please check your credentials.', 'error');
+          setLoading(false);
+        }
+      });
+
+      function setLoading(loading) {
+        loginBtn.disabled = loading;
+        loginBtn.classList.toggle('loading', loading);
+      }
+
+      function showFieldError(field, message) {
+        const input = document.getElementById(field);
+        const errorEl = document.getElementById(field + '-error');
+        if (input) input.classList.add('error');
+        if (errorEl) {
+          errorEl.textContent = message;
+          errorEl.classList.add('visible');
+        }
+      }
+
+      function clearFieldError(field) {
+        const input = document.getElementById(field);
+        const errorEl = document.getElementById(field + '-error');
+        if (input) input.classList.remove('error');
+        if (errorEl) {
+          errorEl.textContent = '';
+          errorEl.classList.remove('visible');
+        }
+      }
+
+      function clearAllErrors() {
+        document.querySelectorAll('.form-input.error').forEach(el => el.classList.remove('error'));
+        document.querySelectorAll('.field-error.visible').forEach(el => {
+          el.textContent = '';
+          el.classList.remove('visible');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

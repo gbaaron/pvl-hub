@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles — PVL Hub</title>
+  <meta name="description" content="PVL Articles: Game recaps, features, news, opinion, and analysis from the Philippine Volleyball League.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/articles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <!-- Page Header -->
+    <section class="articles-header">
+      <div class="container">
+        <h1>PVL <span class="accent">ARTICLES</span></h1>
+        <p>Game recaps, in-depth features, breaking news, and expert analysis</p>
+      </div>
+    </section>
+
+    <!-- Filters & Grid -->
+    <section class="articles-filters">
+      <div class="container">
+        <div class="filter-bar" id="article-filters">
+          <button class="filter-btn active" data-category="all">All</button>
+          <button class="filter-btn" data-category="recap">Game Recap</button>
+          <button class="filter-btn" data-category="feature">Feature</button>
+          <button class="filter-btn" data-category="news">News</button>
+          <button class="filter-btn" data-category="opinion">Opinion</button>
+          <button class="filter-btn" data-category="analysis">Analysis</button>
+        </div>
+
+        <div class="articles-grid" id="articles-grid">
+          <!-- Article 1 -->
+          <a href="#" class="article-card" onclick="Tracking.articleRead(1, this.querySelector('.card-title').textContent)">
+            <div class="card-thumb">
+              <div class="thumb-placeholder">&#127951;</div>
+              <span class="category-badge recap">Game Recap</span>
+            </div>
+            <div class="card-body">
+              <div class="card-date">Apr 13, 2026</div>
+              <div class="card-title">Creamline Dominates in 3 Sets: Alyssa Valdez Returns to MVP Form</div>
+              <p class="card-excerpt">The Cool Smashers showed no mercy in their opening conference match, with Valdez posting 24 points in a commanding straight-sets victory over PLDT.</p>
+              <div class="card-footer">
+                <span class="read-more">Read More &rarr;</span>
+                <span class="read-time">5 min read</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article 2 -->
+          <a href="#" class="article-card" onclick="Tracking.articleRead(2, this.querySelector('.card-title').textContent)">
+            <div class="card-thumb">
+              <div class="thumb-placeholder">&#127951;</div>
+              <span class="category-badge analysis">Analysis</span>
+            </div>
+            <div class="card-body">
+              <div class="card-date">Apr 12, 2026</div>
+              <div class="card-title">Top 5 Setters to Watch This Conference: Breaking Down the Elite Playmakers</div>
+              <p class="card-excerpt">From Jia De Guzman's court vision to Deanna Wong's quick tempo offense, we rank the setters poised to dominate the 2026 season.</p>
+              <div class="card-footer">
+                <span class="read-more">Read More &rarr;</span>
+                <span class="read-time">8 min read</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article 3 -->
+          <a href="#" class="article-card" onclick="Tracking.articleRead(3, this.querySelector('.card-title').textContent)">
+            <div class="card-thumb">
+              <div class="thumb-placeholder">&#127951;</div>
+              <span class="category-badge feature">Feature</span>
+              <div class="tier-lock"><span class="tier-badge tier-fan">Fan Tier</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-date">Apr 11, 2026</div>
+              <div class="card-title">Behind the Scenes: Choco Mucho Training Camp Exclusive</div>
+              <p class="card-excerpt">An exclusive look inside the Flying Titans' preseason training camp as they prepare for their title defense under new head coach.</p>
+              <div class="card-footer">
+                <span class="read-more">Read More &rarr;</span>
+                <span class="read-time">10 min read</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article 4 -->
+          <a href="#" class="article-card" onclick="Tracking.articleRead(4, this.querySelector('.card-title').textContent)">
+            <div class="card-thumb">
+              <div class="thumb-placeholder">&#127951;</div>
+              <span class="category-badge news">News</span>
+            </div>
+            <div class="card-body">
+              <div class="card-date">Apr 10, 2026</div>
+              <div class="card-title">PLDT Announces Major Roster Shake-Up Ahead of Mid-Season Transfer Window</div>
+              <p class="card-excerpt">Three key players traded as the High Speed Hitters retool for a playoff push. Sources confirm a blockbuster deal involving two franchise players.</p>
+              <div class="card-footer">
+                <span class="read-more">Read More &rarr;</span>
+                <span class="read-time">4 min read</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article 5 -->
+          <a href="#" class="article-card" onclick="Tracking.articleRead(5, this.querySelector('.card-title').textContent)">
+            <div class="card-thumb">
+              <div class="thumb-placeholder">&#127951;</div>
+              <span class="category-badge opinion">Opinion</span>
+            </div>
+            <div class="card-body">
+              <div class="card-date">Apr 9, 2026</div>
+              <div class="card-title">Why the PVL Needs a Salary Cap: A Case for Competitive Balance</div>
+              <p class="card-excerpt">As super-teams continue to dominate, we examine whether implementing a salary cap would create a more competitive and sustainable league.</p>
+              <div class="card-footer">
+                <span class="read-more">Read More &rarr;</span>
+                <span class="read-time">7 min read</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article 6 -->
+          <a href="#" class="article-card" onclick="Tracking.articleRead(6, this.querySelector('.card-title').textContent)">
+            <div class="card-thumb">
+              <div class="thumb-placeholder">&#127951;</div>
+              <span class="category-badge recap">Game Recap</span>
+            </div>
+            <div class="card-body">
+              <div class="card-date">Apr 8, 2026</div>
+              <div class="card-title">Cignal Stuns Petro Gazz in 5-Set Thriller at PhilSports Arena</div>
+              <p class="card-excerpt">The HD Spikers rallied from two sets down to complete a stunning reverse sweep, powered by Ces Molina's career-high 32 points.</p>
+              <div class="card-footer">
+                <span class="read-more">Read More &rarr;</span>
+                <span class="read-time">6 min read</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article 7 -->
+          <a href="#" class="article-card" onclick="Tracking.articleRead(7, this.querySelector('.card-title').textContent)">
+            <div class="card-thumb">
+              <div class="thumb-placeholder">&#127951;</div>
+              <span class="category-badge analysis">Analysis</span>
+              <div class="tier-lock"><span class="tier-badge tier-superfan">Superfan</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-date">Apr 7, 2026</div>
+              <div class="card-title">Film Study: Deconstructing Creamline's Block Defense System</div>
+              <p class="card-excerpt">A deep dive into the tactical adjustments that have made the Cool Smashers' front line the most dominant blocking unit in PVL history.</p>
+              <div class="card-footer">
+                <span class="read-more">Read More &rarr;</span>
+                <span class="read-time">12 min read</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article 8 -->
+          <a href="#" class="article-card" onclick="Tracking.articleRead(8, this.querySelector('.card-title').textContent)">
+            <div class="card-thumb">
+              <div class="thumb-placeholder">&#127951;</div>
+              <span class="category-badge feature">Feature</span>
+            </div>
+            <div class="card-body">
+              <div class="card-date">Apr 6, 2026</div>
+              <div class="card-title">From Ateneo to the Pros: Rookie Spotlight on Faith Nisperos' PVL Debut Season</div>
+              <p class="card-excerpt">The former UAAP MVP opens up about the transition to professional volleyball, her goals for the season, and adjusting to a faster pace of play.</p>
+              <div class="card-footer">
+                <span class="read-more">Read More &rarr;</span>
+                <span class="read-time">9 min read</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Article 9 -->
+          <a href="#" class="article-card" onclick="Tracking.articleRead(9, this.querySelector('.card-title').textContent)">
+            <div class="card-thumb">
+              <div class="thumb-placeholder">&#127951;</div>
+              <span class="category-badge news">News</span>
+            </div>
+            <div class="card-body">
+              <div class="card-date">Apr 5, 2026</div>
+              <div class="card-title">PVL 2026 All-Star Game Set for Cebu: League Expands Reach to the Visayas</div>
+              <p class="card-excerpt">The league announces its first-ever All-Star game outside Metro Manila, targeting the passionate volleyball fanbase in Cebu City this July.</p>
+              <div class="card-footer">
+                <span class="read-more">Read More &rarr;</span>
+                <span class="read-time">3 min read</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="load-more-wrap">
+          <button class="btn btn-secondary" onclick="Toast.show('More articles coming soon!', 'info')">Load More Articles</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engagement Section -->
+    <section class="articles-engage">
+      <div class="container">
+        <div class="engage-card">
+          <h2>RATE &amp; DISCUSS</h2>
+          <div id="articles-rating"></div>
+          <div id="articles-comments"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">PVL <span>HUB</span></div>
+            <p>The ultimate fan engagement platform for the Philippine Volleyball League. Play predictions, collect cards, manage teams, and earn rewards.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Content</h4>
+            <a href="articles.html">Articles</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+          </div>
+          <div class="footer-col">
+            <h4>Play</h4>
+            <a href="predictions.html">Predictions</a>
+            <a href="cards.html">Card Game</a>
+            <a href="manager.html">Manager Game</a>
+            <a href="shop.html">Shop</a>
+          </div>
+          <div class="footer-col">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Log In</a>
+            <a href="register.html">Sign Up</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 PVL Hub. Powered by Globally Ballin.</span>
+          <span>Not officially affiliated with the PVL.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/tracking.js"></script>
+  <script src="js/comments.js"></script>
+  <script src="js/ratings.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Tracking.pageView('articles');
+
+      // Category filter logic
+      const filterBtns = document.querySelectorAll('#article-filters .filter-btn');
+      const cards = document.querySelectorAll('.article-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const category = btn.dataset.category;
+
+          cards.forEach(card => {
+            if (category === 'all') {
+              card.style.display = '';
+            } else {
+              const badge = card.querySelector('.category-badge');
+              const cardCat = badge ? badge.classList.contains(category) : false;
+              card.style.display = cardCat ? '' : 'none';
+            }
+          });
+        });
+      });
+
+      // Render ratings & comments
+      const ratingsContainer = document.getElementById('articles-rating');
+      const commentsContainer = document.getElementById('articles-comments');
+
+      if (ratingsContainer) {
+        Ratings.render(ratingsContainer, 'articles_page', 1, { avgRating: 4.3 });
+      }
+      if (commentsContainer) {
+        Comments.render(commentsContainer, 'articles_page', 1);
+      }
+    });
+  </script>
+</body>
+</html>

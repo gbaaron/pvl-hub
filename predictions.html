@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predictions — PVL Hub</title>
+  <meta name="description" content="Make your PVL match predictions, climb the leaderboard, and earn credits. Test your volleyball knowledge!">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/predictions.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <!-- Hero Banner -->
+    <section class="predictions-hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="page-icon">&#127942;</div>
+          <h1>MATCH <span class="gold">PREDICTIONS</span></h1>
+          <p class="hero-desc">Test your PVL knowledge. Pick your predictions for every match and climb the leaderboard to earn credits and bragging rights.</p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="stat-num">48.2K</div>
+              <div class="stat-lbl">Predictions Made</div>
+            </div>
+            <div class="hero-stat">
+              <div class="stat-num">3.1K</div>
+              <div class="stat-lbl">Active Players</div>
+            </div>
+            <div class="hero-stat">
+              <div class="stat-num">1.2M</div>
+              <div class="stat-lbl">Credits Won</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Navigation -->
+    <div class="section-nav" id="section-nav">
+      <button class="section-nav-btn active" data-section="predict">Make Picks</button>
+      <button class="section-nav-btn" data-section="leaderboard">Leaderboard</button>
+      <button class="section-nav-btn" data-section="history">Past Results</button>
+    </div>
+
+    <!-- ============================================
+         SECTION 1: Active Match Predictions
+         ============================================ -->
+    <section class="pred-section active" id="section-predict">
+      <div class="container">
+
+        <!-- Match Header -->
+        <div class="match-header-card reveal">
+          <div class="match-status-badge">
+            <span class="pulse"></span>
+            Predictions Open
+          </div>
+          <div class="match-teams">
+            <div class="match-team">
+              <div class="team-logo-circle">CCS</div>
+              <div class="team-name">Creamline Cool Smashers</div>
+              <div class="team-record">8-1 Record</div>
+            </div>
+            <div class="match-vs">VS</div>
+            <div class="match-team">
+              <div class="team-logo-circle">CMF</div>
+              <div class="team-name">Choco Mucho Flying Titans</div>
+              <div class="team-record">7-2 Record</div>
+            </div>
+          </div>
+          <div class="match-info">
+            <div class="match-info-item">
+              <span class="info-icon">&#128197;</span>
+              <span>April 16, 2026 &bull; 4:00 PM</span>
+            </div>
+            <div class="match-info-item">
+              <span class="info-icon">&#127967;</span>
+              <span>PhilSports Arena, Pasig City</span>
+            </div>
+            <div class="match-info-item">
+              <span class="info-icon">&#127909;</span>
+              <span>ESPN5 / Cignal TV</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rewards Banner -->
+        <div class="rewards-banner reveal">
+          <div class="reward-text">
+            <div class="reward-icon">&#127873;</div>
+            <div class="reward-details">
+              <h4>Earn Credits With Your Predictions!</h4>
+              <p>Answer all 5 questions before the match starts to qualify for rewards.</p>
+            </div>
+          </div>
+          <div class="reward-tiers">
+            <div class="reward-tier">
+              <div class="tier-credits">500</div>
+              <div class="tier-label">5/5 Correct</div>
+            </div>
+            <div class="reward-tier">
+              <div class="tier-credits">100</div>
+              <div class="tier-label">3+ Correct</div>
+            </div>
+            <div class="reward-tier">
+              <div class="tier-credits">25</div>
+              <div class="tier-label">1+ Correct</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prediction Questions -->
+        <div class="questions-grid" id="questions-grid">
+          <!-- Rendered by JS -->
+        </div>
+
+        <!-- Progress + Submit -->
+        <div class="progress-tracker" id="progress-tracker">
+          <div class="progress-dot" data-q="0"></div>
+          <div class="progress-dot" data-q="1"></div>
+          <div class="progress-dot" data-q="2"></div>
+          <div class="progress-dot" data-q="3"></div>
+          <div class="progress-dot" data-q="4"></div>
+          <span class="progress-label"><strong id="answered-count">0</strong> / 5 Answered</span>
+        </div>
+
+        <div class="submit-area">
+          <button class="btn-lock-in" id="btn-lock-in" disabled>
+            <span class="btn-text">
+              <span class="lock-icon">&#128274;</span> Lock In Predictions
+            </span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 2: Leaderboard
+         ============================================ -->
+    <section class="pred-section" id="section-leaderboard">
+      <div class="container">
+        <h2 class="section-title reveal">PREDICTION <span class="accent">LEADERBOARD</span></h2>
+        <p class="section-subtitle reveal">The sharpest predictors in the PVL community. Where do you rank?</p>
+
+        <div class="leaderboard-tabs reveal" id="lb-tabs">
+          <button class="lb-tab active" data-period="weekly">Weekly</button>
+          <button class="lb-tab" data-period="alltime">All-Time</button>
+        </div>
+
+        <div class="leaderboard-wrapper reveal">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th style="width:70px;">Rank</th>
+                <th>Player</th>
+                <th>Correct</th>
+                <th>Accuracy</th>
+                <th style="text-align:right;">Points</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3: Past Predictions / Results
+         ============================================ -->
+    <section class="pred-section" id="section-history">
+      <div class="container">
+        <h2 class="section-title reveal">YOUR PAST <span class="accent">RESULTS</span></h2>
+        <p class="section-subtitle reveal">See how your predictions stacked up against the real outcomes.</p>
+
+        <div class="past-predictions" id="past-predictions">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Confirmation Overlay -->
+    <div class="confirmation-overlay" id="confirmation-overlay">
+      <div class="receipt-card">
+        <div class="receipt-header">
+          <div class="receipt-icon">&#127915;</div>
+          <h3>PREDICTIONS LOCKED</h3>
+          <p>Your picks have been submitted!</p>
+        </div>
+        <div class="receipt-body">
+          <div class="receipt-match">
+            <div class="teams" id="receipt-teams">Creamline vs Choco Mucho</div>
+            <div class="date" id="receipt-date">April 16, 2026 &bull; 4:00 PM</div>
+          </div>
+          <div class="receipt-picks" id="receipt-picks">
+            <!-- Rendered by JS -->
+          </div>
+          <div class="receipt-footer">
+            <div class="potential-label">Max Potential Reward</div>
+            <div class="potential-win">500 CREDITS</div>
+          </div>
+        </div>
+        <div style="text-align:center;padding:0 32px 28px;">
+          <button class="receipt-close-btn" id="receipt-close">Got It</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">PVL <span>HUB</span></div>
+            <p>The ultimate fan engagement platform for the Philippine Volleyball League. Play predictions, collect cards, manage teams, and earn rewards.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Content</h4>
+            <a href="articles.html">Articles</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+          </div>
+          <div class="footer-col">
+            <h4>Play</h4>
+            <a href="predictions.html">Predictions</a>
+            <a href="cards.html">Card Game</a>
+            <a href="manager.html">Manager Game</a>
+            <a href="shop.html">Shop</a>
+          </div>
+          <div class="footer-col">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Log In</a>
+            <a href="register.html">Sign Up</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 PVL Hub. Powered by Globally Ballin.</span>
+          <span>Not officially affiliated with the PVL.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/tracking.js"></script>
+  <script src="js/predictions.js"></script>
+</body>
+</html>

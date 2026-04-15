@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PVL Hub — The Ultimate Philippine Volleyball League Fan Platform</title>
+  <meta name="description" content="PVL Hub: Your home for PVL news, predictions, fantasy games, and more. Powered by Globally Ballin.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <!-- Score Ticker -->
+    <div class="score-ticker">
+      <div class="ticker-track" id="score-ticker">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="hero-tag">
+              <span class="pulse-dot"></span>
+              Season 2026 is Live
+            </div>
+            <h1>
+              YOUR PVL
+              <span class="gold">COMMAND CENTER</span>
+            </h1>
+            <p class="hero-subtitle">
+              Every match. Every stat. Every prediction. The definitive fan platform for the Philippine Volleyball League — all in one place.
+            </p>
+            <div class="hero-actions">
+              <a href="predictions.html" class="btn btn-primary btn-lg">Make Predictions</a>
+              <a href="register.html" class="btn btn-outline btn-lg">Join Free</a>
+            </div>
+          </div>
+
+          <div class="match-countdown-card" id="countdown-card">
+            <div class="countdown-label">Next Match</div>
+            <div class="countdown-teams" id="countdown-teams">
+              <div class="countdown-team">
+                <div class="team-logo">CCS</div>
+                <div class="team-name">Creamline</div>
+              </div>
+              <div class="countdown-vs">VS</div>
+              <div class="countdown-team">
+                <div class="team-logo">CMF</div>
+                <div class="team-name">Choco Mucho</div>
+              </div>
+            </div>
+            <div class="countdown-timer" id="countdown-timer">
+              <div class="countdown-unit">
+                <span class="value" id="cd-days">02</span>
+                <span class="label">Days</span>
+              </div>
+              <div class="countdown-unit">
+                <span class="value" id="cd-hours">14</span>
+                <span class="label">Hours</span>
+              </div>
+              <div class="countdown-unit">
+                <span class="value" id="cd-mins">37</span>
+                <span class="label">Mins</span>
+              </div>
+              <div class="countdown-unit">
+                <span class="value" id="cd-secs">05</span>
+                <span class="label">Secs</span>
+              </div>
+            </div>
+            <div class="countdown-venue">PhilSports Arena, Pasig City</div>
+            <a href="predictions.html" class="btn btn-primary btn-sm mt-2" style="margin-top:16px;">Make Your Picks</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar container reveal">
+      <div class="stat-item">
+        <div class="stat-value">12.4K</div>
+        <div class="stat-label">Active Fans</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">48K</div>
+        <div class="stat-label">Predictions Made</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">1.2M</div>
+        <div class="stat-label">Credits Earned</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">6</div>
+        <div class="stat-label">Active Games</div>
+      </div>
+    </section>
+
+    <!-- Featured Articles -->
+    <section class="home-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>LATEST <span class="accent">ARTICLES</span></h2>
+          <a href="articles.html" class="view-all">View All &rarr;</a>
+        </div>
+        <div class="featured-grid reveal" id="featured-articles">
+          <!-- Card 1 - Featured -->
+          <div class="card">
+            <img class="card-image" src="https://res.cloudinary.com/demo/image/upload/v1/samples/landscapes/nature-mountains" alt="Featured Article" style="background: var(--navy-mid); min-height:200px;">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="badge badge-gold">Featured</span>
+                <span>Game Recap</span>
+                <span>Apr 12, 2026</span>
+              </div>
+              <div class="card-title">Creamline Dominates in 3 Sets: Alyssa Valdez Returns to MVP Form</div>
+              <p class="card-excerpt">The Cool Smashers showed no mercy in their opening conference match, with Valdez posting 24 points in a commanding straight-sets victory.</p>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="card">
+            <img class="card-image" src="https://res.cloudinary.com/demo/image/upload/v1/samples/landscapes/nature-mountains" alt="Article" style="background: var(--navy-mid); min-height:120px;">
+            <div class="card-body">
+              <div class="card-meta">
+                <span>Analysis</span>
+                <span>Apr 11, 2026</span>
+              </div>
+              <div class="card-title">Top 5 Setters to Watch This Conference</div>
+              <p class="card-excerpt">Breaking down the elite playmakers poised to dominate the 2026 season.</p>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="card">
+            <img class="card-image" src="https://res.cloudinary.com/demo/image/upload/v1/samples/landscapes/nature-mountains" alt="Article" style="background: var(--navy-mid); min-height:120px;">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="tier-badge tier-fan">Fan Tier</span>
+                <span>Feature</span>
+                <span>Apr 10, 2026</span>
+              </div>
+              <div class="card-title">Behind the Scenes: Choco Mucho Training Camp</div>
+              <p class="card-excerpt">Exclusive look at how the Flying Titans are preparing for their title defense.</p>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="card">
+            <img class="card-image" src="https://res.cloudinary.com/demo/image/upload/v1/samples/landscapes/nature-mountains" alt="Article" style="background: var(--navy-mid); min-height:120px;">
+            <div class="card-body">
+              <div class="card-meta">
+                <span>News</span>
+                <span>Apr 9, 2026</span>
+              </div>
+              <div class="card-title">PLDT Announces Major Roster Shake-Up Ahead of Mid-Season</div>
+              <p class="card-excerpt">Three key players traded as the High Speed Hitters retool for playoff push.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Videos -->
+    <section class="home-section" style="background: var(--bg-secondary); padding: var(--section-padding) 0;">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>LATEST <span class="accent">VIDEOS</span></h2>
+          <a href="videos.html" class="view-all">View All &rarr;</a>
+        </div>
+        <div class="grid-3 reveal" id="latest-videos">
+          <!-- Video 1 -->
+          <div class="card video-card">
+            <div style="position: relative;">
+              <img class="card-image" src="https://res.cloudinary.com/demo/image/upload/v1/samples/landscapes/nature-mountains" alt="Video" style="background: var(--navy-mid); min-height:140px;">
+              <div class="play-overlay">
+                <div class="play-btn">&#9654;</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="badge badge-blue">Interview</span>
+                <span>Apr 12, 2026</span>
+              </div>
+              <div class="card-title">Exclusive: Alyssa Valdez on Her Legacy and Future Goals</div>
+            </div>
+          </div>
+          <!-- Video 2 -->
+          <div class="card video-card">
+            <div style="position: relative;">
+              <img class="card-image" src="https://res.cloudinary.com/demo/image/upload/v1/samples/landscapes/nature-mountains" alt="Video" style="background: var(--navy-mid); min-height:140px;">
+              <div class="play-overlay">
+                <div class="play-btn">&#9654;</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="badge badge-green">Highlight</span>
+                <span>Apr 11, 2026</span>
+              </div>
+              <div class="card-title">Top 10 Plays of the Week | PVL 2026 Week 3</div>
+            </div>
+          </div>
+          <!-- Video 3 -->
+          <div class="card video-card">
+            <div style="position: relative;">
+              <img class="card-image" src="https://res.cloudinary.com/demo/image/upload/v1/samples/landscapes/nature-mountains" alt="Video" style="background: var(--navy-mid); min-height:140px;">
+              <div class="play-overlay">
+                <div class="play-btn">&#9654;</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="badge badge-purple">Analysis</span>
+                <span>Apr 10, 2026</span>
+              </div>
+              <div class="card-title">Film Breakdown: Why Cignal's Block Defense is Elite</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Podcast Preview -->
+    <section class="home-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>LATEST <span class="accent">PODCAST</span></h2>
+          <a href="podcast.html" class="view-all">All Episodes &rarr;</a>
+        </div>
+        <div class="podcast-preview reveal">
+          <div class="podcast-cover">
+            <div class="mic-icon">&#127908;</div>
+          </div>
+          <div class="podcast-info">
+            <div class="episode-tag">Episode 24 &bull; New</div>
+            <h3>The Creamline Dynasty: Can Anyone Stop Them?</h3>
+            <p class="guest">with Coach Oliver Almadro &bull; 48 min</p>
+            <a href="podcast.html" class="podcast-play-btn">
+              &#9654; Listen Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Predictions CTA -->
+    <section class="home-section">
+      <div class="container">
+        <div class="predictions-cta reveal">
+          <h2>MAKE YOUR <span class="text-gold">PREDICTIONS</span></h2>
+          <p>Predict match outcomes, player stats, and MVP winners. Get all 5 right and win BIG rewards!</p>
+          <a href="predictions.html" class="btn btn-primary btn-lg" style="position:relative;">
+            Play Free &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">PVL <span>HUB</span></div>
+            <p>The ultimate fan engagement platform for the Philippine Volleyball League. Play predictions, collect cards, manage teams, and earn rewards.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Content</h4>
+            <a href="articles.html">Articles</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+          </div>
+          <div class="footer-col">
+            <h4>Play</h4>
+            <a href="predictions.html">Predictions</a>
+            <a href="cards.html">Card Game</a>
+            <a href="manager.html">Manager Game</a>
+            <a href="shop.html">Shop</a>
+          </div>
+          <div class="footer-col">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Log In</a>
+            <a href="register.html">Sign Up</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 PVL Hub. Powered by Globally Ballin.</span>
+          <span>Not officially affiliated with the PVL.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/tracking.js"></script>
+  <script>
+    // Home page logic
+    document.addEventListener('DOMContentLoaded', () => {
+      Tracking.pageView('home');
+      initCountdown();
+      initScoreTicker();
+      loadFeaturedContent();
+    });
+
+    // Countdown timer
+    function initCountdown() {
+      // Set next match to 2 days from now for demo
+      const nextMatch = new Date();
+      nextMatch.setDate(nextMatch.getDate() + 2);
+      nextMatch.setHours(16, 0, 0, 0);
+
+      function update() {
+        const now = new Date();
+        const diff = nextMatch - now;
+        if (diff <= 0) return;
+
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+
+        document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+        document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+        document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+        document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+      }
+
+      update();
+      setInterval(update, 1000);
+    }
+
+    // Score ticker with demo data
+    function initScoreTicker() {
+      const matches = [
+        { a: 'Creamline', b: 'PLDT', scoreA: 3, scoreB: 1, status: 'final' },
+        { a: 'Choco Mucho', b: 'Cignal', scoreA: 2, scoreB: 3, status: 'final' },
+        { a: 'Petro Gazz', b: 'Akari', scoreA: 3, scoreB: 0, status: 'final' },
+        { a: 'Farm Fresh', b: 'Capital1', scoreA: 18, scoreB: 21, status: 'live' },
+        { a: 'NXLED', b: 'Chery Tiggo', scoreA: 0, scoreB: 0, status: 'upcoming' },
+        { a: 'Galeries Tower', b: 'ZUS', scoreA: 0, scoreB: 0, status: 'upcoming' },
+      ];
+
+      const tickerHTML = matches.map(m => `
+        <div class="ticker-item">
+          <span class="team">${m.a}</span>
+          <span class="score">${m.scoreA} - ${m.scoreB}</span>
+          <span class="team">${m.b}</span>
+          <span class="status ${m.status}">${m.status === 'live' ? '● LIVE' : m.status === 'final' ? 'FINAL' : 'UPCOMING'}</span>
+        </div>
+      `).join('');
+
+      // Duplicate for infinite scroll
+      document.getElementById('score-ticker').innerHTML = tickerHTML + tickerHTML;
+    }
+
+    // Load featured content from API (fallback to static for demo)
+    async function loadFeaturedContent() {
+      try {
+        // In production, this would fetch from Airtable
+        // const articles = await PVLApi.getArticles({ is_featured: true });
+        // Render articles dynamically
+      } catch (err) {
+        // Static content is already in HTML as fallback
+      }
+    }
+  </script>
+</body>
+</html>

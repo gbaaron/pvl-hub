@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Podcast — Globally Ballin | PVL Hub</title>
+  <meta name="description" content="PVL Podcast by Globally Ballin: In-depth conversations with PVL coaches, players, and analysts breaking down the Philippine Volleyball League.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/podcast.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <!-- Page Header -->
+    <section class="podcast-header">
+      <div class="container">
+        <h1>PVL <span class="accent">PODCAST</span> <span class="divider">&mdash;</span> Globally Ballin</h1>
+        <p>In-depth conversations with the people who make PVL volleyball great</p>
+      </div>
+    </section>
+
+    <!-- Featured / Latest Episode -->
+    <section class="featured-episode">
+      <div class="container">
+        <div class="featured-ep-card">
+          <div class="ep-cover">
+            <div class="mic-icon">&#127908;</div>
+            <div class="ep-number-badge">EP 28</div>
+          </div>
+          <div class="ep-info">
+            <div class="ep-label">
+              <span class="new-dot"></span>
+              Latest Episode
+            </div>
+            <h2 class="ep-title">The Creamline Dynasty: Can Anyone Stop Them in 2026?</h2>
+            <p class="ep-guest">with Coach Oliver Almadro &bull; Guest: Alyssa Valdez</p>
+            <p class="ep-description">We sit down with Coach Almadro and Alyssa Valdez to discuss the Cool Smashers' sustained dominance, the evolution of their system, what motivates the squad to keep winning, and whether any challenger can dethrone them this conference.</p>
+            <div class="ep-actions">
+              <button class="podcast-play-btn" onclick="Tracking.podcastListen(28, 'The Creamline Dynasty'); Toast.show('Playing Episode 28...', 'info');">
+                &#9654; Listen Now
+              </button>
+              <div class="ep-meta-info">
+                <span>48 min</span>
+                <span>Apr 13, 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscribe CTA -->
+    <section style="padding: 0 0 16px;">
+      <div class="container">
+        <div class="subscribe-cta">
+          <h3>SUBSCRIBE TO THE PODCAST</h3>
+          <p>Never miss an episode. Available on your favorite platforms.</p>
+          <div class="subscribe-links">
+            <a href="#">Spotify</a>
+            <a href="#">Apple Podcasts</a>
+            <a href="#">YouTube</a>
+            <a href="#">Google Podcasts</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- All Episodes -->
+    <section class="episodes-section">
+      <div class="container">
+        <h2 class="section-title">ALL <span class="accent">EPISODES</span></h2>
+
+        <div class="episode-list" id="episode-list">
+          <!-- Episode 27 -->
+          <div class="episode-card" data-ep="27">
+            <div class="ep-num">27</div>
+            <div class="ep-details">
+              <div class="ep-title">Rookie Report: Who Will Win Rookie of the Year?</div>
+              <div class="ep-subtitle">
+                <span>Guest: Faith Nisperos</span>
+                <span>42 min</span>
+                <span>Apr 6, 2026</span>
+              </div>
+            </div>
+            <div class="ep-rating" id="ep-rating-27">
+              <div class="star-rating">
+                <span class="star filled" data-value="1" onclick="rateEpisode(27, 1)">&#9733;</span>
+                <span class="star filled" data-value="2" onclick="rateEpisode(27, 2)">&#9733;</span>
+                <span class="star filled" data-value="3" onclick="rateEpisode(27, 3)">&#9733;</span>
+                <span class="star filled" data-value="4" onclick="rateEpisode(27, 4)">&#9733;</span>
+                <span class="star" data-value="5" onclick="rateEpisode(27, 5)">&#9733;</span>
+              </div>
+              <span class="rating-label">4.2 avg</span>
+            </div>
+            <button class="ep-play-btn" onclick="Tracking.podcastListen(27, 'Rookie Report'); Toast.show('Playing Episode 27...', 'info');">&#9654;</button>
+          </div>
+
+          <!-- Episode 26 -->
+          <div class="episode-card" data-ep="26">
+            <div class="ep-num">26</div>
+            <div class="ep-details">
+              <div class="ep-title">Inside the PVL Draft: How Teams Build Championship Rosters</div>
+              <div class="ep-subtitle">
+                <span>Guest: PVL Commissioner</span>
+                <span>55 min</span>
+                <span>Mar 30, 2026</span>
+              </div>
+            </div>
+            <div class="ep-rating" id="ep-rating-26">
+              <div class="star-rating">
+                <span class="star filled" data-value="1" onclick="rateEpisode(26, 1)">&#9733;</span>
+                <span class="star filled" data-value="2" onclick="rateEpisode(26, 2)">&#9733;</span>
+                <span class="star filled" data-value="3" onclick="rateEpisode(26, 3)">&#9733;</span>
+                <span class="star filled" data-value="4" onclick="rateEpisode(26, 4)">&#9733;</span>
+                <span class="star filled" data-value="5" onclick="rateEpisode(26, 5)">&#9733;</span>
+              </div>
+              <span class="rating-label">4.8 avg</span>
+            </div>
+            <button class="ep-play-btn" onclick="Tracking.podcastListen(26, 'Inside the PVL Draft'); Toast.show('Playing Episode 26...', 'info');">&#9654;</button>
+          </div>
+
+          <!-- Episode 25 -->
+          <div class="episode-card" data-ep="25">
+            <div class="ep-num">25</div>
+            <div class="ep-details">
+              <div class="ep-title">Choco Mucho Deep Dive: Rebuilding After Losing Key Players</div>
+              <div class="ep-subtitle">
+                <span>Guest: Kat Tolentino</span>
+                <span>51 min</span>
+                <span>Mar 23, 2026</span>
+              </div>
+            </div>
+            <div class="ep-rating" id="ep-rating-25">
+              <div class="star-rating">
+                <span class="star filled" data-value="1" onclick="rateEpisode(25, 1)">&#9733;</span>
+                <span class="star filled" data-value="2" onclick="rateEpisode(25, 2)">&#9733;</span>
+                <span class="star filled" data-value="3" onclick="rateEpisode(25, 3)">&#9733;</span>
+                <span class="star filled" data-value="4" onclick="rateEpisode(25, 4)">&#9733;</span>
+                <span class="star" data-value="5" onclick="rateEpisode(25, 5)">&#9733;</span>
+              </div>
+              <span class="rating-label">4.0 avg</span>
+            </div>
+            <button class="ep-play-btn" onclick="Tracking.podcastListen(25, 'Choco Mucho Deep Dive'); Toast.show('Playing Episode 25...', 'info');">&#9654;</button>
+          </div>
+
+          <!-- Episode 24 -->
+          <div class="episode-card" data-ep="24">
+            <div class="ep-num">24</div>
+            <div class="ep-details">
+              <div class="ep-title">Setter Wars: Jia De Guzman vs Deanna Wong — Who's the Best?</div>
+              <div class="ep-subtitle">
+                <span>Panel Discussion</span>
+                <span>62 min</span>
+                <span>Mar 16, 2026</span>
+              </div>
+            </div>
+            <div class="ep-rating" id="ep-rating-24">
+              <div class="star-rating">
+                <span class="star filled" data-value="1" onclick="rateEpisode(24, 1)">&#9733;</span>
+                <span class="star filled" data-value="2" onclick="rateEpisode(24, 2)">&#9733;</span>
+                <span class="star filled" data-value="3" onclick="rateEpisode(24, 3)">&#9733;</span>
+                <span class="star filled" data-value="4" onclick="rateEpisode(24, 4)">&#9733;</span>
+                <span class="star filled" data-value="5" onclick="rateEpisode(24, 5)">&#9733;</span>
+              </div>
+              <span class="rating-label">4.9 avg</span>
+            </div>
+            <button class="ep-play-btn" onclick="Tracking.podcastListen(24, 'Setter Wars'); Toast.show('Playing Episode 24...', 'info');">&#9654;</button>
+          </div>
+
+          <!-- Episode 23 -->
+          <div class="episode-card" data-ep="23">
+            <div class="ep-num">23</div>
+            <div class="ep-details">
+              <div class="ep-title">The Business of PVL: Sponsorships, TV Deals, and League Growth</div>
+              <div class="ep-subtitle">
+                <span>Guest: Sports Analyst</span>
+                <span>44 min</span>
+                <span>Mar 9, 2026</span>
+              </div>
+            </div>
+            <div class="ep-rating" id="ep-rating-23">
+              <div class="star-rating">
+                <span class="star filled" data-value="1" onclick="rateEpisode(23, 1)">&#9733;</span>
+                <span class="star filled" data-value="2" onclick="rateEpisode(23, 2)">&#9733;</span>
+                <span class="star filled" data-value="3" onclick="rateEpisode(23, 3)">&#9733;</span>
+                <span class="star" data-value="4" onclick="rateEpisode(23, 4)">&#9733;</span>
+                <span class="star" data-value="5" onclick="rateEpisode(23, 5)">&#9733;</span>
+              </div>
+              <span class="rating-label">3.5 avg</span>
+            </div>
+            <button class="ep-play-btn" onclick="Tracking.podcastListen(23, 'Business of PVL'); Toast.show('Playing Episode 23...', 'info');">&#9654;</button>
+          </div>
+
+          <!-- Episode 22 -->
+          <div class="episode-card" data-ep="22">
+            <div class="ep-num">22</div>
+            <div class="ep-details">
+              <div class="ep-title">PLDT Roster Breakdown: Can the High Speed Hitters Contend?</div>
+              <div class="ep-subtitle">
+                <span>Guest: Coach Rald Ricafort</span>
+                <span>39 min</span>
+                <span>Mar 2, 2026</span>
+              </div>
+            </div>
+            <div class="ep-rating" id="ep-rating-22">
+              <div class="star-rating">
+                <span class="star filled" data-value="1" onclick="rateEpisode(22, 1)">&#9733;</span>
+                <span class="star filled" data-value="2" onclick="rateEpisode(22, 2)">&#9733;</span>
+                <span class="star filled" data-value="3" onclick="rateEpisode(22, 3)">&#9733;</span>
+                <span class="star filled" data-value="4" onclick="rateEpisode(22, 4)">&#9733;</span>
+                <span class="star" data-value="5" onclick="rateEpisode(22, 5)">&#9733;</span>
+              </div>
+              <span class="rating-label">3.8 avg</span>
+            </div>
+            <button class="ep-play-btn" onclick="Tracking.podcastListen(22, 'PLDT Roster Breakdown'); Toast.show('Playing Episode 22...', 'info');">&#9654;</button>
+          </div>
+
+          <!-- Episode 21 -->
+          <div class="episode-card" data-ep="21">
+            <div class="ep-num">21</div>
+            <div class="ep-details">
+              <div class="ep-title">2026 Conference Preview: Bold Predictions and Sleeper Teams</div>
+              <div class="ep-subtitle">
+                <span>Panel Discussion</span>
+                <span>58 min</span>
+                <span>Feb 23, 2026</span>
+              </div>
+            </div>
+            <div class="ep-rating" id="ep-rating-21">
+              <div class="star-rating">
+                <span class="star filled" data-value="1" onclick="rateEpisode(21, 1)">&#9733;</span>
+                <span class="star filled" data-value="2" onclick="rateEpisode(21, 2)">&#9733;</span>
+                <span class="star filled" data-value="3" onclick="rateEpisode(21, 3)">&#9733;</span>
+                <span class="star filled" data-value="4" onclick="rateEpisode(21, 4)">&#9733;</span>
+                <span class="star filled" data-value="5" onclick="rateEpisode(21, 5)">&#9733;</span>
+              </div>
+              <span class="rating-label">4.6 avg</span>
+            </div>
+            <button class="ep-play-btn" onclick="Tracking.podcastListen(21, '2026 Conference Preview'); Toast.show('Playing Episode 21...', 'info');">&#9654;</button>
+          </div>
+        </div>
+
+        <div style="text-align: center; padding: 40px 0 0;">
+          <button class="btn btn-secondary" onclick="Toast.show('More episodes coming soon!', 'info')">Load Older Episodes</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Episode Comments & Rating -->
+    <section class="episode-engage">
+      <div class="container">
+        <div class="engage-card">
+          <h2>EPISODE DISCUSSION</h2>
+          <div id="podcast-rating"></div>
+          <div id="podcast-comments"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">PVL <span>HUB</span></div>
+            <p>The ultimate fan engagement platform for the Philippine Volleyball League. Play predictions, collect cards, manage teams, and earn rewards.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Content</h4>
+            <a href="articles.html">Articles</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+          </div>
+          <div class="footer-col">
+            <h4>Play</h4>
+            <a href="predictions.html">Predictions</a>
+            <a href="cards.html">Card Game</a>
+            <a href="manager.html">Manager Game</a>
+            <a href="shop.html">Shop</a>
+          </div>
+          <div class="footer-col">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Log In</a>
+            <a href="register.html">Sign Up</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 PVL Hub. Powered by Globally Ballin.</span>
+          <span>Not officially affiliated with the PVL.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/tracking.js"></script>
+  <script src="js/comments.js"></script>
+  <script src="js/ratings.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Tracking.pageView('podcast');
+
+      // Render episode rating & comments for the latest episode
+      const ratingsContainer = document.getElementById('podcast-rating');
+      const commentsContainer = document.getElementById('podcast-comments');
+
+      if (ratingsContainer) {
+        Ratings.render(ratingsContainer, 'podcast', 28, { avgRating: 4.7, showReview: true });
+      }
+      if (commentsContainer) {
+        Comments.render(commentsContainer, 'podcast', 28);
+      }
+    });
+
+    // Star rating per episode
+    function rateEpisode(episodeId, value) {
+      const ratingEl = document.getElementById(`ep-rating-${episodeId}`);
+      if (!ratingEl) return;
+
+      const stars = ratingEl.querySelectorAll('.star');
+      stars.forEach((star, idx) => {
+        star.classList.toggle('filled', idx < value);
+      });
+
+      // Use the Ratings module to persist
+      try {
+        Ratings.rate('podcast', episodeId, value);
+      } catch (e) {
+        // Fallback toast for demo
+        Toast.show(`Rated Episode ${episodeId}: ${value} star${value > 1 ? 's' : ''}`, 'success');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PVL Hub — Shop</title>
+  <meta name="description" content="PVL Hub Shop: Official merch, collectibles, and digital goods. Pay with PHP or earn credits to redeem.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/shop.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <!-- Shop Header -->
+    <section class="shop-header">
+      <div class="container">
+        <h1>PVL <span>SHOP</span></h1>
+        <p class="shop-subtitle">Official merch, collectibles, and digital goods. Pay with PHP or redeem with credits.</p>
+      </div>
+    </section>
+
+    <!-- Shop Toolbar -->
+    <section class="container">
+      <div class="shop-toolbar">
+        <div class="shop-filters">
+          <button class="filter-btn active" data-category="all">All</button>
+          <button class="filter-btn" data-category="apparel">Apparel</button>
+          <button class="filter-btn" data-category="accessories">Accessories</button>
+          <button class="filter-btn" data-category="digital">Digital</button>
+          <button class="filter-btn" data-category="collectibles">Collectibles</button>
+        </div>
+        <button class="cart-btn" id="cart-btn">
+          <span class="cart-icon">&#128722;</span>
+          Cart
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="container">
+      <div class="product-grid" id="product-grid">
+
+        <!-- Product 1: Creamline Official Jersey -->
+        <div class="product-card" data-category="apparel">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #e8456b, #f472b6);">
+              &#127941;
+            </div>
+            <span class="stock-badge in-stock">In Stock</span>
+            <span class="category-badge">Apparel</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Creamline Official Jersey</div>
+            <div class="product-desc">Authentic 2026 season jersey with Cool Smashers logo and premium fabric.</div>
+            <div class="product-pricing">
+              <span class="price-php">&#8369;2,500</span>
+              <span class="price-divider">or</span>
+              <span class="price-credits"><span class="coin">&#x1FA99;</span> 250 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'Creamline Official Jersey')">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 2: PVL Hub Premium Hoodie -->
+        <div class="product-card" data-category="apparel">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #0a1628, #1a2d52);">
+              &#129509;
+            </div>
+            <span class="stock-badge in-stock">In Stock</span>
+            <span class="category-badge">Apparel</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">PVL Hub Premium Hoodie</div>
+            <div class="product-desc">Heavyweight cotton hoodie with embroidered PVL Hub logo and gold accents.</div>
+            <div class="product-pricing">
+              <span class="price-php">&#8369;1,800</span>
+              <span class="price-divider">or</span>
+              <span class="price-credits"><span class="coin">&#x1FA99;</span> 180 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'PVL Hub Premium Hoodie')">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 3: Alyssa Valdez Signature Ball -->
+        <div class="product-card" data-category="collectibles">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #d4a843, #f0c75e);">
+              &#127952;
+            </div>
+            <span class="stock-badge low-stock">Low Stock</span>
+            <span class="category-badge">Collectibles</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Alyssa Valdez Signature Ball</div>
+            <div class="product-desc">Limited edition volleyball with authentic printed signature. Certificate included.</div>
+            <div class="product-pricing">
+              <span class="price-php">&#8369;3,200</span>
+              <span class="price-divider">or</span>
+              <span class="price-credits"><span class="coin">&#x1FA99;</span> 320 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'Alyssa Valdez Signature Ball')">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 4: Team Logo Sticker Pack -->
+        <div class="product-card" data-category="accessories">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #9b59b6, #c084fc);">
+              &#127912;
+            </div>
+            <span class="stock-badge in-stock">In Stock</span>
+            <span class="category-badge">Accessories</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Team Logo Sticker Pack</div>
+            <div class="product-desc">All 12 PVL team logos as premium vinyl stickers. Waterproof and UV resistant.</div>
+            <div class="product-pricing">
+              <span class="price-php">&#8369;350</span>
+              <span class="price-divider">or</span>
+              <span class="price-credits"><span class="coin">&#x1FA99;</span> 35 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'Team Logo Sticker Pack')">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 5: PVL 2026 Season Calendar -->
+        <div class="product-card" data-category="accessories">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #3498db, #60a5fa);">
+              &#128197;
+            </div>
+            <span class="stock-badge in-stock">In Stock</span>
+            <span class="category-badge">Accessories</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">PVL 2026 Season Calendar</div>
+            <div class="product-desc">Full schedule wall calendar with player photos, match dates, and venue info.</div>
+            <div class="product-pricing">
+              <span class="price-php">&#8369;500</span>
+              <span class="price-divider">or</span>
+              <span class="price-credits"><span class="coin">&#x1FA99;</span> 50 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'PVL 2026 Season Calendar')">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 6: Digital Team Wallpaper Pack -->
+        <div class="product-card" data-category="digital">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #1abc9c, #34d399);">
+              &#128247;
+            </div>
+            <span class="stock-badge in-stock">In Stock</span>
+            <span class="category-badge">Digital</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Digital Team Wallpaper Pack</div>
+            <div class="product-desc">HD wallpapers for all PVL teams. Includes phone, tablet, and desktop sizes.</div>
+            <div class="product-pricing">
+              <span class="price-php">&#8369;150</span>
+              <span class="price-divider">or</span>
+              <span class="price-credits"><span class="coin">&#x1FA99;</span> 15 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'Digital Team Wallpaper Pack')">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 7: Player Card Booster Pack (Credits Only) -->
+        <div class="product-card" data-category="digital">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #f39c12, #fbbf24);">
+              &#127183;
+            </div>
+            <span class="stock-badge credits-only">Credits Only</span>
+            <span class="category-badge">Digital</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Player Card Booster Pack (10)</div>
+            <div class="product-desc">10 random player cards including guaranteed 1 rare or higher. Build your collection!</div>
+            <div class="product-pricing">
+              <span class="price-credits-only"><span class="coin">&#x1FA99;</span> 100 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'Player Card Booster Pack (10)')">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 8: MVP Trophy Figurine -->
+        <div class="product-card" data-category="collectibles">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #b8922e, #d4a843);">
+              &#127942;
+            </div>
+            <span class="stock-badge low-stock">Low Stock</span>
+            <span class="category-badge">Collectibles</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">MVP Trophy Figurine</div>
+            <div class="product-desc">6-inch premium resin MVP trophy replica. Gold-plated finish with marble base.</div>
+            <div class="product-pricing">
+              <span class="price-php">&#8369;4,500</span>
+              <span class="price-divider">or</span>
+              <span class="price-credits"><span class="coin">&#x1FA99;</span> 450 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'MVP Trophy Figurine')">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 9: PVL Hub Cap -->
+        <div class="product-card" data-category="apparel">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #1a2d52, #3498db);">
+              &#129506;
+            </div>
+            <span class="stock-badge in-stock">In Stock</span>
+            <span class="category-badge">Apparel</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">PVL Hub Cap</div>
+            <div class="product-desc">Structured snapback cap with embroidered PVL Hub logo. Adjustable fit.</div>
+            <div class="product-pricing">
+              <span class="price-php">&#8369;800</span>
+              <span class="price-divider">or</span>
+              <span class="price-credits"><span class="coin">&#x1FA99;</span> 80 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'PVL Hub Cap')">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 10: Volleyball Keychain Set -->
+        <div class="product-card" data-category="accessories">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #e74c3c, #fb7185);">
+              &#128273;
+            </div>
+            <span class="stock-badge in-stock">In Stock</span>
+            <span class="category-badge">Accessories</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Volleyball Keychain Set</div>
+            <div class="product-desc">Set of 3 mini volleyball keychains in team colors. Metal construction with enamel.</div>
+            <div class="product-pricing">
+              <span class="price-php">&#8369;250</span>
+              <span class="price-divider">or</span>
+              <span class="price-credits"><span class="coin">&#x1FA99;</span> 25 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'Volleyball Keychain Set')">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 11: Exclusive Match Day Program (Credits Only) -->
+        <div class="product-card" data-category="digital">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #6366f1, #a78bfa);">
+              &#128214;
+            </div>
+            <span class="stock-badge credits-only">Credits Only</span>
+            <span class="category-badge">Digital</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Exclusive Match Day Program (Digital)</div>
+            <div class="product-desc">Detailed digital program with lineups, stats, analysis, and behind-the-scenes content.</div>
+            <div class="product-pricing">
+              <span class="price-credits-only"><span class="coin">&#x1FA99;</span> 50 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'Exclusive Match Day Program')">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 12: Signed Player Photo -->
+        <div class="product-card" data-category="collectibles">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background: linear-gradient(135deg, #ec4899, #f97316);">
+              &#128248;
+            </div>
+            <span class="stock-badge low-stock">Low Stock</span>
+            <span class="category-badge">Collectibles</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Signed Player Photo (Random)</div>
+            <div class="product-desc">8x10 glossy photo with authentic autograph. Random player from current PVL roster.</div>
+            <div class="product-pricing">
+              <span class="price-php">&#8369;1,200</span>
+              <span class="price-divider">or</span>
+              <span class="price-credits"><span class="coin">&#x1FA99;</span> 120 Credits</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(this, 'Signed Player Photo (Random)')">Add to Cart</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">PVL <span>HUB</span></div>
+            <p>The ultimate fan engagement platform for the Philippine Volleyball League. Play predictions, collect cards, manage teams, and earn rewards.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Content</h4>
+            <a href="articles.html">Articles</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+          </div>
+          <div class="footer-col">
+            <h4>Play</h4>
+            <a href="predictions.html">Predictions</a>
+            <a href="cards.html">Card Game</a>
+            <a href="manager.html">Manager Game</a>
+            <a href="shop.html">Shop</a>
+          </div>
+          <div class="footer-col">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Log In</a>
+            <a href="register.html">Sign Up</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 PVL Hub. Powered by Globally Ballin.</span>
+          <span>Not officially affiliated with the PVL.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/tracking.js"></script>
+  <script>
+    // --- Shop Page Logic ---
+    let cartItems = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Tracking.pageView('shop');
+      initCategoryFilters();
+      loadCartFromStorage();
+    });
+
+    // Category filter logic
+    function initCategoryFilters() {
+      const filterBtns = document.querySelectorAll('.shop-filters .filter-btn');
+      const products = document.querySelectorAll('.product-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active state
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const category = btn.dataset.category;
+
+          products.forEach(product => {
+            if (category === 'all' || product.dataset.category === category) {
+              product.style.display = '';
+              product.style.animation = 'fadeIn 0.4s ease';
+            } else {
+              product.style.display = 'none';
+            }
+          });
+
+          // Check if any visible
+          const visible = document.querySelectorAll('.product-card[style=""], .product-card:not([style*="display: none"])');
+          // Filter counts visible for empty state handled by CSS
+        });
+      });
+    }
+
+    // Cart management
+    function loadCartFromStorage() {
+      try {
+        const saved = localStorage.getItem('pvl_cart');
+        if (saved) {
+          cartItems = JSON.parse(saved);
+          updateCartCount();
+        }
+      } catch (e) {
+        cartItems = [];
+      }
+    }
+
+    function saveCart() {
+      localStorage.setItem('pvl_cart', JSON.stringify(cartItems));
+    }
+
+    function updateCartCount() {
+      const countEl = document.getElementById('cart-count');
+      if (countEl) {
+        countEl.textContent = cartItems.length;
+        // Bump animation
+        countEl.classList.remove('bump');
+        void countEl.offsetWidth; // trigger reflow
+        countEl.classList.add('bump');
+      }
+    }
+
+    function addToCart(btnEl, productName) {
+      // Add to cart
+      cartItems.push({
+        name: productName,
+        addedAt: new Date().toISOString()
+      });
+      saveCart();
+      updateCartCount();
+
+      // Button feedback
+      const originalText = btnEl.textContent;
+      btnEl.textContent = 'Added!';
+      btnEl.classList.add('added');
+
+      setTimeout(() => {
+        btnEl.textContent = originalText;
+        btnEl.classList.remove('added');
+      }, 1500);
+
+      // Toast notification
+      Toast.show(`${productName} added to cart!`, 'success');
+    }
+  </script>
+</body>
+</html>

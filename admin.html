@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PVL Hub — Admin Dashboard</title>
+  <meta name="description" content="PVL Hub Admin Dashboard: Platform analytics, user insights, and engagement data.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+
+  <!-- ========== PASSWORD GATE ========== -->
+  <div class="admin-gate" id="admin-gate">
+    <div class="gate-card">
+      <div class="gate-icon">&#128274;</div>
+      <h1>PVL <span>HUB</span></h1>
+      <p>Admin Dashboard Access</p>
+      <form class="gate-form" id="gate-form" onsubmit="return false;">
+        <input
+          type="password"
+          class="form-input"
+          id="gate-password"
+          placeholder="Enter admin password"
+          autocomplete="off"
+          autofocus
+        >
+        <div class="gate-error" id="gate-error">Incorrect password. Try again.</div>
+        <button type="submit" class="gate-submit" id="gate-submit">Access Dashboard</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== ADMIN DASHBOARD ========== -->
+  <div class="admin-dashboard" id="admin-dashboard">
+
+    <!-- Admin Header -->
+    <header class="admin-header">
+      <div class="admin-header-left">
+        <div class="logo-text">PVL <span>HUB</span></div>
+        <div class="admin-badge">Admin</div>
+      </div>
+      <div class="admin-header-right">
+        <span class="admin-timestamp" id="admin-timestamp"></span>
+        <a href="/" class="back-link">&larr; Back to Site</a>
+      </div>
+    </header>
+
+    <div class="admin-body">
+
+      <!-- ========== SECTION 1: Overview Cards ========== -->
+      <div class="dash-section">
+        <div class="dash-section-header">
+          <h2>PLATFORM <span class="accent">OVERVIEW</span></h2>
+          <span class="section-label">Real-time Snapshot</span>
+        </div>
+        <div class="overview-grid">
+          <!-- Total Users -->
+          <div class="overview-card">
+            <div class="card-label">Total Users</div>
+            <div class="card-value">12,438</div>
+            <div class="card-trend up">
+              <span class="arrow">&#9650;</span> +324 this week
+            </div>
+          </div>
+          <!-- DAU -->
+          <div class="overview-card">
+            <div class="card-label">Daily Active Users</div>
+            <div class="card-value">3,847</div>
+            <div class="card-trend up">
+              <span class="arrow">&#9650;</span> +12% vs last week
+            </div>
+          </div>
+          <!-- Total Predictions -->
+          <div class="overview-card">
+            <div class="card-label">Total Predictions</div>
+            <div class="card-value">48,219</div>
+            <div class="card-trend up">
+              <span class="arrow">&#9650;</span> +2,341 this week
+            </div>
+          </div>
+          <!-- Credits -->
+          <div class="overview-card">
+            <div class="card-label">Credits in Circulation</div>
+            <div class="card-value">1,247,500</div>
+            <div class="card-sub">Earned: 1,842,300 | Spent: 594,800</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SECTION 2: User Analytics ========== -->
+      <div class="dash-section">
+        <div class="dash-section-header">
+          <h2>USER <span class="accent">ANALYTICS</span></h2>
+          <span class="section-label">30-Day Window</span>
+        </div>
+        <div class="chart-grid-3">
+          <!-- DAU Line Chart -->
+          <div class="chart-card">
+            <h3>Daily Active Users</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-dau"></canvas>
+            </div>
+          </div>
+          <!-- Tier Distribution Doughnut -->
+          <div class="chart-card">
+            <h3>Tier Distribution</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-tiers"></canvas>
+            </div>
+          </div>
+          <!-- New Registrations Bar -->
+          <div class="chart-card">
+            <h3>New Registrations / Week</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-registrations"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SECTION 3: Engagement Metrics ========== -->
+      <div class="dash-section">
+        <div class="dash-section-header">
+          <h2>ENGAGEMENT <span class="accent">METRICS</span></h2>
+          <span class="section-label">Content Performance</span>
+        </div>
+        <div class="chart-grid-3">
+          <!-- Engagement by Content Type -->
+          <div class="chart-card">
+            <h3>Engagement by Content Type</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-engagement-type"></canvas>
+            </div>
+          </div>
+          <!-- Avg Session Duration -->
+          <div class="chart-card">
+            <h3>Avg. Session Duration (min)</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-session-duration"></canvas>
+            </div>
+          </div>
+          <!-- Most Popular Content -->
+          <div class="chart-card">
+            <h3>Most Popular Content</h3>
+            <div class="chart-wrapper tall">
+              <canvas id="chart-popular-content"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SECTION 4: Predictions Analytics ========== -->
+      <div class="dash-section">
+        <div class="dash-section-header">
+          <h2>PREDICTIONS <span class="accent">ANALYTICS</span></h2>
+          <span class="section-label">Game Data</span>
+        </div>
+        <div class="chart-grid-equal">
+          <!-- Predictions Per Match -->
+          <div class="chart-card">
+            <h3>Predictions Per Match</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-predictions-match"></canvas>
+            </div>
+          </div>
+          <!-- Accuracy Distribution -->
+          <div class="chart-card">
+            <h3>Accuracy Distribution</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-accuracy"></canvas>
+            </div>
+          </div>
+          <!-- Most Predicted Players -->
+          <div class="chart-card">
+            <h3>Most Predicted Players</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-predicted-players"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SECTION 5: Key Insights ========== -->
+      <div class="dash-section">
+        <div class="dash-section-header">
+          <h2>KEY <span class="accent">INSIGHTS</span></h2>
+          <span class="section-label">Data-Driven Findings</span>
+        </div>
+        <div class="insights-grid">
+          <div class="insight-card">
+            <div class="insight-icon">&#127183;</div>
+            <div class="insight-stat">3.2x</div>
+            <div class="insight-text">Users who play the <span class="insight-highlight">card game</span> are 3.2x more likely to return daily</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-icon">&#128172;</div>
+            <div class="insight-stat">4.5x</div>
+            <div class="insight-text"><span class="insight-highlight">Prediction players</span> comment 4.5x more than non-prediction players</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-icon">&#9889;</div>
+            <div class="insight-stat">12x</div>
+            <div class="insight-text"><span class="insight-highlight">Superfan tier</span> users generate 12x more engagement than Free users</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-icon">&#128196;</div>
+            <div class="insight-stat">3.2</div>
+            <div class="insight-text">Average user visits <span class="insight-highlight">3.2 pages</span> per session</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-icon">&#128197;</div>
+            <div class="insight-stat">Tue &amp; Sat</div>
+            <div class="insight-text">Peak activity on <span class="insight-highlight">Tuesdays and Saturdays</span> (match days)</div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-icon">&#127942;</div>
+            <div class="insight-stat">72%</div>
+            <div class="insight-text">Of users engage with <span class="insight-highlight">predictions</span> within their first week</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SECTION 6: Comment Sentiment ========== -->
+      <div class="dash-section">
+        <div class="dash-section-header">
+          <h2>COMMENT <span class="accent">SENTIMENT</span></h2>
+          <span class="section-label">Community Analysis</span>
+        </div>
+        <div class="sentiment-grid">
+          <!-- Sentiment Trend Line Chart -->
+          <div class="chart-card">
+            <h3>Sentiment Trend (12 Weeks)</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-sentiment"></canvas>
+            </div>
+          </div>
+          <div class="sentiment-sub-grid">
+            <!-- Most Discussed Players -->
+            <div class="chart-card">
+              <h3>Most Discussed Players</h3>
+              <div class="chart-wrapper short">
+                <canvas id="chart-discussed-players"></canvas>
+              </div>
+            </div>
+            <!-- Word Cloud -->
+            <div class="chart-card">
+              <h3>Trending Topics</h3>
+              <div class="word-cloud" id="word-cloud">
+                <span class="word-tag size-xl">Creamline</span>
+                <span class="word-tag size-xl">MVP</span>
+                <span class="word-tag size-lg">Alyssa</span>
+                <span class="word-tag size-lg">Championship</span>
+                <span class="word-tag size-lg">Spike</span>
+                <span class="word-tag size-md">Block</span>
+                <span class="word-tag size-md">Setter</span>
+                <span class="word-tag size-md">Defense</span>
+                <span class="word-tag size-md">Choco Mucho</span>
+                <span class="word-tag size-sm">Rally</span>
+                <span class="word-tag size-sm">Ace</span>
+                <span class="word-tag size-sm">Dig</span>
+                <span class="word-tag size-sm">Finals</span>
+                <span class="word-tag size-sm">PLDT</span>
+                <span class="word-tag size-xs">Serve</span>
+                <span class="word-tag size-xs">Libero</span>
+                <span class="word-tag size-xs">Rotation</span>
+                <span class="word-tag size-xs">Timeout</span>
+                <span class="word-tag size-xs">Conference</span>
+                <span class="word-tag size-xs">Stats</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SECTION 7: Revenue & Credits Economy ========== -->
+      <div class="dash-section">
+        <div class="dash-section-header">
+          <h2>REVENUE &amp; <span class="accent">CREDITS ECONOMY</span></h2>
+          <span class="section-label">Platform Economy</span>
+        </div>
+        <div class="revenue-grid">
+          <!-- Credits Earned vs Spent -->
+          <div class="chart-card">
+            <h3>Credits Earned vs Spent / Week</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-credits-flow"></canvas>
+            </div>
+          </div>
+          <!-- Credits by Source -->
+          <div class="chart-card">
+            <h3>Credits by Source</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-credits-source"></canvas>
+            </div>
+          </div>
+          <!-- Tier Upgrade Funnel -->
+          <div class="chart-card">
+            <h3>Tier Upgrade Funnel</h3>
+            <div class="funnel-container">
+              <div class="funnel-step funnel-step-1">
+                <span class="funnel-label">Free</span>
+                <span class="funnel-count">8,458</span>
+                <span class="funnel-pct">100%</span>
+              </div>
+              <div class="funnel-arrow">&#9660;</div>
+              <div class="funnel-step funnel-step-2">
+                <span class="funnel-label">Fan</span>
+                <span class="funnel-count">2,612</span>
+                <span class="funnel-pct">30.9%</span>
+              </div>
+              <div class="funnel-arrow">&#9660;</div>
+              <div class="funnel-step funnel-step-3">
+                <span class="funnel-label">Superfan</span>
+                <span class="funnel-count">994</span>
+                <span class="funnel-pct">11.8%</span>
+              </div>
+              <div class="funnel-arrow">&#9660;</div>
+              <div class="funnel-step funnel-step-4">
+                <span class="funnel-label">VIP</span>
+                <span class="funnel-count">374</span>
+                <span class="funnel-pct">4.4%</span>
+              </div>
+              <div class="funnel-conversion">
+                Overall free-to-paid conversion: <span>32%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.admin-body -->
+  </div><!-- /.admin-dashboard -->
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/admin-charts.js"></script>
+
+  <script>
+    /* ========== Password Gate Logic ========== */
+    const DEMO_PASSWORD = 'pvldemo2026';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check if already authenticated in this session
+      if (sessionStorage.getItem('pvl_admin_auth') === 'true') {
+        showDashboard();
+      }
+
+      // Set timestamp
+      updateTimestamp();
+      setInterval(updateTimestamp, 60000);
+    });
+
+    document.getElementById('gate-form').addEventListener('submit', () => {
+      const pw = document.getElementById('gate-password').value;
+      const errEl = document.getElementById('gate-error');
+
+      if (pw === DEMO_PASSWORD) {
+        sessionStorage.setItem('pvl_admin_auth', 'true');
+        showDashboard();
+      } else {
+        errEl.classList.add('visible');
+        document.getElementById('gate-password').value = '';
+        document.getElementById('gate-password').focus();
+        setTimeout(() => errEl.classList.remove('visible'), 3000);
+      }
+    });
+
+    // Also handle Enter key
+    document.getElementById('gate-password').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        document.getElementById('gate-submit').click();
+      }
+    });
+
+    function showDashboard() {
+      document.getElementById('admin-gate').style.display = 'none';
+      document.getElementById('admin-dashboard').classList.add('active');
+      // Initialize all charts after dashboard is visible
+      if (typeof initAllCharts === 'function') {
+        initAllCharts();
+      }
+    }
+
+    function updateTimestamp() {
+      const el = document.getElementById('admin-timestamp');
+      if (el) {
+        const now = new Date();
+        el.textContent = 'Last updated: ' + now.toLocaleString('en-US', {
+          month: 'short', day: 'numeric', year: 'numeric',
+          hour: '2-digit', minute: '2-digit'
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — PVL Hub</title>
+  <meta name="description" content="Create your free PVL Hub account. Join thousands of fans making predictions, collecting cards, and earning rewards.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <!-- Auth Section -->
+    <section class="auth-page">
+      <div class="auth-card auth-card-wide">
+        <!-- Header -->
+        <div class="auth-header">
+          <div class="auth-logo">PVL <span>HUB</span></div>
+          <h1>Join the Community</h1>
+          <p>Create your account and start making predictions today</p>
+        </div>
+
+        <!-- Register Form -->
+        <form class="auth-form" id="register-form" novalidate>
+          <!-- Email -->
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <div class="input-wrapper">
+              <span class="input-icon">&#9993;</span>
+              <input
+                type="email"
+                id="email"
+                class="form-input"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              >
+            </div>
+            <span class="field-error" id="email-error"></span>
+          </div>
+
+          <!-- Username + Display Name row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="username">Username</label>
+              <div class="input-wrapper">
+                <span class="input-icon">&#64;</span>
+                <input
+                  type="text"
+                  id="username"
+                  class="form-input"
+                  placeholder="pvlfan123"
+                  autocomplete="username"
+                  required
+                >
+              </div>
+              <span class="field-error" id="username-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="display_name">Display Name</label>
+              <input
+                type="text"
+                id="display_name"
+                class="form-input"
+                placeholder="Your display name"
+                autocomplete="name"
+              >
+              <span class="field-error" id="display_name-error"></span>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon">&#128274;</span>
+              <input
+                type="password"
+                id="password"
+                class="form-input"
+                placeholder="Min 8 characters"
+                autocomplete="new-password"
+                required
+              >
+              <button type="button" class="password-toggle" id="toggle-password" title="Show password">&#128065;</button>
+            </div>
+            <div class="password-strength" id="password-strength">
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+            </div>
+            <div class="strength-text" id="strength-text"></div>
+            <span class="field-error" id="password-error"></span>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <label class="form-label" for="confirm_password">Confirm Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon">&#128274;</span>
+              <input
+                type="password"
+                id="confirm_password"
+                class="form-input"
+                placeholder="Re-enter your password"
+                autocomplete="new-password"
+                required
+              >
+            </div>
+            <span class="field-error" id="confirm_password-error"></span>
+          </div>
+
+          <!-- Favorite Team -->
+          <div class="form-group">
+            <label class="form-label" for="favorite_team">Favorite Team</label>
+            <select id="favorite_team" class="form-select">
+              <option value="">Select your team (optional)</option>
+              <option value="Creamline Cool Smashers">Creamline Cool Smashers</option>
+              <option value="Choco Mucho Flying Titans">Choco Mucho Flying Titans</option>
+              <option value="PLDT High Speed Hitters">PLDT High Speed Hitters</option>
+              <option value="Cignal HD Spikers">Cignal HD Spikers</option>
+              <option value="Akari Chargers">Akari Chargers</option>
+              <option value="Chery Tiggo Crossovers">Chery Tiggo Crossovers</option>
+              <option value="Petro Gazz Angels">Petro Gazz Angels</option>
+              <option value="Farm Fresh Foxies">Farm Fresh Foxies</option>
+              <option value="NXLED Chameleons">NXLED Chameleons</option>
+              <option value="Capital1 Solar Spikers">Capital1 Solar Spikers</option>
+              <option value="ZUS Thunderbelles">ZUS Thunderbelles</option>
+              <option value="Galeries Tower Highrisers">Galeries Tower Highrisers</option>
+            </select>
+          </div>
+
+          <!-- Tier Selection -->
+          <div class="tier-selection">
+            <label class="form-label">Choose Your Tier</label>
+            <div class="tier-cards" id="tier-cards">
+              <!-- Free -->
+              <label class="tier-card selected" data-tier="free">
+                <input type="radio" name="tier" value="free" checked>
+                <span class="tier-icon">&#127944;</span>
+                <span class="tier-name">Free</span>
+                <span class="tier-price">$0 / forever</span>
+                <ul class="tier-perks">
+                  <li>Basic predictions</li>
+                  <li>View articles</li>
+                  <li>Community access</li>
+                </ul>
+              </label>
+
+              <!-- Fan -->
+              <label class="tier-card" data-tier="fan">
+                <input type="radio" name="tier" value="fan">
+                <span class="tier-icon">&#127941;</span>
+                <span class="tier-name">Fan</span>
+                <span class="tier-price">$4.99 / month</span>
+                <ul class="tier-perks">
+                  <li>All Free perks</li>
+                  <li>Exclusive articles</li>
+                  <li>Card game access</li>
+                  <li>500 bonus credits</li>
+                </ul>
+              </label>
+
+              <!-- Superfan -->
+              <label class="tier-card" data-tier="superfan">
+                <input type="radio" name="tier" value="superfan">
+                <span class="tier-icon">&#11088;</span>
+                <span class="tier-name">Superfan</span>
+                <span class="tier-price">$9.99 / month</span>
+                <ul class="tier-perks">
+                  <li>All Fan perks</li>
+                  <li>Manager game</li>
+                  <li>Early predictions</li>
+                  <li>1500 bonus credits</li>
+                </ul>
+              </label>
+
+              <!-- VIP -->
+              <label class="tier-card" data-tier="vip">
+                <input type="radio" name="tier" value="vip">
+                <span class="tier-icon">&#128081;</span>
+                <span class="tier-name">VIP</span>
+                <span class="tier-price">$19.99 / month</span>
+                <ul class="tier-perks">
+                  <li>All Superfan perks</li>
+                  <li>VIP badge &amp; flair</li>
+                  <li>Priority support</li>
+                  <li>5000 bonus credits</li>
+                </ul>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="auth-submit" id="register-btn">
+            <span class="btn-spinner"></span>
+            <span class="btn-text">Create Account</span>
+          </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="auth-footer">
+          <p>Already have an account? <a href="login.html">Log in here</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">PVL <span>HUB</span></div>
+            <p>The ultimate fan engagement platform for the Philippine Volleyball League. Play predictions, collect cards, manage teams, and earn rewards.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Content</h4>
+            <a href="articles.html">Articles</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+          </div>
+          <div class="footer-col">
+            <h4>Play</h4>
+            <a href="predictions.html">Predictions</a>
+            <a href="cards.html">Card Game</a>
+            <a href="manager.html">Manager Game</a>
+            <a href="shop.html">Shop</a>
+          </div>
+          <div class="footer-col">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Log In</a>
+            <a href="register.html">Sign Up</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 PVL Hub. Powered by Globally Ballin.</span>
+          <span>Not officially affiliated with the PVL.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // If already logged in, redirect away
+      if (PVLApi.isLoggedIn()) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const form = document.getElementById('register-form');
+      const registerBtn = document.getElementById('register-btn');
+      const togglePwdBtn = document.getElementById('toggle-password');
+      const passwordInput = document.getElementById('password');
+      const strengthEl = document.getElementById('password-strength');
+      const strengthText = document.getElementById('strength-text');
+
+      // --- Tier card selection ---
+      const tierCards = document.querySelectorAll('.tier-card');
+      tierCards.forEach(card => {
+        card.addEventListener('click', () => {
+          tierCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          card.querySelector('input[type="radio"]').checked = true;
+        });
+      });
+
+      // --- Password visibility toggle ---
+      togglePwdBtn.addEventListener('click', () => {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        togglePwdBtn.innerHTML = isPassword ? '&#128064;' : '&#128065;';
+        togglePwdBtn.title = isPassword ? 'Hide password' : 'Show password';
+      });
+
+      // --- Password strength meter ---
+      passwordInput.addEventListener('input', () => {
+        const val = passwordInput.value;
+        const score = getPasswordStrength(val);
+        const levels = ['', 'weak', 'fair', 'good', 'strong'];
+        const labels = ['', 'Weak', 'Fair', 'Good', 'Strong'];
+
+        strengthEl.className = 'password-strength';
+        if (val.length > 0) {
+          strengthEl.classList.add(levels[score]);
+          strengthText.textContent = labels[score];
+        } else {
+          strengthText.textContent = '';
+        }
+
+        clearFieldError('password');
+      });
+
+      function getPasswordStrength(password) {
+        let score = 0;
+        if (password.length >= 8) score++;
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) score++;
+        if (/\d/.test(password)) score++;
+        if (/[^a-zA-Z0-9]/.test(password)) score++;
+        return score;
+      }
+
+      // --- Clear errors on input ---
+      ['email', 'username', 'display_name', 'confirm_password'].forEach(field => {
+        const el = document.getElementById(field);
+        if (el) el.addEventListener('input', () => clearFieldError(field));
+      });
+
+      // --- Form submit ---
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearAllErrors();
+
+        const email = document.getElementById('email').value.trim();
+        const username = document.getElementById('username').value.trim();
+        const displayName = document.getElementById('display_name').value.trim();
+        const password = passwordInput.value;
+        const confirmPassword = document.getElementById('confirm_password').value;
+        const favoriteTeam = document.getElementById('favorite_team').value;
+        const tier = document.querySelector('input[name="tier"]:checked').value;
+
+        // --- Client-side validation ---
+        let hasError = false;
+
+        if (!email) {
+          showFieldError('email', 'Email is required');
+          hasError = true;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showFieldError('email', 'Enter a valid email address');
+          hasError = true;
+        }
+
+        if (!username) {
+          showFieldError('username', 'Username is required');
+          hasError = true;
+        } else if (username.length < 3) {
+          showFieldError('username', 'Username must be at least 3 characters');
+          hasError = true;
+        } else if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+          showFieldError('username', 'Letters, numbers, and underscores only');
+          hasError = true;
+        }
+
+        if (!password) {
+          showFieldError('password', 'Password is required');
+          hasError = true;
+        } else if (password.length < 8) {
+          showFieldError('password', 'Password must be at least 8 characters');
+          hasError = true;
+        }
+
+        if (!confirmPassword) {
+          showFieldError('confirm_password', 'Please confirm your password');
+          hasError = true;
+        } else if (password !== confirmPassword) {
+          showFieldError('confirm_password', 'Passwords do not match');
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        // --- Submit ---
+        setLoading(true);
+        try {
+          const userData = {
+            email,
+            username,
+            password,
+            display_name: displayName || username,
+            favorite_team: favoriteTeam,
+            tier
+          };
+
+          await PVLApi.register(userData);
+          Toast.show('Account created! Redirecting to login...', 'success');
+
+          setTimeout(() => {
+            window.location.href = 'login.html';
+          }, 1200);
+        } catch (err) {
+          Toast.show(err.message || 'Registration failed. Please try again.', 'error');
+          setLoading(false);
+        }
+      });
+
+      // --- Helpers ---
+      function setLoading(loading) {
+        registerBtn.disabled = loading;
+        registerBtn.classList.toggle('loading', loading);
+      }
+
+      function showFieldError(field, message) {
+        const input = document.getElementById(field);
+        const errorEl = document.getElementById(field + '-error');
+        if (input) input.classList.add('error');
+        if (errorEl) {
+          errorEl.textContent = message;
+          errorEl.classList.add('visible');
+        }
+      }
+
+      function clearFieldError(field) {
+        const input = document.getElementById(field);
+        const errorEl = document.getElementById(field + '-error');
+        if (input) input.classList.remove('error');
+        if (errorEl) {
+          errorEl.textContent = '';
+          errorEl.classList.remove('visible');
+        }
+      }
+
+      function clearAllErrors() {
+        document.querySelectorAll('.form-input.error, .form-select.error').forEach(el => el.classList.remove('error'));
+        document.querySelectorAll('.field-error.visible').forEach(el => {
+          el.textContent = '';
+          el.classList.remove('visible');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

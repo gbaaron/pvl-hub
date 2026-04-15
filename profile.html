@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PVL Hub — Profile</title>
+  <meta name="description" content="PVL Hub Profile: View your stats, predictions, achievements, and activity history.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <!-- Login Required State (shown when not logged in) -->
+    <div class="login-required" id="login-required" style="display:none;">
+      <div class="lock-icon">&#128274;</div>
+      <h2>Profile Requires Login</h2>
+      <p>Sign in to view your profile, stats, predictions history, and achievements.</p>
+      <div class="login-actions">
+        <a href="login.html" class="btn btn-primary">Log In</a>
+        <a href="register.html" class="btn btn-outline">Sign Up</a>
+      </div>
+    </div>
+
+    <!-- Profile Content (shown when logged in) -->
+    <div id="profile-content" style="display:none;">
+
+      <!-- Profile Card with Banner -->
+      <div class="container" style="padding-top: 32px;">
+        <div class="profile-card reveal">
+          <div class="profile-banner" id="profile-banner">
+            <div class="profile-banner-pattern"></div>
+          </div>
+          <div class="profile-header">
+            <div class="profile-header-row">
+              <div class="profile-avatar" id="profile-avatar">A</div>
+              <div class="profile-info">
+                <div class="profile-display-name">
+                  <span id="profile-display-name">Aaron</span>
+                  <span class="tier-badge tier-vip" id="profile-tier">VIP</span>
+                </div>
+                <div class="profile-username" id="profile-username">@aaron</div>
+                <div class="profile-bio" id="profile-bio">Die-hard PVL fan since day one. Creamline or nothing. Making predictions and collecting cards daily.</div>
+                <div class="profile-meta">
+                  <div class="profile-meta-item">
+                    <span class="meta-icon">&#127952;</span>
+                    <span id="profile-fav-team">Creamline Cool Smashers</span>
+                  </div>
+                  <div class="profile-meta-item">
+                    <span class="meta-icon">&#128197;</span>
+                    <span id="profile-joined">Joined Apr 2026</span>
+                  </div>
+                </div>
+              </div>
+              <div class="profile-actions">
+                <button class="btn btn-primary btn-sm" onclick="openEditProfile()">Edit Profile</button>
+                <button class="btn btn-secondary btn-sm" onclick="PVLApi.logout()">Log Out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Dashboard -->
+      <div class="container">
+        <div class="stats-dashboard">
+          <!-- Total Credits -->
+          <div class="stat-card reveal">
+            <div class="stat-card-icon">&#x1FA99;</div>
+            <div class="stat-card-value" id="stat-credits">2,450</div>
+            <div class="stat-card-label">Total Credits</div>
+            <div class="stat-card-breakdown">
+              <div class="stat-breakdown-item">
+                <div class="stat-breakdown-value" id="stat-earned" style="color:var(--green);">4,200</div>
+                <div class="stat-breakdown-label">Earned</div>
+              </div>
+              <div class="stat-breakdown-item">
+                <div class="stat-breakdown-value" id="stat-spent" style="color:var(--red);">1,750</div>
+                <div class="stat-breakdown-label">Spent</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Prediction Accuracy -->
+          <div class="stat-card reveal">
+            <div class="stat-card-icon">&#127919;</div>
+            <div class="accuracy-circle-wrap">
+              <div class="accuracy-circle" id="accuracy-circle" style="--accuracy-deg: 248deg;">
+                <div class="accuracy-circle-inner">
+                  <div class="accuracy-value" id="stat-accuracy">69%</div>
+                  <div class="accuracy-label">Accuracy</div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-card-label">Prediction Accuracy</div>
+            <div class="stat-card-breakdown">
+              <div class="stat-breakdown-item">
+                <div class="stat-breakdown-value" id="stat-total-predictions">124</div>
+                <div class="stat-breakdown-label">Total</div>
+              </div>
+              <div class="stat-breakdown-item">
+                <div class="stat-breakdown-value" id="stat-correct" style="color:var(--green);">85</div>
+                <div class="stat-breakdown-label">Correct</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Engagement Score -->
+          <div class="stat-card reveal">
+            <div class="stat-card-icon">&#128200;</div>
+            <div class="stat-card-value" id="stat-engagement">347</div>
+            <div class="stat-card-label">Engagement Score</div>
+            <div class="stat-card-breakdown">
+              <div class="stat-breakdown-item">
+                <div class="stat-breakdown-value" id="stat-comments">89</div>
+                <div class="stat-breakdown-label">Comments</div>
+              </div>
+              <div class="stat-breakdown-item">
+                <div class="stat-breakdown-value" id="stat-ratings">42</div>
+                <div class="stat-breakdown-label">Ratings</div>
+              </div>
+              <div class="stat-breakdown-item">
+                <div class="stat-breakdown-value" id="stat-activities">216</div>
+                <div class="stat-breakdown-label">Activities</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Tabs -->
+      <div class="container">
+        <div class="activity-section reveal">
+          <div class="activity-tabs">
+            <button class="activity-tab active" data-tab="predictions">Predictions History</button>
+            <button class="activity-tab" data-tab="comments">Comments</button>
+            <button class="activity-tab" data-tab="transactions">Transactions</button>
+          </div>
+          <div class="activity-content">
+
+            <!-- Predictions Tab -->
+            <div class="tab-pane active" id="tab-predictions">
+              <div class="prediction-item">
+                <div class="prediction-result correct">&#10003;</div>
+                <div class="prediction-details">
+                  <div class="prediction-match">Creamline vs PLDT</div>
+                  <div class="prediction-pick">Picked: Creamline 3-1 &mdash; Actual: Creamline 3-1</div>
+                </div>
+                <div class="prediction-credits">+25 Credits</div>
+                <div class="prediction-date">Apr 12, 2026</div>
+              </div>
+              <div class="prediction-item">
+                <div class="prediction-result wrong">&#10007;</div>
+                <div class="prediction-details">
+                  <div class="prediction-match">Choco Mucho vs Cignal</div>
+                  <div class="prediction-pick">Picked: Choco Mucho 3-0 &mdash; Actual: Cignal 3-2</div>
+                </div>
+                <div class="prediction-credits" style="color: var(--text-muted);">0 Credits</div>
+                <div class="prediction-date">Apr 11, 2026</div>
+              </div>
+              <div class="prediction-item">
+                <div class="prediction-result correct">&#10003;</div>
+                <div class="prediction-details">
+                  <div class="prediction-match">Petro Gazz vs Akari</div>
+                  <div class="prediction-pick">Picked: Petro Gazz 3-0 &mdash; Actual: Petro Gazz 3-0</div>
+                </div>
+                <div class="prediction-credits">+50 Credits (Perfect!)</div>
+                <div class="prediction-date">Apr 10, 2026</div>
+              </div>
+              <div class="prediction-item">
+                <div class="prediction-result correct">&#10003;</div>
+                <div class="prediction-details">
+                  <div class="prediction-match">Farm Fresh vs Capital1</div>
+                  <div class="prediction-pick">Picked: Farm Fresh 3-2 &mdash; Actual: Farm Fresh 3-1</div>
+                </div>
+                <div class="prediction-credits">+15 Credits</div>
+                <div class="prediction-date">Apr 9, 2026</div>
+              </div>
+              <div class="prediction-item">
+                <div class="prediction-result pending">&#8943;</div>
+                <div class="prediction-details">
+                  <div class="prediction-match">NXLED vs Chery Tiggo</div>
+                  <div class="prediction-pick">Picked: Chery Tiggo 3-1 &mdash; Pending</div>
+                </div>
+                <div class="prediction-credits" style="color: var(--orange);">Pending</div>
+                <div class="prediction-date">Apr 14, 2026</div>
+              </div>
+              <div class="prediction-item">
+                <div class="prediction-result wrong">&#10007;</div>
+                <div class="prediction-details">
+                  <div class="prediction-match">Creamline vs Choco Mucho</div>
+                  <div class="prediction-pick">Picked: Creamline 3-0 &mdash; Actual: Choco Mucho 3-2</div>
+                </div>
+                <div class="prediction-credits" style="color: var(--text-muted);">0 Credits</div>
+                <div class="prediction-date">Apr 7, 2026</div>
+              </div>
+            </div>
+
+            <!-- Comments Tab -->
+            <div class="tab-pane" id="tab-comments">
+              <div class="profile-comment-item">
+                <div class="profile-comment-context">On <a href="#">Creamline Dominates in 3 Sets</a></div>
+                <div class="profile-comment-text">Alyssa is back in MVP form and I'm here for it. Nobody can stop the Cool Smashers when she's on fire like that.</div>
+                <div class="profile-comment-date">Apr 12, 2026 at 8:45 PM</div>
+              </div>
+              <div class="profile-comment-item">
+                <div class="profile-comment-context">On <a href="#">Top 5 Setters to Watch This Conference</a></div>
+                <div class="profile-comment-text">You're sleeping on Deanna Wong if she's not #1 on this list. Her court vision is unmatched.</div>
+                <div class="profile-comment-date">Apr 11, 2026 at 3:22 PM</div>
+              </div>
+              <div class="profile-comment-item">
+                <div class="profile-comment-context">On <a href="#">Why Cignal's Block Defense is Elite (Video)</a></div>
+                <div class="profile-comment-text">This breakdown is exactly the kind of content PVL Hub needs more of. Subscribed!</div>
+                <div class="profile-comment-date">Apr 10, 2026 at 11:15 AM</div>
+              </div>
+              <div class="profile-comment-item">
+                <div class="profile-comment-context">On <a href="#">PLDT Announces Major Roster Shake-Up</a></div>
+                <div class="profile-comment-text">Bold move by PLDT. Let's see if it pays off in the second half of the conference.</div>
+                <div class="profile-comment-date">Apr 9, 2026 at 5:30 PM</div>
+              </div>
+            </div>
+
+            <!-- Transactions Tab -->
+            <div class="tab-pane" id="tab-transactions">
+              <div class="transaction-item">
+                <div class="transaction-icon earn">&#9650;</div>
+                <div class="transaction-details">
+                  <div class="transaction-label">Prediction Reward: Creamline vs PLDT</div>
+                  <div class="transaction-time">Apr 12, 2026 at 9:00 PM</div>
+                </div>
+                <div class="transaction-amount positive">+25</div>
+              </div>
+              <div class="transaction-item">
+                <div class="transaction-icon earn">&#9650;</div>
+                <div class="transaction-details">
+                  <div class="transaction-label">Perfect Prediction Bonus: Petro Gazz vs Akari</div>
+                  <div class="transaction-time">Apr 10, 2026 at 8:30 PM</div>
+                </div>
+                <div class="transaction-amount positive">+50</div>
+              </div>
+              <div class="transaction-item">
+                <div class="transaction-icon spend">&#9660;</div>
+                <div class="transaction-details">
+                  <div class="transaction-label">Shop: Player Card Booster Pack (10)</div>
+                  <div class="transaction-time">Apr 10, 2026 at 4:15 PM</div>
+                </div>
+                <div class="transaction-amount negative">-100</div>
+              </div>
+              <div class="transaction-item">
+                <div class="transaction-icon earn">&#9650;</div>
+                <div class="transaction-details">
+                  <div class="transaction-label">Daily Login Bonus</div>
+                  <div class="transaction-time">Apr 10, 2026 at 8:00 AM</div>
+                </div>
+                <div class="transaction-amount positive">+10</div>
+              </div>
+              <div class="transaction-item">
+                <div class="transaction-icon earn">&#9650;</div>
+                <div class="transaction-details">
+                  <div class="transaction-label">Article Comment: +5 engagement</div>
+                  <div class="transaction-time">Apr 9, 2026 at 5:32 PM</div>
+                </div>
+                <div class="transaction-amount positive">+5</div>
+              </div>
+              <div class="transaction-item">
+                <div class="transaction-icon spend">&#9660;</div>
+                <div class="transaction-details">
+                  <div class="transaction-label">Shop: Digital Team Wallpaper Pack</div>
+                  <div class="transaction-time">Apr 8, 2026 at 2:00 PM</div>
+                </div>
+                <div class="transaction-amount negative">-15</div>
+              </div>
+              <div class="transaction-item">
+                <div class="transaction-icon earn">&#9650;</div>
+                <div class="transaction-details">
+                  <div class="transaction-label">Prediction Reward: Farm Fresh vs Capital1</div>
+                  <div class="transaction-time">Apr 9, 2026 at 9:45 PM</div>
+                </div>
+                <div class="transaction-amount positive">+15</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement Badges -->
+      <div class="container">
+        <div class="achievements-section reveal">
+          <div class="achievements-title">
+            <span>ACHIEVEMENT</span> <span class="accent">BADGES</span>
+          </div>
+          <div class="achievements-grid">
+            <div class="achievement-badge unlocked">
+              <div class="achievement-icon">&#127919;</div>
+              <div class="achievement-name">First Prediction</div>
+              <div class="achievement-desc">Make your first match prediction</div>
+            </div>
+            <div class="achievement-badge unlocked">
+              <div class="achievement-icon">&#128172;</div>
+              <div class="achievement-name">Voice Heard</div>
+              <div class="achievement-desc">Post your first comment</div>
+            </div>
+            <div class="achievement-badge unlocked">
+              <div class="achievement-icon">&#127775;</div>
+              <div class="achievement-name">Perfect Day</div>
+              <div class="achievement-desc">Get all predictions right in a day</div>
+            </div>
+            <div class="achievement-badge unlocked">
+              <div class="achievement-icon">&#128176;</div>
+              <div class="achievement-name">First Purchase</div>
+              <div class="achievement-desc">Buy your first shop item</div>
+            </div>
+            <div class="achievement-badge locked">
+              <div class="achievement-icon">&#128175;</div>
+              <div class="achievement-name">100 Comments</div>
+              <div class="achievement-desc">Post 100 comments</div>
+              <div class="lock-indicator">&#128274; 89/100</div>
+            </div>
+            <div class="achievement-badge locked">
+              <div class="achievement-icon">&#127183;</div>
+              <div class="achievement-name">Card Collector</div>
+              <div class="achievement-desc">Collect 50 unique player cards</div>
+              <div class="lock-indicator">&#128274; 23/50</div>
+            </div>
+            <div class="achievement-badge locked">
+              <div class="achievement-icon">&#128293;</div>
+              <div class="achievement-name">Hot Streak</div>
+              <div class="achievement-desc">Win 10 predictions in a row</div>
+              <div class="lock-indicator">&#128274; 4/10</div>
+            </div>
+            <div class="achievement-badge locked">
+              <div class="achievement-icon">&#127942;</div>
+              <div class="achievement-name">Top Predictor</div>
+              <div class="achievement-desc">Reach #1 on the leaderboard</div>
+              <div class="lock-indicator">&#128274; Locked</div>
+            </div>
+            <div class="achievement-badge locked">
+              <div class="achievement-icon">&#128218;</div>
+              <div class="achievement-name">Bookworm</div>
+              <div class="achievement-desc">Read 50 articles</div>
+              <div class="lock-indicator">&#128274; 31/50</div>
+            </div>
+            <div class="achievement-badge locked">
+              <div class="achievement-icon">&#127908;</div>
+              <div class="achievement-name">Podcast Fan</div>
+              <div class="achievement-desc">Listen to 20 podcast episodes</div>
+              <div class="lock-indicator">&#128274; 8/20</div>
+            </div>
+            <div class="achievement-badge locked">
+              <div class="achievement-icon">&#129351;</div>
+              <div class="achievement-name">Season Champion</div>
+              <div class="achievement-desc">Finish a season in top 3</div>
+              <div class="lock-indicator">&#128274; Locked</div>
+            </div>
+            <div class="achievement-badge locked">
+              <div class="achievement-icon">&#128142;</div>
+              <div class="achievement-name">VIP Status</div>
+              <div class="achievement-desc">Earn 10,000 total credits</div>
+              <div class="lock-indicator">&#128274; 4,200/10,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /profile-content -->
+
+    <!-- Edit Profile Modal -->
+    <div class="modal-backdrop" id="edit-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Edit Profile</h3>
+          <button class="modal-close" onclick="closeEditProfile()">&times;</button>
+        </div>
+        <form class="edit-profile-form" id="edit-profile-form" onsubmit="saveProfile(event)">
+          <div class="form-group">
+            <label class="form-label">Display Name</label>
+            <input type="text" class="form-input" id="edit-display-name" placeholder="Your display name" maxlength="30">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Bio</label>
+            <textarea class="form-input" id="edit-bio" rows="3" placeholder="Tell us about yourself..." maxlength="200" style="resize:vertical;"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Favorite Team</label>
+            <select class="form-select" id="edit-fav-team">
+              <option value="">Select a team...</option>
+              <option value="Creamline Cool Smashers">Creamline Cool Smashers</option>
+              <option value="Choco Mucho Flying Titans">Choco Mucho Flying Titans</option>
+              <option value="Petro Gazz Angels">Petro Gazz Angels</option>
+              <option value="PLDT High Speed Hitters">PLDT High Speed Hitters</option>
+              <option value="Cignal HD Spikers">Cignal HD Spikers</option>
+              <option value="Akari Chargers">Akari Chargers</option>
+              <option value="Farm Fresh Foxies">Farm Fresh Foxies</option>
+              <option value="Capital1 Solar Spikers">Capital1 Solar Spikers</option>
+              <option value="NXLED Chameleons">NXLED Chameleons</option>
+              <option value="Chery Tiggo Crossovers">Chery Tiggo Crossovers</option>
+              <option value="Galeries Tower Highrisers">Galeries Tower Highrisers</option>
+              <option value="ZUS Coffee Thunderbelles">ZUS Coffee Thunderbelles</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Favorite Player</label>
+            <input type="text" class="form-input" id="edit-fav-player" placeholder="e.g. Alyssa Valdez" maxlength="50">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Banner Color</label>
+            <div class="color-picker-wrap">
+              <input type="color" id="edit-banner-color" value="#d4a843">
+              <div class="color-preview" id="color-preview" style="background: linear-gradient(135deg, #b8922e, #d4a843, #f0c75e);"></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:24px;">
+            <button type="submit" class="btn btn-primary" style="flex:1;">Save Changes</button>
+            <button type="button" class="btn btn-secondary" onclick="closeEditProfile()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">PVL <span>HUB</span></div>
+            <p>The ultimate fan engagement platform for the Philippine Volleyball League. Play predictions, collect cards, manage teams, and earn rewards.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Content</h4>
+            <a href="articles.html">Articles</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+          </div>
+          <div class="footer-col">
+            <h4>Play</h4>
+            <a href="predictions.html">Predictions</a>
+            <a href="cards.html">Card Game</a>
+            <a href="manager.html">Manager Game</a>
+            <a href="shop.html">Shop</a>
+          </div>
+          <div class="footer-col">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Log In</a>
+            <a href="register.html">Sign Up</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 PVL Hub. Powered by Globally Ballin.</span>
+          <span>Not officially affiliated with the PVL.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/tracking.js"></script>
+  <script>
+    // --- Profile Page Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+      Tracking.pageView('profile');
+      checkAuth();
+      initActivityTabs();
+    });
+
+    // Auth gate
+    function checkAuth() {
+      const loginRequired = document.getElementById('login-required');
+      const profileContent = document.getElementById('profile-content');
+
+      if (!PVLApi.isLoggedIn()) {
+        loginRequired.style.display = '';
+        profileContent.style.display = 'none';
+        return;
+      }
+
+      loginRequired.style.display = 'none';
+      profileContent.style.display = '';
+      loadProfileData();
+    }
+
+    // Load user data into profile
+    function loadProfileData() {
+      const user = PVLApi.getCurrentUser();
+      if (!user) return;
+
+      // Profile header
+      const initial = (user.display_name || user.username || 'U')[0].toUpperCase();
+      document.getElementById('profile-avatar').textContent = initial;
+      document.getElementById('profile-display-name').textContent = user.display_name || user.username || 'User';
+      document.getElementById('profile-username').textContent = '@' + (user.username || 'user');
+
+      if (user.bio) {
+        document.getElementById('profile-bio').textContent = user.bio;
+      }
+
+      // Tier badge
+      const tierEl = document.getElementById('profile-tier');
+      const tier = user.tier || 'free';
+      tierEl.textContent = tier.toUpperCase();
+      tierEl.className = 'tier-badge tier-' + tier;
+
+      // Favorite team
+      if (user.favorite_team) {
+        document.getElementById('profile-fav-team').textContent = user.favorite_team;
+      }
+
+      // Stats (use demo data if not available)
+      if (user.credits !== undefined) {
+        document.getElementById('stat-credits').textContent = (user.credits || 0).toLocaleString();
+      }
+
+      // Banner color
+      if (user.banner_color) {
+        updateBannerColor(user.banner_color);
+      }
+    }
+
+    // Activity tabs
+    function initActivityTabs() {
+      const tabs = document.querySelectorAll('.activity-tab');
+      const panes = document.querySelectorAll('.tab-pane');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          panes.forEach(p => p.classList.remove('active'));
+
+          tab.classList.add('active');
+          const pane = document.getElementById('tab-' + tab.dataset.tab);
+          if (pane) pane.classList.add('active');
+        });
+      });
+    }
+
+    // Edit profile modal
+    function openEditProfile() {
+      const user = PVLApi.getCurrentUser() || {};
+      document.getElementById('edit-display-name').value = user.display_name || user.username || '';
+      document.getElementById('edit-bio').value = user.bio || '';
+      document.getElementById('edit-fav-player').value = user.favorite_player || '';
+
+      // Set select
+      const teamSelect = document.getElementById('edit-fav-team');
+      if (user.favorite_team) {
+        for (let i = 0; i < teamSelect.options.length; i++) {
+          if (teamSelect.options[i].value === user.favorite_team) {
+            teamSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      // Banner color
+      if (user.banner_color) {
+        document.getElementById('edit-banner-color').value = user.banner_color;
+      }
+
+      document.getElementById('edit-modal').classList.add('active');
+    }
+
+    function closeEditProfile() {
+      document.getElementById('edit-modal').classList.remove('active');
+    }
+
+    // Close modal on backdrop click
+    document.getElementById('edit-modal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeEditProfile();
+    });
+
+    // Save profile
+    function saveProfile(e) {
+      e.preventDefault();
+
+      const displayName = document.getElementById('edit-display-name').value.trim();
+      const bio = document.getElementById('edit-bio').value.trim();
+      const favTeam = document.getElementById('edit-fav-team').value;
+      const favPlayer = document.getElementById('edit-fav-player').value.trim();
+      const bannerColor = document.getElementById('edit-banner-color').value;
+
+      // Update local storage user
+      const user = PVLApi.getCurrentUser() || {};
+      user.display_name = displayName || user.username;
+      user.bio = bio;
+      user.favorite_team = favTeam;
+      user.favorite_player = favPlayer;
+      user.banner_color = bannerColor;
+
+      localStorage.setItem('pvl_user', JSON.stringify(user));
+
+      // Update UI
+      loadProfileData();
+      updateBannerColor(bannerColor);
+      closeEditProfile();
+
+      // Update nav
+      Auth.updateNavUI();
+
+      Toast.show('Profile updated successfully!', 'success');
+    }
+
+    // Update banner gradient from a color
+    function updateBannerColor(color) {
+      const banner = document.getElementById('profile-banner');
+      if (!banner) return;
+
+      // Create lighter and darker variants
+      const hex = color.replace('#', '');
+      const r = parseInt(hex.substr(0, 2), 16);
+      const g = parseInt(hex.substr(2, 2), 16);
+      const b = parseInt(hex.substr(4, 2), 16);
+
+      const darker = `rgb(${Math.max(0, r - 40)}, ${Math.max(0, g - 40)}, ${Math.max(0, b - 40)})`;
+      const lighter = `rgb(${Math.min(255, r + 40)}, ${Math.min(255, g + 40)}, ${Math.min(255, b + 40)})`;
+
+      banner.style.background = `linear-gradient(135deg, ${darker}, ${color}, ${lighter})`;
+    }
+
+    // Color picker live preview
+    document.getElementById('edit-banner-color').addEventListener('input', (e) => {
+      const color = e.target.value;
+      const hex = color.replace('#', '');
+      const r = parseInt(hex.substr(0, 2), 16);
+      const g = parseInt(hex.substr(2, 2), 16);
+      const b = parseInt(hex.substr(4, 2), 16);
+      const darker = `rgb(${Math.max(0, r - 40)}, ${Math.max(0, g - 40)}, ${Math.max(0, b - 40)})`;
+      const lighter = `rgb(${Math.min(255, r + 40)}, ${Math.min(255, g + 40)}, ${Math.min(255, b + 40)})`;
+      document.getElementById('color-preview').style.background = `linear-gradient(135deg, ${darker}, ${color}, ${lighter})`;
+    });
+  </script>
+</body>
+</html>

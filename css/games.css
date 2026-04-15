@@ -1,0 +1,593 @@
+/* ========================================
+   PVL HUB — Game Pages Shared Styles
+   Powered by Globally Ballin
+   ======================================== */
+
+/* --- Page Hero Banner --- */
+.game-hero {
+  position: relative;
+  text-align: center;
+  padding: 72px 0 56px;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 22, 40, 0.97) 0%,
+    rgba(26, 45, 82, 0.95) 40%,
+    rgba(212, 168, 67, 0.12) 100%
+  );
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.game-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(212, 168, 67, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(52, 152, 219, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+[data-theme="light"] .game-hero {
+  background: linear-gradient(
+    135deg,
+    rgba(240, 242, 245, 1) 0%,
+    rgba(255, 255, 255, 1) 40%,
+    rgba(212, 168, 67, 0.08) 100%
+  );
+}
+
+.game-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.game-hero .page-icon {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.game-hero h1 {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.game-hero h1 span {
+  color: var(--gold);
+}
+
+.game-hero .game-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* --- Feature Cards Section --- */
+.game-features {
+  padding: 56px 0 40px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 32px 24px;
+  text-align: center;
+  transition: all var(--transition-med);
+}
+
+.feature-card:hover {
+  border-color: var(--border-color-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-6px);
+}
+
+.feature-card .feature-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.feature-card .feature-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.feature-card .feature-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* --- Credits Integration Notice --- */
+.credits-notice {
+  background: rgba(212, 168, 67, 0.06);
+  border: 1px solid rgba(212, 168, 67, 0.25);
+  border-radius: var(--card-radius);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.credits-notice .notice-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.credits-notice .notice-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.credits-notice .notice-text strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+[data-theme="light"] .credits-notice {
+  background: rgba(212, 168, 67, 0.08);
+}
+
+/* --- Action Buttons --- */
+.game-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.btn-play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 48px;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--navy);
+  border: none;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 20px rgba(212, 168, 67, 0.25);
+}
+
+.btn-play:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(212, 168, 67, 0.4);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--navy);
+}
+
+.btn-play:active {
+  transform: translateY(-1px);
+}
+
+.btn-howto {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 36px;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-howto:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(212, 168, 67, 0.06);
+}
+
+/* --- Game Container --- */
+.game-container-section {
+  padding-bottom: 80px;
+}
+
+.game-container-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.game-container-label h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.game-container-label .game-credits {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(212, 168, 67, 0.1);
+  border: 1px solid rgba(212, 168, 67, 0.2);
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.game-container-label .game-credits .coin-icon {
+  font-size: 1rem;
+}
+
+.game-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--navy);
+  border: 2px solid var(--border-color);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+[data-theme="light"] .game-wrapper {
+  background: #1a2d52;
+}
+
+.game-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* --- Game Placeholder (Demo) --- */
+.game-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(10, 22, 40, 0.98) 0%, rgba(26, 45, 82, 0.95) 100%);
+  padding: 32px;
+}
+
+.game-placeholder .placeholder-label {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold);
+  background: rgba(212, 168, 67, 0.12);
+  padding: 6px 16px;
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+
+/* -- Mock UI inside the placeholder -- */
+.mock-ui {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mock-ui-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+
+.mock-ui-header .mock-team-name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+
+.mock-ui-header .mock-record {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.mock-roster {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mock-player-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+}
+
+.mock-player-row .mock-pos {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--gold);
+  width: 32px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.mock-player-row .mock-name {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.mock-player-row .mock-stat {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+}
+
+.mock-player-row .mock-ovr {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gold);
+  background: rgba(212, 168, 67, 0.12);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+/* --- Card Game Mock UI --- */
+.mock-card-collection {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mock-cards-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+
+.mock-cards-header .mock-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+
+.mock-cards-header .mock-pack-info {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.mock-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.mock-card {
+  aspect-ratio: 2.5 / 3.5;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 6px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mock-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 100%);
+}
+
+.mock-card.rarity-common {
+  background: linear-gradient(180deg, #2a3040 0%, #1e2433 100%);
+  border-color: rgba(139, 146, 160, 0.3);
+}
+
+.mock-card.rarity-rare {
+  background: linear-gradient(180deg, #1a3a5c 0%, #122a42 100%);
+  border-color: rgba(52, 152, 219, 0.4);
+}
+
+.mock-card.rarity-epic {
+  background: linear-gradient(180deg, #3a1a5c 0%, #2a1242 100%);
+  border-color: rgba(155, 89, 182, 0.4);
+}
+
+.mock-card.rarity-legendary {
+  background: linear-gradient(180deg, #3a2a0a 0%, #2a1e06 100%);
+  border-color: rgba(212, 168, 67, 0.5);
+  box-shadow: 0 0 12px rgba(212, 168, 67, 0.15);
+}
+
+.mock-card .card-emoji {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.mock-card .card-player {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.mock-card .card-rarity {
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.mock-card.rarity-common .card-rarity { color: var(--gray-400); }
+.mock-card.rarity-rare .card-rarity { color: var(--blue); }
+.mock-card.rarity-epic .card-rarity { color: var(--purple); }
+.mock-card.rarity-legendary .card-rarity { color: var(--gold); }
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .game-hero {
+    padding: 48px 0 36px;
+  }
+
+  .game-hero h1 {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+  }
+
+  .game-hero .game-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .feature-card {
+    padding: 24px 20px;
+  }
+
+  .feature-card .feature-icon {
+    font-size: 2.2rem;
+  }
+
+  .credits-notice {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px 20px;
+  }
+
+  .game-actions {
+    flex-direction: column;
+  }
+
+  .btn-play,
+  .btn-howto {
+    width: 100%;
+  }
+
+  .game-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+  .game-container-label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .mock-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .mock-ui-header .mock-team-name {
+    font-size: 0.85rem;
+  }
+
+  .mock-player-row .mock-name {
+    font-size: 0.78rem;
+  }
+
+  .mock-player-row .mock-stat {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-hero h1 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .game-hero .page-icon {
+    font-size: 2.5rem;
+  }
+
+  .btn-play {
+    padding: 16px 32px;
+    font-size: 1.05rem;
+  }
+
+  .mock-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mock-card .card-emoji {
+    font-size: 1.2rem;
+  }
+
+  .mock-card .card-player {
+    font-size: 0.58rem;
+  }
+}
