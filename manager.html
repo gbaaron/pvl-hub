@@ -111,6 +111,26 @@
     <!-- Game Container -->
     <section class="game-container-section">
       <div class="container">
+        <!-- Credentials Panel (shown when logged in) -->
+        <div class="game-credentials hidden" id="game-credentials">
+          <div class="credentials-header">
+            <span class="credentials-icon">&#128273;</span>
+            <strong>Your Manager Game Login</strong>
+          </div>
+          <div class="credentials-body">
+            <div class="credential-row">
+              <span class="credential-label">Email</span>
+              <span class="credential-value" id="cred-email">—</span>
+            </div>
+            <div class="credential-row">
+              <span class="credential-label">PIN</span>
+              <span class="credential-value credential-pin" id="cred-pin">—</span>
+              <button class="credential-copy" onclick="copyPin()" title="Copy PIN">&#128203; Copy</button>
+            </div>
+          </div>
+          <p class="credentials-note">Use these credentials when the game prompts you to log in.</p>
+        </div>
+
         <div class="game-container-label">
           <h3>&#127918; Game Arena</h3>
           <div class="game-credits">
@@ -222,7 +242,31 @@
     document.addEventListener('DOMContentLoaded', () => {
       Tracking.pageView('manager');
       syncCreditsDisplay();
+      showGameCredentials();
     });
+
+    // Show game credentials if user is logged in
+    function showGameCredentials() {
+      const user = PVLApi.getCurrentUser();
+      if (!user) return;
+      const panel = document.getElementById('game-credentials');
+      const emailEl = document.getElementById('cred-email');
+      const pinEl = document.getElementById('cred-pin');
+      if (panel && emailEl && pinEl) {
+        emailEl.textContent = user.email;
+        pinEl.textContent = user.game_pin || 'N/A';
+        panel.classList.remove('hidden');
+      }
+    }
+
+    function copyPin() {
+      const user = PVLApi.getCurrentUser();
+      if (user && user.game_pin) {
+        navigator.clipboard.writeText(user.game_pin).then(() => {
+          Toast.show('PIN copied to clipboard!', 'success');
+        });
+      }
+    }
 
     // Sync credits from nav to game area
     function syncCreditsDisplay() {

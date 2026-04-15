@@ -111,6 +111,25 @@
     <!-- Game Container -->
     <section class="game-container-section">
       <div class="container">
+        <!-- Credentials Panel (shown when logged in) -->
+        <div class="game-credentials hidden" id="game-credentials">
+          <div class="credentials-header">
+            <span class="credentials-icon">&#128273;</span>
+            <strong>Your Card Game Login</strong>
+          </div>
+          <div class="credentials-body">
+            <div class="credential-row">
+              <span class="credential-label">Email</span>
+              <span class="credential-value" id="cred-email">—</span>
+            </div>
+            <div class="credential-row">
+              <span class="credential-label">Password</span>
+              <span class="credential-value">Same as your PVL Hub password</span>
+            </div>
+          </div>
+          <p class="credentials-note">Use the same email and password you registered with on PVL Hub. You may need to confirm your email on first login.</p>
+        </div>
+
         <div class="game-container-label">
           <h3>&#127183; Card Arena</h3>
           <div class="game-credits">
@@ -229,7 +248,19 @@
     document.addEventListener('DOMContentLoaded', () => {
       Tracking.pageView('cards');
       syncCreditsDisplay();
+      showGameCredentials();
     });
+
+    function showGameCredentials() {
+      const user = PVLApi.getCurrentUser();
+      if (!user) return;
+      const panel = document.getElementById('game-credentials');
+      const emailEl = document.getElementById('cred-email');
+      if (panel && emailEl) {
+        emailEl.textContent = user.email;
+        panel.classList.remove('hidden');
+      }
+    }
 
     // Sync credits from nav to game area
     function syncCreditsDisplay() {

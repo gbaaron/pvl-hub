@@ -150,6 +150,7 @@ exports.handler = async (event) => {
           credits: fields.credits,
           favorite_team: fields.favorite_team,
           avatar_url: fields.avatar_url || null,
+          game_pin: fields.game_pin || null,
         },
       }),
     };
