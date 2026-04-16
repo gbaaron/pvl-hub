@@ -99,7 +99,9 @@ exports.handler = async (event) => {
     });
 
     if (!checkRes.ok) {
-      return { statusCode: 500, headers: CORS_HEADERS, body: JSON.stringify({ success: false, message: "Failed to check existing users" }) };
+      const errBody = await checkRes.text();
+      console.error("Airtable check failed:", checkRes.status, errBody);
+      return { statusCode: 500, headers: CORS_HEADERS, body: JSON.stringify({ success: false, message: "Failed to check existing users", detail: `Airtable ${checkRes.status}` }) };
     }
 
     const existing = await checkRes.json();

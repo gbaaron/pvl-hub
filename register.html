@@ -330,7 +330,7 @@
 
         strengthEl.className = 'password-strength';
         if (val.length > 0) {
-          strengthEl.classList.add(levels[score]);
+          if (levels[score]) strengthEl.classList.add(levels[score]);
           strengthText.textContent = labels[score];
         } else {
           strengthText.textContent = '';
