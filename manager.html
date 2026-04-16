@@ -141,6 +141,7 @@
         </div>
 
         <div class="game-wrapper" id="game-wrapper">
+          <button type="button" class="game-fs-exit" id="game-fs-exit" title="Exit Fullscreen" aria-label="Exit Fullscreen">&#10005;</button>
           <iframe id="game-iframe" src="" data-src="https://pvl-management-game.netlify.app" title="PVL Manager Game" allow="fullscreen" loading="lazy"></iframe>
 
           <!-- Placeholder (shown when game not loaded) -->
@@ -300,6 +301,7 @@
     function launchGame() {
       const iframe = document.getElementById('game-iframe');
       const placeholder = document.getElementById('game-placeholder');
+      const wrapper = document.getElementById('game-wrapper');
       const gameSrc = iframe.dataset.src;
 
       if (gameSrc) {
@@ -310,8 +312,30 @@
         }
         Tracking.managerGamePlay();
         Toast.show('Loading Manager Game...', 'info');
+
+        // Expand to fullscreen so the embedded game gets the full viewport
+        const req = wrapper.requestFullscreen || wrapper.webkitRequestFullscreen || wrapper.msRequestFullscreen;
+        if (req) {
+          req.call(wrapper).catch(() => wrapper.classList.add('game-wrapper-expanded'));
+        } else {
+          wrapper.classList.add('game-wrapper-expanded');
+        }
       }
     }
+
+    // Exit-fullscreen button + fallback-expanded mode
+    document.addEventListener('DOMContentLoaded', () => {
+      const exitBtn = document.getElementById('game-fs-exit');
+      const wrapper = document.getElementById('game-wrapper');
+      if (exitBtn && wrapper) {
+        exitBtn.addEventListener('click', () => {
+          if (document.fullscreenElement || document.webkitFullscreenElement) {
+            (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+          }
+          wrapper.classList.remove('game-wrapper-expanded');
+        });
+      }
+    });
 
     // Show how-to-play info
     function showHowToPlay() {
