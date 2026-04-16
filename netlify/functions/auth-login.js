@@ -151,6 +151,7 @@ exports.handler = async (event) => {
           favorite_team: fields.favorite_team,
           avatar_url: fields.avatar_url || null,
           game_pin: fields.game_pin || null,
+          is_admin: fields.is_admin === true,
         },
       }),
     };

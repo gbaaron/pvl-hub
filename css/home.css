@@ -296,24 +296,21 @@
 .countdown-team { text-align: center; }
 
 .countdown-team .team-logo {
-  width: 72px; height: 72px;
+  width: 76px; height: 76px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(4, 83, 151, 0.2), rgba(4, 83, 151, 0.08));
-  border: 2px solid rgba(4, 83, 151, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.12);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--pvl-blue-light);
   margin: 0 auto 8px;
-  font-family: var(--font-display);
-  letter-spacing: 1.5px;
   position: relative;
+  overflow: hidden;
+  padding: 8px;
 }
 
-.countdown-team:last-child .team-logo {
-  background: linear-gradient(135deg, rgba(237, 31, 36, 0.2), rgba(237, 31, 36, 0.08));
-  border-color: rgba(237, 31, 36, 0.3);
-  color: var(--pvl-red-light);
+.countdown-team .team-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .countdown-team .team-name {
@@ -637,10 +634,13 @@
 }
 
 .podcast-cover .mic-icon {
-  font-size: 4rem;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  letter-spacing: 4px;
+  color: var(--pvl-gold);
   position: relative;
   z-index: 1;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  text-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .podcast-info { flex: 1; position: relative; z-index: 1; }
@@ -863,12 +863,7 @@
   box-shadow: var(--shadow-glow-gold);
 }
 
-.stat-item .stat-icon {
-  font-size: 1.5rem;
-  margin-bottom: 8px;
-  display: block;
-  opacity: 0.8;
-}
+.stat-item .stat-icon { display: none; }
 
 .stat-item .stat-value {
   font-family: var(--font-display);
@@ -928,16 +923,38 @@
 }
 
 .team-chip .team-avatar {
-  width: 48px; height: 48px;
+  width: 56px; height: 56px;
   margin: 0 auto 10px;
   border-radius: 50%;
-  background: var(--grad-pvl);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
   display: flex; align-items: center; justify-content: center;
+  padding: 6px;
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.team-chip .team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.team-chip:hover .team-avatar {
+  background: rgba(246, 184, 22, 0.06);
+  border-color: rgba(246, 184, 22, 0.3);
+}
+
+/* Fallback initials for teams without logos */
+.team-avatar-fallback {
+  background: var(--grad-pvl) !important;
+  color: var(--white);
   font-family: var(--font-display);
   font-weight: 700;
-  color: var(--white);
   letter-spacing: 1px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  padding: 0 !important;
+  border: none !important;
 }
 
 .team-chip .team-name {

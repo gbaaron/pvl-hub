@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PVL Hub — Admin CMS</title>
+  <meta name="description" content="PVL Hub Admin CMS: Manage articles, videos, podcasts, matches, prediction questions, and users.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/admin-cms.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127952;</text></svg>">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Access Denied Screen -->
+  <div class="cms-denied" id="cms-denied" style="display:none;">
+    <div class="cms-denied-card">
+      <div class="cms-denied-lock">NO</div>
+      <h1>ACCESS <span style="color:var(--pvl-gold);">DENIED</span></h1>
+      <p>
+        You need administrator privileges to view this page.
+        If you believe this is a mistake, contact the site owner.
+      </p>
+      <a href="index.html" class="btn">&larr; Back to Site</a>
+    </div>
+  </div>
+
+  <!-- CMS Shell -->
+  <div class="cms-shell" id="cms-shell" style="display:none;">
+
+    <!-- Sidebar -->
+    <aside class="cms-sidebar">
+      <div class="cms-sidebar-header">
+        <div class="cms-sidebar-title">ADMIN <span>CMS</span></div>
+        <div class="cms-sidebar-sub">Content Manager</div>
+      </div>
+      <nav class="cms-nav" id="cms-nav">
+        <!-- Tabs injected by JS -->
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="cms-main">
+      <div class="cms-section-head" id="cms-section-head">
+        <!-- Rendered by JS -->
+      </div>
+      <div id="cms-records">
+        <div class="cms-loading">Loading</div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div class="cms-modal-overlay" id="cms-modal-overlay">
+    <div class="cms-modal" role="dialog" aria-modal="true" aria-labelledby="cms-modal-title">
+      <div class="cms-modal-header">
+        <div class="cms-modal-title" id="cms-modal-title">Edit Record</div>
+        <button class="cms-modal-close" id="cms-modal-close" type="button" aria-label="Close">&times;</button>
+      </div>
+      <div class="cms-modal-body" id="cms-modal-body">
+        <!-- Form injected by JS -->
+      </div>
+      <div class="cms-modal-footer">
+        <button class="cms-btn cms-btn-secondary" id="cms-modal-cancel" type="button">Cancel</button>
+        <button class="cms-btn cms-btn-primary" id="cms-modal-save" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin-cms.js"></script>
+</body>
+</html>

@@ -38,6 +38,19 @@ const Auth = {
       if (avatarEl) {
         avatarEl.textContent = (user.display_name || user.username || 'U')[0].toUpperCase();
       }
+
+      // Show admin nav link for admins
+      if (user.is_admin) {
+        const navLinks = document.getElementById('nav-links');
+        if (navLinks && !document.getElementById('nav-admin-link')) {
+          const adminLink = document.createElement('a');
+          adminLink.href = 'admin-cms.html';
+          adminLink.id = 'nav-admin-link';
+          adminLink.textContent = 'Admin';
+          adminLink.style.color = 'var(--pvl-red-light)';
+          navLinks.appendChild(adminLink);
+        }
+      }
     } else {
       authBtns.classList.remove('hidden');
       userNav.classList.add('hidden');
