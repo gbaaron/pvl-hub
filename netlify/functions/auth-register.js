@@ -113,12 +113,16 @@ exports.handler = async (event) => {
     const game_pin = generatePin();
     const today = new Date().toISOString().split("T")[0];
 
+    // Normalize tier to match Airtable singleSelect options (Free / Fan / Superfan / VIP)
+    const TIER_MAP = { free: "Free", fan: "Fan", superfan: "Superfan", vip: "VIP" };
+    const normalizedTier = TIER_MAP[(tier || "").toLowerCase()] || "Free";
+
     // Create PVL Hub user
     const createRes = await fetch(AIRTABLE_URL, {
       method: "POST",
       headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        records: [{ fields: { email, username, password_hash, display_name, favorite_team: favorite_team || "", tier: tier || "Free", credits: 100, date_joined: today, last_login: today, game_pin } }],
+        records: [{ fields: { email, username, password_hash, display_name, favorite_team: favorite_team || "", tier: normalizedTier, credits: 100, date_joined: today, last_login: today, game_pin } }],
       }),
     });
 
