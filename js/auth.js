@@ -4,10 +4,21 @@
 
 const Auth = {
   init() {
+    this.injectBgDecor();
     this.updateNavUI();
     this.initThemeToggle();
     this.initMobileNav();
     this.initScrollReveal();
+  },
+
+  /**
+   * Inject floating background decorations (fixed, site-wide)
+   */
+  injectBgDecor() {
+    if (document.querySelector('.bg-decor')) return;
+    const decor = document.createElement('div');
+    decor.className = 'bg-decor';
+    document.body.insertBefore(decor, document.body.firstChild);
   },
 
   updateNavUI() {

@@ -140,7 +140,139 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
 }
+
+/* ============================================
+   BACKGROUND ATMOSPHERE — rich, textured, alive
+   ============================================ */
+
+/* Layer 1: Large PVL-colored ambient glow clouds */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -10% -10% -10% -10%;
+  background:
+    radial-gradient(ellipse 900px 700px at 10% 5%, rgba(237, 31, 36, 0.16) 0%, transparent 55%),
+    radial-gradient(ellipse 800px 650px at 92% 25%, rgba(4, 83, 151, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 700px 600px at 50% 55%, rgba(246, 184, 22, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 650px 550px at 15% 85%, rgba(4, 83, 151, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 800px 600px at 85% 95%, rgba(237, 31, 36, 0.1) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+  animation: ambientShift 18s ease-in-out infinite alternate;
+  filter: blur(10px);
+}
+
+/* Layer 2: Textured overlay — halftone dots + court grid + diagonal noise */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    /* Halftone dots */
+    radial-gradient(circle at 1px 1px, rgba(246, 184, 22, 0.05) 1px, transparent 1.5px),
+    /* Court grid lines */
+    linear-gradient(to right, rgba(246, 184, 22, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(246, 184, 22, 0.028) 1px, transparent 1px),
+    /* Diagonal stripes for depth */
+    repeating-linear-gradient(
+      135deg,
+      transparent 0,
+      transparent 120px,
+      rgba(237, 31, 36, 0.015) 120px,
+      rgba(237, 31, 36, 0.015) 121px
+    ),
+    /* Subtle vignette to add depth */
+    radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.35) 100%);
+  background-size: 24px 24px, 80px 80px, 80px 80px, auto, 100% 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+}
+
+/* Light mode variant */
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(ellipse 900px 700px at 10% 5%, rgba(237, 31, 36, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 800px 650px at 92% 25%, rgba(4, 83, 151, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 700px 600px at 50% 55%, rgba(246, 184, 22, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 650px 550px at 15% 85%, rgba(4, 83, 151, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 800px 600px at 85% 95%, rgba(237, 31, 36, 0.05) 0%, transparent 55%);
+}
+
+[data-theme="light"] body::after {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(4, 7, 7, 0.05) 1px, transparent 1.5px),
+    linear-gradient(to right, rgba(4, 7, 7, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(4, 7, 7, 0.025) 1px, transparent 1px),
+    repeating-linear-gradient(135deg, transparent 0, transparent 120px, rgba(237, 31, 36, 0.015) 120px, rgba(237, 31, 36, 0.015) 121px),
+    radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.06) 100%);
+  background-size: 24px 24px, 80px 80px, 80px 80px, auto, 100% 100%;
+}
+
+@keyframes ambientShift {
+  0% {
+    transform: translate(0, 0) scale(1);
+    filter: blur(10px) hue-rotate(0deg);
+  }
+  33% {
+    transform: translate(2%, -1%) scale(1.05);
+    filter: blur(12px) hue-rotate(5deg);
+  }
+  66% {
+    transform: translate(-1%, 2%) scale(1.02);
+    filter: blur(11px) hue-rotate(-3deg);
+  }
+  100% {
+    transform: translate(1%, -2%) scale(1.06);
+    filter: blur(14px) hue-rotate(2deg);
+  }
+}
+
+/* Floating decorative volleyballs in the background (fixed position) */
+.bg-decor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-decor::before,
+.bg-decor::after {
+  content: '\01F3D0'; /* volleyball emoji */
+  position: absolute;
+  font-size: 220px;
+  opacity: 0.025;
+  line-height: 1;
+  filter: grayscale(1);
+  animation: floatBg 25s ease-in-out infinite;
+}
+
+.bg-decor::before {
+  top: 15%;
+  right: -3%;
+  transform: rotate(20deg);
+}
+
+.bg-decor::after {
+  bottom: 10%;
+  left: -4%;
+  font-size: 260px;
+  transform: rotate(-15deg);
+  animation-duration: 30s;
+  animation-direction: reverse;
+}
+
+@keyframes floatBg {
+  0%, 100% { transform: translateY(0) rotate(20deg); }
+  50% { transform: translateY(-30px) rotate(30deg); }
+}
+
+/* Ensure content sits above background layers */
+.navbar, .page-content, .site-footer, .score-ticker { position: relative; z-index: 1; }
+.hero, .home-section { position: relative; z-index: 1; }
 
 a { color: var(--pvl-gold); text-decoration: none; transition: color var(--transition-fast); }
 a:hover { color: var(--pvl-gold-light); }
@@ -1465,4 +1597,238 @@ h4 { font-size: 1.25rem; }
 .arrow-bounce {
   display: inline-block;
   animation: bounce-x 1.4s ease-in-out infinite;
+}
+
+/* ============================================
+   AUTH GATE — Signup push overlay
+   ============================================ */
+.auth-gate-blurred {
+  filter: blur(8px) brightness(0.6);
+  pointer-events: none;
+  user-select: none;
+  transition: filter 0.4s var(--ease);
+}
+
+.auth-gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: gateIn 0.4s var(--ease);
+}
+
+@keyframes gateIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.auth-gate-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(237, 31, 36, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(4, 83, 151, 0.18) 0%, transparent 55%),
+    rgba(4, 7, 7, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.auth-gate-card {
+  position: relative;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 48px 40px 40px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 120px rgba(237, 31, 36, 0.1);
+  transform: scale(0.94) translateY(12px);
+  animation: gateCardIn 0.5s var(--ease-bounce) 0.1s forwards;
+  text-align: center;
+}
+
+@keyframes gateCardIn {
+  to { transform: scale(1) translateY(0); }
+}
+
+.auth-gate-stripe {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(to right,
+    var(--pvl-red) 0%, var(--pvl-red) 33%,
+    var(--pvl-gold) 33%, var(--pvl-gold) 66%,
+    var(--pvl-blue) 66%, var(--pvl-blue) 100%);
+  border-radius: 24px 24px 0 0;
+}
+
+.auth-gate-icon-wrap {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(237, 31, 36, 0.15), rgba(246, 184, 22, 0.1));
+  border: 2px solid rgba(246, 184, 22, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: iconPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(246, 184, 22, 0.3); }
+  50% { box-shadow: 0 0 0 16px rgba(246, 184, 22, 0); }
+}
+
+.auth-gate-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.auth-gate-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background: rgba(237, 31, 36, 0.1);
+  border: 1px solid rgba(237, 31, 36, 0.25);
+  border-radius: 30px;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--pvl-red-light);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.auth-gate-kicker .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--pvl-red);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.auth-gate-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  line-height: 1.05;
+  color: var(--text-primary);
+}
+
+.auth-gate-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.auth-gate-perks {
+  text-align: left;
+  margin: 24px 0 32px;
+  padding: 20px 24px;
+  background: rgba(246, 184, 22, 0.04);
+  border: 1px solid rgba(246, 184, 22, 0.12);
+  border-radius: 14px;
+}
+
+.auth-gate-perks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 7px 0;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.perk-check {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pvl-gold);
+  color: var(--pvl-black);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 800;
+  margin-top: 1px;
+}
+
+.auth-gate-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.auth-gate-actions .btn {
+  width: 100%;
+}
+
+.auth-gate-footer {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.auth-gate-footer a {
+  color: var(--pvl-gold);
+  font-weight: 600;
+}
+
+.auth-gate-socialproof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.sp-avatars {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.sp-avatar {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-left: -8px;
+}
+
+.sp-text {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.sp-text strong {
+  color: var(--pvl-gold);
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .auth-gate-card { padding: 40px 24px 28px; }
+  .auth-gate-title { font-size: 1.4rem; }
+  .auth-gate-perks { padding: 16px 18px; }
+  .auth-gate-perks li { font-size: 0.82rem; }
+  .auth-gate-socialproof { flex-direction: column; gap: 8px; text-align: center; }
+  .sp-text { text-align: center; }
 }

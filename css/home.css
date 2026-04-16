@@ -387,22 +387,25 @@
 }
 
 /* ============================================
-   SECTIONS — varied backgrounds
+   SECTIONS — varied backgrounds with personality
    ============================================ */
 .home-section {
   padding: var(--section-padding) 0;
   position: relative;
 }
 
-/* Textured section (dots pattern) */
+/* Textured section (halftone dots overlay) */
 .home-section.textured::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image: var(--pattern-halftone);
-  opacity: 0.3;
+  opacity: 0.5;
   pointer-events: none;
+  z-index: 0;
 }
+
+.home-section.textured > .container { position: relative; z-index: 1; }
 
 /* Diagonal accent stripe on section */
 .home-section.striped::before {
@@ -412,6 +415,43 @@
   height: 2px;
   background: var(--grad-pvl);
 }
+
+/* Section with gentle PVL-tinted background tint */
+.home-section.tint-red {
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(237, 31, 36, 0.03) 50%, transparent 100%),
+    var(--bg-primary);
+}
+
+.home-section.tint-blue {
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(4, 83, 151, 0.04) 50%, transparent 100%),
+    var(--bg-primary);
+}
+
+.home-section.tint-gold {
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(246, 184, 22, 0.025) 50%, transparent 100%),
+    var(--bg-primary);
+}
+
+/* Section with diagonal stripe decoration */
+.home-section.diag-stripes::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0,
+    transparent 40px,
+    rgba(246, 184, 22, 0.015) 40px,
+    rgba(246, 184, 22, 0.015) 41px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.home-section.diag-stripes > .container { position: relative; z-index: 1; }
 
 /* ============================================
    FEATURED ARTICLES — Magazine Layout

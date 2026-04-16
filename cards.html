@@ -240,12 +240,26 @@
   <script src="js/api.js"></script>
   <script src="js/toast.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/auth-gate.js"></script>
   <script src="js/tracking.js"></script>
   <script>
     // --- Card Game Page Logic ---
     // Airtable base: appo7PS69rWmzEPnC
 
     document.addEventListener('DOMContentLoaded', () => {
+      // Gate the page for non-logged-in users
+      if (!AuthGate.guard({
+        icon: '&#127183;',
+        title: 'Collect Every PVL Star',
+        subtitle: 'Pull packs, build lineups, and compete with real-match scoring. Free to play.',
+        perks: [
+          'Open booster packs with real PVL players',
+          'Build weekly lineups scored on real matches',
+          'Trade cards with other fans',
+          'Rare legendary pulls unlock exclusive rewards',
+        ]
+      })) return;
+
       Tracking.pageView('cards');
       syncCreditsDisplay();
       showGameCredentials();

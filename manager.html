@@ -236,10 +236,24 @@
   <script src="js/api.js"></script>
   <script src="js/toast.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/auth-gate.js"></script>
   <script src="js/tracking.js"></script>
   <script>
     // --- Manager Game Page Logic ---
     document.addEventListener('DOMContentLoaded', () => {
+      // Gate the page for non-logged-in users
+      if (!AuthGate.guard({
+        icon: '&#127918;',
+        title: 'Run Your Own PVL Team',
+        subtitle: 'Sign manager contracts, draft stars, and simulate matches. Free to play.',
+        perks: [
+          'Manage any of the 12 real PVL teams',
+          'Full season: trades, drafts, facilities & more',
+          'Earn credits for wins and achievements',
+          'Credits carry across all 3 PVL Hub games',
+        ]
+      })) return;
+
       Tracking.pageView('manager');
       syncCreditsDisplay();
       showGameCredentials();
