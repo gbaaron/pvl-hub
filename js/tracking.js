@@ -55,5 +55,16 @@ const Tracking = {
    */
   shopPurchase(itemId, itemName, price) {
     PVLApi.trackActivity('Shop Purchase', itemId, { name: itemName, price });
+  },
+
+  /**
+   * Track team / player follows — valuable personalization signal for the league
+   */
+  teamFollow(teamName, following) {
+    PVLApi.trackActivity(following ? 'Team Follow' : 'Team Unfollow', null, { team: teamName });
+  },
+
+  playerFollow(playerName, following) {
+    PVLApi.trackActivity(following ? 'Player Follow' : 'Player Unfollow', null, { player: playerName });
   }
 };

@@ -110,11 +110,25 @@
       var user = getUser();
       if (!user) return false;
       normalize(user);
+
+      var prev = asArray(user[field]);
       user[field] = value;
       // Keep legacy single fields in sync for backward compatibility.
       if (field === 'favorite_teams') user.favorite_team = value[0] || '';
       if (field === 'favorite_players') user.favorite_player = value[0] || '';
       saveUser(user);
+
+      // Track follow/unfollow diffs — valuable personalization data for the league.
+      if (typeof Tracking !== 'undefined') {
+        var isTeam = field === 'favorite_teams';
+        var track = isTeam ? Tracking.teamFollow : Tracking.playerFollow;
+        if (track) {
+          value.filter(function (v) { return prev.indexOf(v) === -1; })
+            .forEach(function (v) { track(v, true); });
+          prev.filter(function (v) { return value.indexOf(v) === -1; })
+            .forEach(function (v) { track(v, false); });
+        }
+      }
 
       // Best-effort backend sync (won't block the UI).
       var a = api();
