@@ -154,24 +154,11 @@
             <span class="field-error" id="confirm_password-error"></span>
           </div>
 
-          <!-- Favorite Team -->
+          <!-- Favorite Teams (multi-select) -->
           <div class="form-group">
-            <label class="form-label" for="favorite_team">Favorite Team</label>
-            <select id="favorite_team" class="form-select">
-              <option value="">Select your team (optional)</option>
-              <option value="Creamline Cool Smashers">Creamline Cool Smashers</option>
-              <option value="Choco Mucho Flying Titans">Choco Mucho Flying Titans</option>
-              <option value="PLDT High Speed Hitters">PLDT High Speed Hitters</option>
-              <option value="Cignal HD Spikers">Cignal HD Spikers</option>
-              <option value="Akari Chargers">Akari Chargers</option>
-              <option value="Chery Tiggo Crossovers">Chery Tiggo Crossovers</option>
-              <option value="Petro Gazz Angels">Petro Gazz Angels</option>
-              <option value="Farm Fresh Foxies">Farm Fresh Foxies</option>
-              <option value="NXLED Chameleons">NXLED Chameleons</option>
-              <option value="Capital1 Solar Spikers">Capital1 Solar Spikers</option>
-              <option value="ZUS Thunderbelles">ZUS Thunderbelles</option>
-              <option value="Galeries Tower Highrisers">Galeries Tower Highrisers</option>
-            </select>
+            <label class="form-label">Favorite Teams <span style="color:var(--text-muted);font-weight:400;">(pick as many as you like)</span></label>
+            <div class="fav-picker" id="reg-team-picker"></div>
+            <span class="field-error" style="color:var(--text-muted);display:block;margin-top:8px;font-weight:400;">We'll build your personalized feed and game reminders around these.</span>
           </div>
 
           <!-- Tier Selection -->
@@ -287,6 +274,8 @@
 
   <script src="js/api.js"></script>
   <script src="js/toast.js"></script>
+  <script src="js/pvl-data.js"></script>
+  <script src="js/personalization.js"></script>
   <script src="js/auth.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -294,6 +283,27 @@
       if (PVLApi.isLoggedIn()) {
         window.location.href = 'index.html';
         return;
+      }
+
+      // --- Favorite teams chip picker ---
+      const teamPicker = document.getElementById('reg-team-picker');
+      if (teamPicker && window.PVLData) {
+        teamPicker.innerHTML = PVLData.TEAMS.map(function (t) {
+          const logo = t.logo
+            ? '<span class="fav-chip-logo"><img src="' + t.logo + '" alt="' + t.short + '"></span>'
+            : '<span class="fav-chip-logo fallback">' + t.abbr + '</span>';
+          return '<div class="fav-chip" data-team="' + t.name + '">' + logo + '<span>' + t.short + '</span></div>';
+        }).join('');
+        teamPicker.querySelectorAll('.fav-chip').forEach(function (chip) {
+          chip.addEventListener('click', function () { chip.classList.toggle('selected'); });
+        });
+      }
+
+      function getSelectedTeams() {
+        return Array.prototype.map.call(
+          document.querySelectorAll('#reg-team-picker .fav-chip.selected'),
+          function (c) { return c.dataset.team; }
+        );
       }
 
       const form = document.getElementById('register-form');
@@ -364,7 +374,8 @@
         const displayName = document.getElementById('display_name').value.trim();
         const password = passwordInput.value;
         const confirmPassword = document.getElementById('confirm_password').value;
-        const favoriteTeam = document.getElementById('favorite_team').value;
+        const selectedTeams = getSelectedTeams();
+        const favoriteTeam = selectedTeams[0] || '';
         const tier = document.querySelector('input[name="tier"]:checked').value;
 
         // --- Client-side validation ---
@@ -420,6 +431,12 @@
           };
 
           await PVLApi.register(userData);
+
+          // Stash the full multi-team selection so it's applied on first login.
+          if (window.PVLFav && selectedTeams.length) {
+            PVLFav.savePending(selectedTeams, []);
+          }
+
           Toast.show('Account created! Redirecting to login...', 'success');
 
           setTimeout(() => {

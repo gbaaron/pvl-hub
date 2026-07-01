@@ -39,6 +39,19 @@ const Auth = {
         avatarEl.textContent = (user.display_name || user.username || 'U')[0].toUpperCase();
       }
 
+      // Add a "My Feed" nav link for logged-in users (site-wide, no per-page edit)
+      const navLinksEl = document.getElementById('nav-links');
+      if (navLinksEl && !document.getElementById('nav-feed-link')) {
+        const feedLink = document.createElement('a');
+        feedLink.href = 'myfeed.html';
+        feedLink.id = 'nav-feed-link';
+        feedLink.textContent = 'My Feed';
+        // Insert right after the Home link
+        const homeLink = navLinksEl.querySelector('a');
+        if (homeLink && homeLink.nextSibling) navLinksEl.insertBefore(feedLink, homeLink.nextSibling);
+        else navLinksEl.appendChild(feedLink);
+      }
+
       // Show admin nav link for admins
       if (user.is_admin) {
         const navLinks = document.getElementById('nav-links');

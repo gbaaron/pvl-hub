@@ -424,26 +424,12 @@
             <textarea class="form-input" id="edit-bio" rows="3" placeholder="Tell us about yourself..." maxlength="200" style="resize:vertical;"></textarea>
           </div>
           <div class="form-group">
-            <label class="form-label">Favorite Team</label>
-            <select class="form-select" id="edit-fav-team">
-              <option value="">Select a team...</option>
-              <option value="Creamline Cool Smashers">Creamline Cool Smashers</option>
-              <option value="Choco Mucho Flying Titans">Choco Mucho Flying Titans</option>
-              <option value="Petro Gazz Angels">Petro Gazz Angels</option>
-              <option value="PLDT High Speed Hitters">PLDT High Speed Hitters</option>
-              <option value="Cignal HD Spikers">Cignal HD Spikers</option>
-              <option value="Akari Chargers">Akari Chargers</option>
-              <option value="Farm Fresh Foxies">Farm Fresh Foxies</option>
-              <option value="Capital1 Solar Spikers">Capital1 Solar Spikers</option>
-              <option value="NXLED Chameleons">NXLED Chameleons</option>
-              <option value="Chery Tiggo Crossovers">Chery Tiggo Crossovers</option>
-              <option value="Galeries Tower Highrisers">Galeries Tower Highrisers</option>
-              <option value="ZUS Coffee Thunderbelles">ZUS Coffee Thunderbelles</option>
-            </select>
+            <label class="form-label">Favorite Teams</label>
+            <div class="fav-picker" id="edit-team-picker"></div>
           </div>
           <div class="form-group">
-            <label class="form-label">Favorite Player</label>
-            <input type="text" class="form-input" id="edit-fav-player" placeholder="e.g. Alyssa Valdez" maxlength="50">
+            <label class="form-label">Favorite Players</label>
+            <div class="fav-picker" id="edit-player-picker"></div>
           </div>
           <div class="form-group">
             <label class="form-label">Banner Color</label>
@@ -499,7 +485,10 @@
 
   <script src="js/api.js"></script>
   <script src="js/toast.js"></script>
+  <script src="js/pvl-data.js"></script>
+  <script src="js/personalization.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/notifications.js"></script>
   <script src="js/tracking.js"></script>
   <script>
     // --- Profile Page Logic ---
@@ -546,8 +535,15 @@
       tierEl.textContent = tier.toUpperCase();
       tierEl.className = 'tier-badge tier-' + tier;
 
-      // Favorite team
-      if (user.favorite_team) {
+      // Favorite teams (supports multiple)
+      const favTeams = (window.PVLFav ? PVLFav.getTeams() : []);
+      if (favTeams.length) {
+        const shorts = favTeams.map(function (name) {
+          const t = window.PVLData && PVLData.teamByName(name);
+          return t ? t.short : name;
+        });
+        document.getElementById('profile-fav-team').textContent = shorts.join(', ');
+      } else if (user.favorite_team) {
         document.getElementById('profile-fav-team').textContent = user.favorite_team;
       }
 
@@ -584,18 +580,10 @@
       const user = PVLApi.getCurrentUser() || {};
       document.getElementById('edit-display-name').value = user.display_name || user.username || '';
       document.getElementById('edit-bio').value = user.bio || '';
-      document.getElementById('edit-fav-player').value = user.favorite_player || '';
 
-      // Set select
-      const teamSelect = document.getElementById('edit-fav-team');
-      if (user.favorite_team) {
-        for (let i = 0; i < teamSelect.options.length; i++) {
-          if (teamSelect.options[i].value === user.favorite_team) {
-            teamSelect.selectedIndex = i;
-            break;
-          }
-        }
-      }
+      // Build the team + player chip pickers (local selection, applied on Save)
+      renderEditTeamPicker();
+      renderEditPlayerPicker();
 
       // Banner color
       if (user.banner_color) {
@@ -603,6 +591,64 @@
       }
 
       document.getElementById('edit-modal').classList.add('active');
+    }
+
+    function editLogoNode(t) {
+      if (t.logo) return '<span class="fav-chip-logo"><img src="' + t.logo + '" alt="' + t.short + '"></span>';
+      return '<span class="fav-chip-logo fallback">' + t.abbr + '</span>';
+    }
+
+    function renderEditTeamPicker() {
+      const el = document.getElementById('edit-team-picker');
+      if (!el || !window.PVLData) return;
+      el.innerHTML = PVLData.TEAMS.map(function (t) {
+        const sel = PVLFav.hasTeam(t.name) ? ' selected' : '';
+        return '<div class="fav-chip' + sel + '" data-team="' + t.name + '">' + editLogoNode(t) + '<span>' + t.short + '</span></div>';
+      }).join('');
+      el.querySelectorAll('.fav-chip').forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chip.classList.toggle('selected');
+          renderEditPlayerPicker(); // players depend on selected teams
+        });
+      });
+    }
+
+    function getEditSelectedTeams() {
+      return Array.prototype.map.call(
+        document.querySelectorAll('#edit-team-picker .fav-chip.selected'),
+        function (c) { return c.dataset.team; }
+      );
+    }
+
+    function renderEditPlayerPicker() {
+      const el = document.getElementById('edit-player-picker');
+      if (!el || !window.PVLData) return;
+      // Remember current in-modal player selections so re-render preserves them.
+      const currentlySelected = Array.prototype.map.call(
+        el.querySelectorAll('.fav-chip.selected'), function (c) { return c.dataset.player; }
+      );
+      const known = new Set(currentlySelected.concat(PVLFav.getPlayers()));
+
+      const teams = getEditSelectedTeams()
+        .map(function (name) { return PVLData.teamByName(name); })
+        .filter(Boolean);
+
+      if (!teams.length) {
+        el.innerHTML = '<div style="color:var(--text-muted);font-size:0.85rem;">Pick a team to choose players.</div>';
+        return;
+      }
+
+      let chips = '';
+      teams.forEach(function (t) {
+        t.players.forEach(function (name) {
+          const sel = known.has(name) ? ' selected' : '';
+          chips += '<div class="fav-chip player-chip' + sel + '" data-player="' + name + '" title="' + t.short + '"><span>' + name + '</span></div>';
+        });
+      });
+      el.innerHTML = chips;
+      el.querySelectorAll('.fav-chip').forEach(function (chip) {
+        chip.addEventListener('click', function () { chip.classList.toggle('selected'); });
+      });
     }
 
     function closeEditProfile() {
@@ -620,18 +666,24 @@
 
       const displayName = document.getElementById('edit-display-name').value.trim();
       const bio = document.getElementById('edit-bio').value.trim();
-      const favTeam = document.getElementById('edit-fav-team').value;
-      const favPlayer = document.getElementById('edit-fav-player').value.trim();
       const bannerColor = document.getElementById('edit-banner-color').value;
 
-      // Update local storage user
+      // Persist favorite teams + players via the personalization helper.
+      const selectedTeams = getEditSelectedTeams();
+      const selectedPlayers = Array.prototype.map.call(
+        document.querySelectorAll('#edit-player-picker .fav-chip.selected'),
+        function (c) { return c.dataset.player; }
+      );
+      if (window.PVLFav) {
+        PVLFav.setTeams(selectedTeams);
+        PVLFav.setPlayers(selectedPlayers);
+      }
+
+      // Update the rest of the user record.
       const user = PVLApi.getCurrentUser() || {};
       user.display_name = displayName || user.username;
       user.bio = bio;
-      user.favorite_team = favTeam;
-      user.favorite_player = favPlayer;
       user.banner_color = bannerColor;
-
       localStorage.setItem('pvl_user', JSON.stringify(user));
 
       // Update UI
@@ -639,8 +691,9 @@
       updateBannerColor(bannerColor);
       closeEditProfile();
 
-      // Update nav
+      // Update nav + notification alerts
       Auth.updateNavUI();
+      if (typeof PVLNotify !== 'undefined') PVLNotify.refreshBadge();
 
       Toast.show('Profile updated successfully!', 'success');
     }
