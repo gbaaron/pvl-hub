@@ -90,6 +90,46 @@ exports.handler = async (event) => {
       credits_in_circulation += record.fields.credits || 0;
     });
 
+    // --- Fan personalization aggregation ---
+    // favorite_teams / favorite_players may be stored as a JSON array string,
+    // a comma-joined string, or the legacy single favorite_team / player field.
+    const parseList = (multi, single) => {
+      if (Array.isArray(multi)) return multi;
+      if (typeof multi === 'string' && multi.trim()) {
+        try {
+          const j = JSON.parse(multi);
+          if (Array.isArray(j)) return j;
+        } catch (e) { /* not JSON */ }
+        return multi.split(',').map((s) => s.trim()).filter(Boolean);
+      }
+      return single ? [single] : [];
+    };
+
+    const teamCounts = {};
+    const playerCounts = {};
+    let users_following_team = 0;
+    usersRecords.forEach((record) => {
+      const teams = parseList(record.fields.favorite_teams, record.fields.favorite_team);
+      const players = parseList(record.fields.favorite_players, record.fields.favorite_player);
+      if (teams.length) users_following_team += 1;
+      teams.forEach((t) => { teamCounts[t] = (teamCounts[t] || 0) + 1; });
+      players.forEach((p) => { playerCounts[p] = (playerCounts[p] || 0) + 1; });
+    });
+
+    const rank = (counts, key) => Object.keys(counts)
+      .map((name) => { const o = { count: counts[name] }; o[key] = name; return o; })
+      .sort((a, b) => b.count - a.count);
+
+    const personalization = {
+      favorite_teams_ranking: rank(teamCounts, 'team'),
+      favorite_players_ranking: rank(playerCounts, 'player'),
+      adoption: {
+        following: users_following_team,
+        total: total_users,
+        pct: total_users ? Math.round((users_following_team / total_users) * 100) : 0
+      }
+    };
+
     // Total predictions
     const total_predictions = predictionsRecords.length;
 
@@ -167,6 +207,7 @@ exports.handler = async (event) => {
           total_credits_earned,
           total_credits_spent,
           total_transactions: creditRecords.length,
+          personalization,
           demo_chart_data
         }
       })

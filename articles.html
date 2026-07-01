@@ -320,6 +320,9 @@
         });
       });
 
+      // Team filter (arrives from My Feed write-up links: articles.html?team=Creamline)
+      applyTeamFilter(cards);
+
       // Render ratings & comments
       const ratingsContainer = document.getElementById('articles-rating');
       const commentsContainer = document.getElementById('articles-comments');
@@ -331,6 +334,37 @@
         Comments.render(commentsContainer, 'articles_page', 1);
       }
     });
+
+    // Filter the article list to a team passed via ?team=, with a banner.
+    function applyTeamFilter(cards) {
+      const team = new URLSearchParams(window.location.search).get('team');
+      if (!team) return;
+
+      const needle = team.toLowerCase();
+      let count = 0;
+      cards.forEach(function (card) {
+        const match = card.textContent.toLowerCase().indexOf(needle) !== -1;
+        card.style.display = match ? '' : 'none';
+        if (match) count++;
+      });
+
+      const filters = document.getElementById('article-filters');
+      if (filters && !document.getElementById('team-filter-banner')) {
+        const banner = document.createElement('div');
+        banner.id = 'team-filter-banner';
+        banner.className = 'team-filter-banner';
+        banner.innerHTML = (count
+          ? '&#11088; Showing <strong>' + count + '</strong> stor' + (count === 1 ? 'y' : 'ies') + ' about <strong>' + team + '</strong>'
+          : '&#11088; No stories yet about <strong>' + team + '</strong> — check back soon!') +
+          ' <a href="articles.html">Show all articles</a>';
+        filters.parentNode.insertBefore(banner, filters);
+
+        // Category buttons should clear the team filter to avoid confusion.
+        document.querySelectorAll('#article-filters .filter-btn').forEach(function (b) {
+          b.addEventListener('click', function () { banner.remove(); });
+        });
+      }
+    }
   </script>
 </body>
 </html>

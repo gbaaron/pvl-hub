@@ -334,24 +334,44 @@ function initRegistrationsChart() {
    activity events tracked by js/personalization.js.)
    ------------------------------------------ */
 
+// Brand colors keyed by a substring of the team name (real data may use full
+// team names, e.g. "Creamline Cool Smashers").
+const FAV_TEAM_COLORS = {
+  creamline: '#ed1f24', choco: '#6a2c91', petro: '#e6007e', cignal: '#0b3d91',
+  pldt: '#045397', akari: '#f6b816', chery: '#e4002b', 'farm fresh': '#00a651',
+  zus: '#4b2e2b', capital1: '#f7941d', nxled: '#7ac143', galeries: '#8e44ad'
+};
+function favTeamColor(name) {
+  const n = (name || '').toLowerCase();
+  for (const key in FAV_TEAM_COLORS) { if (n.indexOf(key) !== -1) return FAV_TEAM_COLORS[key]; }
+  return PVL_COLORS.gold;
+}
+
 function initFavTeamsChart() {
   const ctx = document.getElementById('chart-fav-teams');
   if (!ctx) return;
 
-  const rows = [
-    ['Creamline', 3120, '#ed1f24'],
-    ['Choco Mucho', 2540, '#6a2c91'],
-    ['Petro Gazz', 1980, '#e6007e'],
-    ['Cignal', 1760, '#0b3d91'],
-    ['PLDT', 1610, '#045397'],
-    ['Akari', 1430, '#f6b816'],
-    ['Chery Tiggo', 1180, '#e4002b'],
-    ['Farm Fresh', 1020, '#00a651'],
-    ['ZUS Coffee', 870, '#4b2e2b'],
-    ['Capital1', 760, '#f7941d'],
-    ['NXLED', 640, '#7ac143'],
-    ['Galeries Tower', 520, '#8e44ad']
-  ];
+  // Prefer real aggregated data (window.PVL_FAV_DATA.teams) when present.
+  const real = (window.PVL_FAV_DATA && window.PVL_FAV_DATA.teams) || null;
+  let rows;
+  if (real && real.length) {
+    rows = real.slice(0, 12).map((r) => [r.team || r.name, r.count, favTeamColor(r.team || r.name)]);
+  } else {
+    rows = [
+      ['Creamline', 3120, '#ed1f24'],
+      ['Choco Mucho', 2540, '#6a2c91'],
+      ['Petro Gazz', 1980, '#e6007e'],
+      ['Cignal', 1760, '#0b3d91'],
+      ['PLDT', 1610, '#045397'],
+      ['Akari', 1430, '#f6b816'],
+      ['Chery Tiggo', 1180, '#e4002b'],
+      ['Farm Fresh', 1020, '#00a651'],
+      ['ZUS Coffee', 870, '#4b2e2b'],
+      ['Capital1', 760, '#f7941d'],
+      ['NXLED', 640, '#7ac143'],
+      ['Galeries Tower', 520, '#8e44ad']
+    ];
+  }
 
   new Chart(ctx, {
     type: 'bar',
@@ -386,11 +406,19 @@ function initFavPlayersChart() {
   const ctx = document.getElementById('chart-fav-players');
   if (!ctx) return;
 
-  const labels = [
-    'Alyssa Valdez', 'Tots Carlos', 'Jia De Guzman', 'Sisi Rondina', 'Angel Canino',
-    'Brooke Van Sickle', 'Faith Nisperos', 'Jema Galanza', 'Savi Davison', 'Mylene Paat'
-  ];
-  const data = [2140, 1870, 1560, 1320, 1210, 1090, 980, 910, 760, 640];
+  const real = (window.PVL_FAV_DATA && window.PVL_FAV_DATA.players) || null;
+  let labels, data;
+  if (real && real.length) {
+    const top = real.slice(0, 10);
+    labels = top.map((r) => r.player || r.name);
+    data = top.map((r) => r.count);
+  } else {
+    labels = [
+      'Alyssa Valdez', 'Tots Carlos', 'Jia De Guzman', 'Sisi Rondina', 'Angel Canino',
+      'Brooke Van Sickle', 'Faith Nisperos', 'Jema Galanza', 'Savi Davison', 'Mylene Paat'
+    ];
+    data = [2140, 1870, 1560, 1320, 1210, 1090, 980, 910, 760, 640];
+  }
 
   new Chart(ctx, {
     type: 'bar',
@@ -425,12 +453,19 @@ function initFavAdoptionChart() {
   const ctx = document.getElementById('chart-fav-adoption');
   if (!ctx) return;
 
+  const real = window.PVL_FAV_DATA && window.PVL_FAV_DATA.adoption;
+  let following = 68, notYet = 32;
+  if (real && typeof real.pct === 'number') {
+    following = real.pct;
+    notYet = 100 - real.pct;
+  }
+
   new Chart(ctx, {
     type: 'doughnut',
     data: {
       labels: ['Following a team', 'Not personalized yet'],
       datasets: [{
-        data: [68, 32],
+        data: [following, notYet],
         backgroundColor: [PVL_COLORS.gold, PVL_COLORS.gray700],
         hoverBackgroundColor: [PVL_COLORS.goldLight, PVL_COLORS.gray500]
       }]

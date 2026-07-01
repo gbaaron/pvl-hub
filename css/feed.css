@@ -128,3 +128,23 @@
 .player-watch-logo.fallback { font-size: 0.62rem; font-weight: 800; color: var(--text-muted); }
 .player-watch-name { font-weight: 700; font-size: 0.9rem; }
 .player-watch-team { font-size: 0.75rem; color: var(--text-muted); }
+
+/* Write-up "read stories" link */
+.feed-card-cta {
+  display: inline-block; margin-top: 12px;
+  font-size: 0.82rem; font-weight: 700;
+  color: var(--team-color, var(--pvl-gold));
+}
+.feed-card-cta:hover { filter: brightness(1.15); }
+
+/* Team-filtered articles banner */
+.team-filter-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+  background: rgba(246, 184, 22, 0.1);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px 16px; margin-bottom: 18px;
+  font-size: 0.9rem; font-weight: 600;
+}
+.team-filter-banner a { font-weight: 700; }

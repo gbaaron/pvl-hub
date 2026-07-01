@@ -304,6 +304,7 @@
               '<h3>' + w.title + '</h3>' +
               '<p>' + w.body + '</p>' +
               '<div class="writeup-date">' + new Date(w.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + '</div>' +
+              '<a class="feed-card-cta" href="articles.html?team=' + encodeURIComponent(w.team.short) + '">Read ' + w.team.short + ' stories &rarr;</a>' +
             '</div></div>';
         });
       }

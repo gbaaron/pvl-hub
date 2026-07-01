@@ -9,7 +9,65 @@ const Auth = {
     this.initThemeToggle();
     this.initMobileNav();
     this.initScrollReveal();
+    this.initOnboarding();
     this.injectPersonalizeNudge();
+  },
+
+  /**
+   * First-run onboarding modal: for logged-in users who haven't personalized
+   * yet, prompt them to follow teams right away. Shown once (until they act).
+   */
+  initOnboarding() {
+    if (!PVLApi.isLoggedIn()) return;
+    if (typeof PVLFav === 'undefined' || typeof PVLData === 'undefined') return;
+    if (PVLFav.isPersonalized()) return;
+    if (localStorage.getItem('pvl_onboarded') === '1') return;
+
+    this._onboardingShown = true;
+
+    const chips = PVLData.TEAMS.map((t) => {
+      const logo = t.logo
+        ? '<span class="fav-chip-logo"><img src="' + t.logo + '" alt="' + t.short + '"></span>'
+        : '<span class="fav-chip-logo fallback">' + t.abbr + '</span>';
+      return '<div class="fav-chip" data-team="' + t.name + '">' + logo + '<span>' + t.short + '</span></div>';
+    }).join('');
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'pvl-onboard-backdrop';
+    backdrop.id = 'pvl-onboard';
+    backdrop.innerHTML =
+      '<div class="pvl-onboard-modal">' +
+        '<div class="pvl-onboard-head">' +
+          '<h2>&#11088; Welcome to PVL Hub!</h2>' +
+          '<p>Follow your favorite teams to get game reminders, ticket links, and a feed built just for you.</p>' +
+        '</div>' +
+        '<div class="fav-picker pvl-onboard-teams">' + chips + '</div>' +
+        '<div class="pvl-onboard-actions">' +
+          '<button class="btn btn-primary" id="pvl-onboard-save">Personalize my hub</button>' +
+          '<button class="btn btn-secondary" id="pvl-onboard-skip">Skip for now</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(backdrop);
+
+    backdrop.querySelectorAll('.fav-chip').forEach((chip) => {
+      chip.addEventListener('click', () => chip.classList.toggle('selected'));
+    });
+
+    const finish = () => { localStorage.setItem('pvl_onboarded', '1'); backdrop.remove(); };
+
+    backdrop.querySelector('#pvl-onboard-skip').addEventListener('click', finish);
+    backdrop.querySelector('#pvl-onboard-save').addEventListener('click', () => {
+      const teams = Array.prototype.map.call(
+        backdrop.querySelectorAll('.fav-chip.selected'), (c) => c.dataset.team);
+      if (teams.length && PVLFav.setTeams) PVLFav.setTeams(teams);
+      finish();
+      if (typeof Toast !== 'undefined' && Toast.show) {
+        Toast.show(teams.length ? 'Your feed is personalized! Check "My Feed".'
+          : 'You can personalize anytime from My Feed.', 'success');
+      }
+      if (typeof PVLNotify !== 'undefined' && PVLNotify.refreshBadge) PVLNotify.refreshBadge();
+      if (typeof renderForYou === 'function') { try { renderForYou(); } catch (e) { /* ignore */ } }
+    });
   },
 
   /**
@@ -20,6 +78,8 @@ const Auth = {
     if (!PVLApi.isLoggedIn()) return;
     if (typeof PVLFav === 'undefined' || !PVLFav.isPersonalized) return;
     if (PVLFav.isPersonalized()) return;
+    if (this._onboardingShown) return; // don't stack under the onboarding modal
+    if (localStorage.getItem('pvl_onboarded') !== '1') return; // only after onboarding seen
     if (localStorage.getItem('pvl_nudge_dismissed') === '1') return;
 
     const page = window.location.pathname.split('/').pop() || 'index.html';
