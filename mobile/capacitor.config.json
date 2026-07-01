@@ -1,0 +1,13 @@
+{
+  "appId": "com.globallyballin.pvlhub",
+  "appName": "PVL Hub",
+  "webDir": "www",
+  "ios": {
+    "contentInset": "always"
+  },
+  "plugins": {
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  }
+}

@@ -1835,3 +1835,177 @@ h4 { font-size: 1.25rem; }
   .auth-gate-socialproof { flex-direction: column; gap: 8px; text-align: center; }
   .sp-text { text-align: center; }
 }
+
+/* ========================================
+   Notification Center (nav bell + dropdown)
+   ======================================== */
+.notif-wrap { position: relative; display: flex; align-items: center; }
+
+.notif-bell {
+  position: relative;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .15s ease, background .15s ease;
+}
+.notif-bell:hover { border-color: var(--border-color-hover); background: var(--bg-card-hover); }
+
+.notif-badge {
+  position: absolute; top: -5px; right: -5px;
+  min-width: 18px; height: 18px; padding: 0 4px;
+  background: var(--pvl-red); color: #fff;
+  border-radius: 9px;
+  font-size: 0.68rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+
+.notif-panel {
+  position: absolute; top: calc(100% + 10px); right: 0;
+  width: 340px; max-width: 88vw;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.5);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .16s ease, transform .16s ease, visibility .16s;
+  z-index: 1200;
+  overflow: hidden;
+}
+.notif-panel.open { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.notif-panel-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; border-bottom: 1px solid var(--border-color);
+}
+.notif-readall {
+  background: none; border: none; color: var(--pvl-gold);
+  font-size: 0.78rem; cursor: pointer; font-weight: 600;
+}
+.notif-readall:hover { color: var(--pvl-gold-light); }
+
+.notif-list { max-height: 360px; overflow-y: auto; }
+.notif-empty { padding: 24px 16px; color: var(--text-muted); font-size: 0.88rem; text-align: center; }
+
+.notif-item {
+  display: flex; gap: 10px; padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer; transition: background .12s ease;
+}
+.notif-item:hover { background: var(--bg-card-hover); }
+.notif-item.unread { background: rgba(246, 184, 22, 0.06); }
+.notif-dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+.notif-title { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); }
+.notif-text { font-size: 0.8rem; color: var(--text-muted); margin: 3px 0 6px; line-height: 1.4; }
+.notif-cta { font-size: 0.78rem; font-weight: 700; color: var(--pvl-gold); }
+
+.notif-panel-foot { padding: 12px 16px; border-top: 1px solid var(--border-color); }
+.notif-push { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-muted); cursor: pointer; }
+.notif-push input { accent-color: var(--pvl-gold); }
+
+/* ========================================
+   Favorite team / player chip pickers
+   ======================================== */
+.fav-picker { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.fav-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px 8px 8px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--text-primary);
+  transition: border-color .14s ease, background .14s ease, transform .1s ease;
+  user-select: none;
+}
+.fav-chip:hover { border-color: var(--border-color-hover); transform: translateY(-1px); }
+.fav-chip.selected { border-color: var(--pvl-gold); background: rgba(246, 184, 22, 0.12); }
+.fav-chip.selected::after { content: '✓'; color: var(--pvl-gold); font-weight: 800; }
+
+.fav-chip-logo {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--bg-secondary);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; flex-shrink: 0;
+}
+.fav-chip-logo img { width: 100%; height: 100%; object-fit: contain; }
+.fav-chip-logo.fallback { font-size: 0.62rem; font-weight: 800; color: var(--text-muted); }
+
+/* Player chips (no logo) */
+.fav-chip.player-chip { padding-left: 14px; }
+
+/* Profile header — followed team badges */
+.profile-team-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-right: 10px;
+}
+.profile-team-logo {
+  width: 20px; height: 20px; border-radius: 50%;
+  object-fit: contain; background: var(--bg-secondary);
+  display: inline-flex; align-items: center; justify-content: center;
+  vertical-align: middle;
+}
+.profile-team-logo.fallback { font-size: 0.55rem; font-weight: 800; color: var(--text-muted); }
+
+/* Personalization nudge bar */
+.personalize-nudge {
+  background: linear-gradient(135deg, rgba(237,31,36,0.14), rgba(246,184,22,0.14));
+  border-bottom: 1px solid var(--border-color);
+}
+.personalize-nudge-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 10px 0;
+}
+.personalize-nudge .pn-text { font-size: 0.88rem; font-weight: 600; color: var(--text-primary); }
+.personalize-nudge .pn-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.personalize-nudge .pn-dismiss {
+  background: none; border: none; color: var(--text-muted);
+  font-size: 1.3rem; line-height: 1; cursor: pointer; padding: 0 4px;
+}
+.personalize-nudge .pn-dismiss:hover { color: var(--text-primary); }
+@media (max-width: 640px) {
+  .personalize-nudge-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .personalize-nudge .pn-text { font-size: 0.82rem; }
+}
+
+/* Team-filtered articles banner (articles.html) */
+.team-filter-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+  background: rgba(246, 184, 22, 0.1);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px 16px; margin-bottom: 18px;
+  font-size: 0.9rem; font-weight: 600; color: var(--text-primary);
+}
+.team-filter-banner a { font-weight: 700; }
+
+/* First-run onboarding modal */
+.pvl-onboard-backdrop {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(4, 7, 7, 0.72);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.pvl-onboard-modal {
+  width: 100%; max-width: 560px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+  max-height: 90vh; overflow-y: auto;
+}
+.pvl-onboard-head h2 { margin: 0 0 6px; font-size: 1.4rem; }
+.pvl-onboard-head p { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 20px; }
+.pvl-onboard-teams { margin-bottom: 24px; }
+.pvl-onboard-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.pvl-onboard-actions .btn { flex: 1; min-width: 140px; }

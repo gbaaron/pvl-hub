@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PVL Hub — My Feed</title>
+  <meta name="description" content="Your personalized PVL feed: follow your favorite teams and players, see their next games, grab tickets, and get reminders.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/feed.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="index.html" style="text-decoration:none;">
+          <div class="logo-text">PVL <span>HUB</span></div>
+          <div class="powered-by">Powered by Globally Ballin</div>
+        </a>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="predictions.html">Predictions</a>
+        <a href="cards.html">Card Game</a>
+        <a href="manager.html">Manager</a>
+        <a href="shop.html">Shop</a>
+      </div>
+
+      <div class="nav-right">
+        <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
+          <div class="nav-credits">
+            <span class="coin-icon">&#x1FA99;</span>
+            <span id="nav-credits-amount">0</span>
+          </div>
+          <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
+        </div>
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:8px;">
+          <a href="login.html" class="nav-auth-btn login">Log In</a>
+          <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <!-- Login required -->
+    <div class="login-required" id="login-required" style="display:none; text-align:center; padding:80px 20px;">
+      <div class="lock-icon" style="font-size:3rem;">&#128274;</div>
+      <h2>Your Feed Awaits</h2>
+      <p style="color:var(--text-muted);max-width:460px;margin:8px auto 20px;">Sign in to follow your favorite teams and players, see their next games, and get reminders.</p>
+      <div class="login-actions" style="display:flex;gap:12px;justify-content:center;">
+        <a href="login.html" class="btn btn-primary">Log In</a>
+        <a href="register.html" class="btn btn-outline">Sign Up</a>
+      </div>
+    </div>
+
+    <!-- Feed content -->
+    <div id="feed-content" style="display:none;">
+      <div class="container">
+        <div class="feed-hero">
+          <h1>MY <span>FEED</span></h1>
+          <p>Everything happening with the teams and players you follow.</p>
+        </div>
+
+        <!-- Personalize -->
+        <div class="personalize-panel reveal">
+          <h2>&#11088; Personalize your feed</h2>
+          <div class="personalize-sub">Pick the teams and players you care about. We'll build your feed and send reminders around their games.</div>
+
+          <div class="personalize-group">
+            <label>Favorite Teams</label>
+            <div class="fav-picker" id="team-picker"></div>
+          </div>
+
+          <div class="personalize-group">
+            <label>Favorite Players</label>
+            <div class="fav-picker" id="player-picker"></div>
+          </div>
+        </div>
+
+        <!-- Players to Watch -->
+        <div id="players-watch-section"></div>
+
+        <!-- Feed -->
+        <div class="feed-layout" id="feed-layout"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">PVL <span>HUB</span></div>
+            <p>The ultimate fan engagement platform for the Philippine Volleyball League. Play predictions, collect cards, manage teams, and earn rewards.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Content</h4>
+            <a href="articles.html">Articles</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+          </div>
+          <div class="footer-col">
+            <h4>Play</h4>
+            <a href="predictions.html">Predictions</a>
+            <a href="cards.html">Card Game</a>
+            <a href="manager.html">Manager Game</a>
+            <a href="shop.html">Shop</a>
+          </div>
+          <div class="footer-col">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Log In</a>
+            <a href="register.html">Sign Up</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 PVL Hub. Powered by Globally Ballin.</span>
+          <span>Not officially affiliated with the PVL.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/native-bridge.js"></script>
+  <script src="js/pvl-data.js"></script>
+  <script src="js/personalization.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/tracking.js"></script>
+  <script>
+    // --- My Feed Page Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof Tracking !== 'undefined' && Tracking.pageView) Tracking.pageView('myfeed');
+      checkAuth();
+    });
+
+    function checkAuth() {
+      const loginRequired = document.getElementById('login-required');
+      const content = document.getElementById('feed-content');
+      if (!PVLApi.isLoggedIn()) {
+        loginRequired.style.display = '';
+        content.style.display = 'none';
+        return;
+      }
+      loginRequired.style.display = 'none';
+      content.style.display = '';
+      renderTeamPicker();
+      renderPlayerPicker();
+      renderPlayersWatch();
+      renderFeed();
+    }
+
+    // "Players to Watch" strip from the user's favorite players.
+    function renderPlayersWatch() {
+      const section = document.getElementById('players-watch-section');
+      const players = PVLFav.getPlayers();
+      if (!players.length) { section.innerHTML = ''; return; }
+
+      const byName = {};
+      PVLData.allPlayers().forEach(function (p) { byName[p.name] = p.team; });
+
+      const cards = players.map(function (name) {
+        const t = byName[name];
+        const color = t ? t.color : 'var(--pvl-gold)';
+        const logo = t ? logoNode(t, 'player-watch-logo') : '';
+        const team = t ? t.short : '';
+        return '<div class="player-watch-card" style="--team-color:' + color + '">' +
+          logo +
+          '<div class="player-watch-info">' +
+            '<div class="player-watch-name">' + name + '</div>' +
+            '<div class="player-watch-team">' + team + '</div>' +
+          '</div></div>';
+      }).join('');
+
+      section.innerHTML = '<div class="feed-section-title">PLAYERS TO <span>WATCH</span></div>' +
+        '<div class="players-watch-grid">' + cards + '</div>';
+    }
+
+    function logoNode(team, cls) {
+      if (team.logo) {
+        return '<span class="' + cls + '"><img src="' + team.logo + '" alt="' + team.short + '"></span>';
+      }
+      return '<span class="' + cls + ' fallback">' + team.abbr + '</span>';
+    }
+
+    // Team chip picker (all 12 teams)
+    function renderTeamPicker() {
+      const el = document.getElementById('team-picker');
+      el.innerHTML = PVLData.TEAMS.map(function (t) {
+        const sel = PVLFav.hasTeam(t.name) ? ' selected' : '';
+        return '<div class="fav-chip' + sel + '" data-team="' + t.name + '">' +
+          logoNode(t, 'fav-chip-logo') +
+          '<span>' + t.short + '</span></div>';
+      }).join('');
+
+      Array.prototype.forEach.call(el.querySelectorAll('.fav-chip'), function (chip) {
+        chip.addEventListener('click', function () {
+          PVLFav.toggleTeam(chip.dataset.team);
+          chip.classList.toggle('selected');
+          renderPlayerPicker();
+          renderFeed();
+          if (typeof PVLNotify !== 'undefined') PVLNotify.refreshBadge();
+        });
+      });
+    }
+
+    // Player chip picker — players from the user's favorite teams
+    function renderPlayerPicker() {
+      const el = document.getElementById('player-picker');
+      const teams = PVLFav.getTeamObjects();
+
+      if (!teams.length) {
+        el.innerHTML = '<div style="color:var(--text-muted);font-size:0.85rem;">Pick a team above to choose players to follow.</div>';
+        return;
+      }
+
+      let chips = '';
+      teams.forEach(function (t) {
+        t.players.forEach(function (name) {
+          const sel = PVLFav.hasPlayer(name) ? ' selected' : '';
+          chips += '<div class="fav-chip player-chip' + sel + '" data-player="' + name + '" title="' + t.short + '">' +
+            '<span>' + name + '</span></div>';
+        });
+      });
+      el.innerHTML = chips;
+
+      Array.prototype.forEach.call(el.querySelectorAll('.fav-chip'), function (chip) {
+        chip.addEventListener('click', function () {
+          PVLFav.togglePlayer(chip.dataset.player);
+          chip.classList.toggle('selected');
+          renderPlayersWatch();
+        });
+      });
+    }
+
+    function fmtDateTime(iso) {
+      const d = new Date(iso);
+      return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) +
+        ' • ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    }
+
+    function renderFeed() {
+      const layout = document.getElementById('feed-layout');
+      const items = PVLFav.buildFeed();
+
+      if (!items.length) {
+        layout.innerHTML = '<div class="feed-empty">' +
+          '<div class="feed-empty-icon">&#128073;</div>' +
+          '<h3>Your feed is empty</h3>' +
+          '<p>Follow a team or two above to see their next games, ticket links, and the latest write-ups.</p>' +
+          '</div>';
+        return;
+      }
+
+      let html = '';
+      const matches = items.filter(function (i) { return i.type === 'match'; });
+      const writeups = items.filter(function (i) { return i.type === 'writeup'; });
+
+      if (matches.length) {
+        html += '<div class="feed-section-title">NEXT <span>GAMES</span></div>';
+        matches.forEach(function (m) {
+          html += '<div class="feed-card" style="--team-color:' + m.team.color + '">' +
+            '<div class="feed-card-inner">' +
+              '<div class="feed-card-kicker">&#127909; ' + m.team.short + ' — Up Next</div>' +
+              '<div class="match-row">' +
+                '<div class="match-team">' + logoNode(m.team, 'match-team-logo') +
+                  '<span class="match-team-name">' + m.team.short + '</span></div>' +
+                '<span class="match-vs">VS</span>' +
+                '<div class="match-team">' + (m.opponent ? logoNode(m.opponent, 'match-team-logo') : '') +
+                  '<span class="match-team-name">' + (m.opponent ? m.opponent.short : 'TBD') + '</span></div>' +
+              '</div>' +
+              '<div class="match-meta">' +
+                '<span>&#128197; <span class="meta-strong">' + fmtDateTime(m.date) + '</span></span>' +
+                '<span>&#128205; ' + m.venue + '</span>' +
+              '</div>' +
+              '<div class="feed-card-actions">' +
+                '<a class="btn btn-primary btn-sm" href="' + m.ticketUrl + '" target="_blank" rel="noopener">&#127903; Buy Tickets</a>' +
+                '<a class="btn btn-outline btn-sm" href="predictions.html">Make a Prediction</a>' +
+              '</div>' +
+            '</div></div>';
+        });
+      }
+
+      if (writeups.length) {
+        html += '<div class="feed-section-title">TEAM <span>WRITE-UPS</span></div>';
+        writeups.forEach(function (w) {
+          html += '<div class="feed-card feed-writeup" style="--team-color:' + w.team.color + '">' +
+            '<div class="feed-card-inner">' +
+              '<div class="feed-card-kicker">&#128240; ' + w.team.short + '</div>' +
+              '<h3>' + w.title + '</h3>' +
+              '<p>' + w.body + '</p>' +
+              '<div class="writeup-date">' + new Date(w.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + '</div>' +
+              '<a class="feed-card-cta" href="articles.html?team=' + encodeURIComponent(w.team.short) + '">Read ' + w.team.short + ' stories &rarr;</a>' +
+            '</div></div>';
+        });
+      }
+
+      layout.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
