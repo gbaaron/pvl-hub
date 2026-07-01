@@ -536,16 +536,22 @@
       tierEl.textContent = tier.toUpperCase();
       tierEl.className = 'tier-badge tier-' + tier;
 
-      // Favorite teams (supports multiple)
+      // Favorite teams (supports multiple) — show logos when available
       const favTeams = (window.PVLFav ? PVLFav.getTeams() : []);
-      if (favTeams.length) {
-        const shorts = favTeams.map(function (name) {
-          const t = window.PVLData && PVLData.teamByName(name);
-          return t ? t.short : name;
-        });
-        document.getElementById('profile-fav-team').textContent = shorts.join(', ');
+      const favTeamEl = document.getElementById('profile-fav-team');
+      if (favTeams.length && window.PVLData) {
+        favTeamEl.innerHTML = favTeams.map(function (name) {
+          const t = PVLData.teamByName(name);
+          if (!t) return '<span class="profile-team-badge">' + name + '</span>';
+          const logo = t.logo
+            ? '<img src="' + t.logo + '" alt="' + t.short + '" class="profile-team-logo">'
+            : '<span class="profile-team-logo fallback">' + t.abbr + '</span>';
+          return '<span class="profile-team-badge">' + logo + t.short + '</span>';
+        }).join('');
+      } else if (favTeams.length) {
+        favTeamEl.textContent = favTeams.join(', ');
       } else if (user.favorite_team) {
-        document.getElementById('profile-fav-team').textContent = user.favorite_team;
+        favTeamEl.textContent = user.favorite_team;
       }
 
       // Stats (use demo data if not available)

@@ -103,3 +103,28 @@
   .feed-layout { grid-template-columns: repeat(2, 1fr); }
   .feed-section-title, .feed-empty { grid-column: 1 / -1; }
 }
+
+/* Players to Watch */
+.players-watch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+.player-watch-card {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--team-color, var(--pvl-gold));
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.player-watch-logo {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--bg-secondary);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; flex-shrink: 0;
+}
+.player-watch-logo img { width: 100%; height: 100%; object-fit: contain; }
+.player-watch-logo.fallback { font-size: 0.62rem; font-weight: 800; color: var(--text-muted); }
+.player-watch-name { font-weight: 700; font-size: 0.9rem; }
+.player-watch-team { font-size: 0.75rem; color: var(--text-muted); }
