@@ -167,6 +167,9 @@ function initAllCharts() {
   initDAUChart();
   initTierChart();
   initRegistrationsChart();
+  initFavTeamsChart();
+  initFavPlayersChart();
+  initFavAdoptionChart();
   initEngagementTypeChart();
   initSessionDurationChart();
   initPopularContentChart();
@@ -319,6 +322,126 @@ function initRegistrationsChart() {
           beginAtZero: true,
           ticks: { stepSize: 50 }
         }
+      }
+    }
+  });
+}
+
+
+/* ------------------------------------------
+   SECTION: Fan Personalization
+   (Demo data — in production, aggregate the "Team Follow" / "Player Follow"
+   activity events tracked by js/personalization.js.)
+   ------------------------------------------ */
+
+function initFavTeamsChart() {
+  const ctx = document.getElementById('chart-fav-teams');
+  if (!ctx) return;
+
+  const rows = [
+    ['Creamline', 3120, '#ed1f24'],
+    ['Choco Mucho', 2540, '#6a2c91'],
+    ['Petro Gazz', 1980, '#e6007e'],
+    ['Cignal', 1760, '#0b3d91'],
+    ['PLDT', 1610, '#045397'],
+    ['Akari', 1430, '#f6b816'],
+    ['Chery Tiggo', 1180, '#e4002b'],
+    ['Farm Fresh', 1020, '#00a651'],
+    ['ZUS Coffee', 870, '#4b2e2b'],
+    ['Capital1', 760, '#f7941d'],
+    ['NXLED', 640, '#7ac143'],
+    ['Galeries Tower', 520, '#8e44ad']
+  ];
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: rows.map(r => r[0]),
+      datasets: [{
+        label: 'Followers',
+        data: rows.map(r => r[1]),
+        backgroundColor: rows.map(r => hexToRgba(r[2], 0.65)),
+        hoverBackgroundColor: rows.map(r => r[2]),
+        borderRadius: 4,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: (c) => `${c.parsed.x.toLocaleString()} followers` } }
+      },
+      scales: {
+        x: { beginAtZero: true, ticks: { callback: (v) => (v / 1000).toFixed(1) + 'K' } },
+        y: { ticks: { font: { size: 10 } } }
+      }
+    }
+  });
+}
+
+function initFavPlayersChart() {
+  const ctx = document.getElementById('chart-fav-players');
+  if (!ctx) return;
+
+  const labels = [
+    'Alyssa Valdez', 'Tots Carlos', 'Jia De Guzman', 'Sisi Rondina', 'Angel Canino',
+    'Brooke Van Sickle', 'Faith Nisperos', 'Jema Galanza', 'Savi Davison', 'Mylene Paat'
+  ];
+  const data = [2140, 1870, 1560, 1320, 1210, 1090, 980, 910, 760, 640];
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Followers',
+        data,
+        backgroundColor: hexToRgba(PVL_COLORS.gold, 0.55),
+        hoverBackgroundColor: PVL_COLORS.gold,
+        borderRadius: 4,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: (c) => `${c.parsed.x.toLocaleString()} followers` } }
+      },
+      scales: {
+        x: { beginAtZero: true, ticks: { callback: (v) => (v / 1000).toFixed(1) + 'K' } },
+        y: { ticks: { font: { size: 10 } } }
+      }
+    }
+  });
+}
+
+function initFavAdoptionChart() {
+  const ctx = document.getElementById('chart-fav-adoption');
+  if (!ctx) return;
+
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Following a team', 'Not personalized yet'],
+      datasets: [{
+        data: [68, 32],
+        backgroundColor: [PVL_COLORS.gold, PVL_COLORS.gray700],
+        hoverBackgroundColor: [PVL_COLORS.goldLight, PVL_COLORS.gray500]
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '62%',
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: { callbacks: { label: (c) => `${c.label}: ${c.parsed}%` } }
       }
     }
   });
