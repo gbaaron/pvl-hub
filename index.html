@@ -166,6 +166,21 @@
       </div>
     </section>
 
+    <!-- For You (personalized) -->
+    <section class="home-section" id="for-you-section" style="display:none; padding:40px 0; background: var(--bg-secondary); border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color);">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <span class="kicker">Just For You</span>
+            <h2>YOUR <span class="accent-red">TEAMS</span></h2>
+          </div>
+          <a href="myfeed.html" class="view-all">Open My Feed <span class="arrow-bounce">&rarr;</span></a>
+        </div>
+        <div class="teams-strip" id="for-you-teams"></div>
+        <div id="for-you-players" style="margin-top:18px; color:var(--text-muted); font-size:0.92rem;"></div>
+      </div>
+    </section>
+
     <!-- Featured Articles -->
     <section class="home-section tint-red diag-stripes">
       <div class="container">
@@ -430,7 +445,37 @@
       initCountdown();
       initScoreTicker();
       loadFeaturedContent();
+      renderForYou();
     });
+
+    // Personalized "For You" band — only for logged-in users who follow teams.
+    function renderForYou() {
+      if (typeof PVLApi === 'undefined' || !PVLApi.isLoggedIn()) return;
+      if (typeof PVLFav === 'undefined' || !window.PVLData) return;
+
+      const teams = PVLFav.getTeamObjects();
+      if (!teams.length) return;
+
+      const chips = teams.map(function (t) {
+        const avatar = t.logo
+          ? '<div class="team-avatar"><img src="' + t.logo + '" alt="' + t.short + '"></div>'
+          : '<div class="team-avatar team-avatar-fallback">' + t.abbr + '</div>';
+        return '<a class="team-chip" href="myfeed.html" style="text-decoration:none;">' +
+          avatar + '<div class="team-name">' + t.short + '</div></a>';
+      }).join('');
+      document.getElementById('for-you-teams').innerHTML = chips;
+
+      const players = PVLFav.getPlayers();
+      const playersEl = document.getElementById('for-you-players');
+      if (players.length) {
+        playersEl.innerHTML = '<strong style="color:var(--text-primary);">Players you follow:</strong> ' +
+          players.join(' &bull; ');
+      } else {
+        playersEl.innerHTML = '';
+      }
+
+      document.getElementById('for-you-section').style.display = '';
+    }
 
     // Countdown timer
     function initCountdown() {
