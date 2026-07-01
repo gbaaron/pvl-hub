@@ -2,3 +2,10 @@ node_modules/
 .env
 .netlify/
 .DS_Store
+
+# Capacitor mobile (generated / installed locally)
+mobile/node_modules/
+mobile/www/
+mobile/ios/
+mobile/android/
+mobile/.gradle/

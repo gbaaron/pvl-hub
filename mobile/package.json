@@ -1,0 +1,23 @@
+{
+  "name": "pvl-hub-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Capacitor iOS/Android wrapper for the PVL Hub web app",
+  "scripts": {
+    "copy-web": "node ./copy-web.js",
+    "sync": "npm run copy-web && cap sync",
+    "add:ios": "cap add ios",
+    "add:android": "cap add android",
+    "open:ios": "cap open ios",
+    "ios": "npm run sync && cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/app": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/ios": "^6.0.0",
+    "@capacitor/push-notifications": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  }
+}
