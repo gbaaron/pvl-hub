@@ -1953,3 +1953,24 @@ h4 { font-size: 1.25rem; }
   vertical-align: middle;
 }
 .profile-team-logo.fallback { font-size: 0.55rem; font-weight: 800; color: var(--text-muted); }
+
+/* Personalization nudge bar */
+.personalize-nudge {
+  background: linear-gradient(135deg, rgba(237,31,36,0.14), rgba(246,184,22,0.14));
+  border-bottom: 1px solid var(--border-color);
+}
+.personalize-nudge-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 10px 0;
+}
+.personalize-nudge .pn-text { font-size: 0.88rem; font-weight: 600; color: var(--text-primary); }
+.personalize-nudge .pn-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.personalize-nudge .pn-dismiss {
+  background: none; border: none; color: var(--text-muted);
+  font-size: 1.3rem; line-height: 1; cursor: pointer; padding: 0 4px;
+}
+.personalize-nudge .pn-dismiss:hover { color: var(--text-primary); }
+@media (max-width: 640px) {
+  .personalize-nudge-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .personalize-nudge .pn-text { font-size: 0.82rem; }
+}
