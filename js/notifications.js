@@ -13,6 +13,12 @@
   var READ_KEY = 'pvl_notifs_read';   // array of dismissed/seen notification ids
   var PUSH_KEY = 'pvl_push_optin';    // whether the user opted into push
 
+  // PVLApi / Toast are `const` globals (lexical, not window properties) —
+  // reach them by bare name via typeof, never as global.PVLApi.
+  function api() { return (typeof PVLApi !== 'undefined') ? PVLApi : null; }
+  function isLoggedIn() { var a = api(); return !!(a && a.isLoggedIn && a.isLoggedIn()); }
+  function toast(msg, type) { if (typeof Toast !== 'undefined' && Toast.show) Toast.show(msg, type || 'info'); }
+
   function readSet() {
     try { return new Set(JSON.parse(localStorage.getItem(READ_KEY) || '[]')); }
     catch (e) { return new Set(); }
@@ -112,7 +118,7 @@
       if (!listEl) return;
       var notifs = this.build();
 
-      if (!global.PVLApi || !PVLApi.isLoggedIn()) {
+      if (!isLoggedIn()) {
         listEl.innerHTML = '<div class="notif-empty">Log in to get alerts for your favorite teams.</div>';
         return;
       }
@@ -192,7 +198,7 @@
       pushToggle.addEventListener('change', function () {
         if (pushToggle.checked) {
           PVLNotify.enablePush();
-          if (global.Toast) Toast.show(PVLNotify.isNativeApp()
+          toast(PVLNotify.isNativeApp()
             ? 'Push notifications enabled for your teams!'
             : 'Saved! You\'ll get push alerts once you install the PVL Hub app.', 'success');
         } else {
@@ -205,7 +211,7 @@
 
     init: function () {
       // Only show the bell to logged-in users.
-      if (!global.PVLApi || !PVLApi.isLoggedIn()) return;
+      if (!isLoggedIn()) return;
       this.injectBell();
     }
   };

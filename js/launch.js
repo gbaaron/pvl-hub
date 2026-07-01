@@ -64,8 +64,9 @@
   }
 
   function notify(msg, type) {
-    if (global.Toast && typeof global.Toast.show === 'function') {
-      global.Toast.show(msg, type || 'info');
+    // Toast is a `const` global (lexical, not a window property).
+    if (typeof Toast !== 'undefined' && typeof Toast.show === 'function') {
+      Toast.show(msg, type || 'info');
     }
   }
 

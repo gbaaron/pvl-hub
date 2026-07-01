@@ -86,7 +86,8 @@
       console.log('[PVLNative] push token', token && token.value);
     });
     Push.addListener('pushNotificationReceived', function (n) {
-      if (global.Toast) global.Toast.show((n.title || 'PVL Hub') + ': ' + (n.body || ''), 'info');
+      // Toast is a `const` global (lexical, not a window property).
+      if (typeof Toast !== 'undefined' && Toast.show) Toast.show((n.title || 'PVL Hub') + ': ' + (n.body || ''), 'info');
     });
     Push.addListener('pushNotificationActionPerformed', function (action) {
       var data = (action && action.notification && action.notification.data) || {};

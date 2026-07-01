@@ -11,8 +11,16 @@
 
   var PENDING_KEY = 'pvl_pending_favs'; // set at registration, applied on first login
 
+  // NOTE: PVLApi is declared `const` in api.js, which makes it a lexical
+  // global (accessible by bare name) but NOT a property of window. So we must
+  // reference it by name via typeof, never as global.PVLApi.
+  function api() {
+    return (typeof PVLApi !== 'undefined') ? PVLApi : null;
+  }
+
   function getUser() {
-    return (global.PVLApi && PVLApi.getCurrentUser && PVLApi.getCurrentUser()) || null;
+    var a = api();
+    return (a && a.getCurrentUser && a.getCurrentUser()) || null;
   }
 
   function saveUser(user) {
@@ -109,11 +117,12 @@
       saveUser(user);
 
       // Best-effort backend sync (won't block the UI).
-      if (global.PVLApi && PVLApi.updateUserProfile) {
+      var a = api();
+      if (a && a.updateUserProfile) {
         var payload = {};
         payload[field] = value;
         payload[field === 'favorite_teams' ? 'favorite_team' : 'favorite_player'] = value[0] || '';
-        PVLApi.updateUserProfile(payload).catch(function () {});
+        a.updateUserProfile(payload).catch(function () {});
       }
       return true;
     },
