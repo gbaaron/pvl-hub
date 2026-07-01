@@ -98,11 +98,11 @@
 
         <!-- Action Buttons -->
         <div class="game-actions">
-          <button class="btn-play" id="play-now-btn" onclick="launchGame()">
-            &#9654; Play Now
+          <button class="btn-play" id="play-now-btn" onclick="playCardGame()">
+            &#9654; Play Card Game
           </button>
-          <button class="btn-howto" onclick="showHowToPlay()">
-            &#128218; How to Play
+          <button class="btn-howto" onclick="launchGame()">
+            &#127183; Play here on the Hub
           </button>
         </div>
       </div>
@@ -240,12 +240,20 @@
 
   <script src="js/api.js"></script>
   <script src="js/toast.js"></script>
+  <script src="js/launch.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/auth-gate.js"></script>
   <script src="js/tracking.js"></script>
   <script>
     // --- Card Game Page Logic ---
     // Airtable base: appo7PS69rWmzEPnC
+
+    // Launch the Card Game in a new screen (web) or the native app / App Store
+    // (inside the PVL Hub app). See js/launch.js.
+    function playCardGame() {
+      if (typeof Tracking !== 'undefined' && Tracking.cardGamePlay) Tracking.cardGamePlay();
+      PVLLaunch.launch('cards');
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
       // Gate the page for non-logged-in users
