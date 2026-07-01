@@ -434,10 +434,14 @@
 
     // Countdown timer
     function initCountdown() {
-      // Set next match to 2 days from now for demo
-      const nextMatch = new Date();
-      nextMatch.setDate(nextMatch.getDate() + 2);
-      nextMatch.setHours(16, 0, 0, 0);
+      // Personalize to the user's favorite team's next game when possible,
+      // otherwise fall back to the generic demo match (2 days out).
+      let nextMatch = personalizeCountdown();
+      if (!nextMatch) {
+        nextMatch = new Date();
+        nextMatch.setDate(nextMatch.getDate() + 2);
+        nextMatch.setHours(16, 0, 0, 0);
+      }
 
       function update() {
         const now = new Date();
@@ -457,6 +461,49 @@
 
       update();
       setInterval(update, 1000);
+    }
+
+    // If the user follows teams, swap the Next Match card to their soonest
+    // game and return its date; otherwise return null (keep the demo match).
+    function personalizeCountdown() {
+      if (typeof PVLApi === 'undefined' || !PVLApi.isLoggedIn()) return null;
+      if (typeof PVLFav === 'undefined' || !window.PVLData) return null;
+
+      const teams = PVLFav.getTeamObjects();
+      if (!teams.length) return null;
+
+      let best = null;
+      teams.forEach(function (t) {
+        const m = PVLData.nextMatchForTeam(t.id);
+        if (m && (!best || new Date(m.date) < new Date(best.match.date))) {
+          best = { match: m, team: t };
+        }
+      });
+      if (!best) return null;
+
+      const m = best.match;
+      const homeT = PVLData.teamById(m.home);
+      const awayT = PVLData.teamById(m.away);
+
+      const label = document.querySelector('#countdown-card .countdown-label');
+      if (label) label.textContent = best.team.short + "'s Next Match";
+
+      const teamsEl = document.getElementById('countdown-teams');
+      if (teamsEl) teamsEl.innerHTML = countdownTeamCol(homeT) +
+        '<div class="countdown-vs">VS</div>' + countdownTeamCol(awayT);
+
+      const venueEl = document.querySelector('#countdown-card .countdown-venue');
+      if (venueEl) venueEl.textContent = m.venue;
+
+      return new Date(m.date);
+    }
+
+    function countdownTeamCol(t) {
+      if (!t) return '';
+      const logo = t.logo
+        ? '<div class="team-logo"><img src="' + t.logo + '" alt="' + t.short + '"></div>'
+        : '<div class="team-logo team-avatar-fallback">' + t.abbr + '</div>';
+      return '<div class="countdown-team">' + logo + '<div class="team-name">' + t.short + '</div></div>';
     }
 
     // Score ticker with demo data
