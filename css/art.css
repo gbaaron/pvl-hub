@@ -1,0 +1,290 @@
+/* ========================================
+   PVL HUB — Art Plates, Flow & The Crest Wall
+   ----------------------------------------
+   Everything here exists to get real club marks onto pages that
+   were previously rendering an emoji on a gradient. Crests are
+   `contain`, never `cover` — a club mark cropped to fill a 16/9
+   box reads as broken even though nothing errored.
+   ======================================== */
+
+/* --- Crest plate: the reusable "there is a picture here" tile --- */
+.crest-plate {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 120% 100% at 50% 0%, color-mix(in srgb, var(--tint) 26%, transparent) 0%, transparent 68%),
+    linear-gradient(160deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+}
+
+/* Court lines — the texture that says "volleyball" without a stock photo. */
+.crest-plate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--tint) 30%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--tint) 30%, transparent) 1px, transparent 1px);
+  background-size: 46px 46px;
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+/* A single diagonal sweep so the plate isn't a flat grid. */
+.crest-plate::after {
+  content: '';
+  position: absolute;
+  inset: -40% -10%;
+  background: linear-gradient(115deg, transparent 42%, color-mix(in srgb, var(--tint) 16%, transparent) 50%, transparent 58%);
+  pointer-events: none;
+}
+
+.crest-plate__mark {
+  position: relative;
+  z-index: 2;
+  width: 58%;
+  max-width: 190px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-med);
+}
+
+.crest-plate__mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;         /* never crop a club mark */
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.55));
+}
+
+.crest-plate__mono {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4.5vw, 3.4rem);
+  letter-spacing: 3px;
+  color: color-mix(in srgb, var(--tint) 82%, white);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+}
+
+.crest-plate__label {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.crest-plate--sm .crest-plate__mark { width: 46%; max-width: 78px; }
+.crest-plate--lg .crest-plate__mark { width: 62%; max-width: 260px; }
+
+.crest-plate--league::before { opacity: 0.16; }
+
+/* Card hover lifts the mark, not the whole plate. */
+.article-card:hover .crest-plate__mark,
+.video-card-full:hover .crest-plate__mark,
+.product-card:hover .crest-plate__mark {
+  transform: scale(1.07) translateY(-4px);
+}
+
+/* --- Flow utilities: what stops a page reading as stacked drawers --- */
+.bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.riser {
+  position: relative;
+  z-index: 3;
+  margin-top: -72px;
+}
+
+/* --- The crest wall: real club marks as the hero surface --- */
+.artwall {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.artwall__grid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 14px;
+  transform: translate(-50%, -50%) rotate(-9deg) scale(1.16);
+  animation: wallDrift 46s ease-in-out infinite alternate;
+}
+
+.artwall__tile {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14%;
+  border-radius: 12px;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.artwall__tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Many different club palettes must read as ONE surface, not a colour riot. */
+  filter: grayscale(0.68) contrast(1.1) brightness(0.62);
+}
+
+.artwall__tile span {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.16);
+}
+
+/* Push the wall most of the way to black so the wordmark stays readable. */
+.artwall::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(100deg, var(--bg-primary) 8%, rgba(6, 10, 16, 0.9) 44%, rgba(6, 10, 16, 0.66) 100%),
+    radial-gradient(ellipse 70% 90% at 20% 50%, rgba(6, 10, 16, 0.85), transparent 70%);
+}
+
+@keyframes wallDrift {
+  from { transform: translate(-50%, -50%) rotate(-9deg) scale(1.16); }
+  to   { transform: translate(-52%, -47%) rotate(-7deg) scale(1.2); }
+}
+
+/* --- Crest rail: a sideways band so the eye travels horizontally once --- */
+.crest-rail {
+  overflow: hidden;
+  padding: 26px 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.crest-rail__track {
+  display: flex;
+  gap: 56px;
+  width: max-content;
+  align-items: center;
+  animation: railRoll 64s linear infinite;
+}
+
+.crest-rail:hover .crest-rail__track { animation-play-state: paused; }
+
+.crest-rail__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0.62;
+  transition: opacity var(--transition-fast);
+}
+
+.crest-rail__item:hover { opacity: 1; }
+
+.crest-rail__item img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.crest-rail__item .mono {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+.crest-rail__item .nm {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  color: var(--text-secondary);
+}
+
+@keyframes railRoll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .artwall__grid { animation: none; }
+  .crest-rail__track { animation: none; }
+}
+
+[data-theme="light"] .crest-plate__mark img { filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.2)); }
+[data-theme="light"] .artwall__tile img { filter: grayscale(0.6) contrast(1.05) brightness(0.9); }
+[data-theme="light"] .artwall::after {
+  background: linear-gradient(100deg, var(--bg-primary) 8%, rgba(255, 255, 255, 0.88) 44%, rgba(255, 255, 255, 0.7) 100%);
+}
+
+@media (max-width: 768px) {
+  .artwall__grid { grid-template-columns: repeat(5, 1fr); width: 190%; }
+  .riser { margin-top: -40px; }
+}
+
+/* --- Crest slot: fills whatever thumbnail box the page already had --- */
+.crest-slot {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.crest-slot .crest-plate { border-radius: 0; }
+
+/* The shop's own hover scale targeted .product-image; keep it on the mark. */
+.product-card:hover .product-image.crest-slot { transform: none; }
+
+/* --- Word plate: the item's own category, set like a merch print --- */
+.crest-plate--word { justify-content: center; }
+
+.crest-plate__word {
+  position: relative;
+  z-index: 2;
+  padding: 0 12%;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.4vw, 2.9rem);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--tint) 78%, white);
+  text-stroke: 1.5px color-mix(in srgb, var(--tint) 78%, white);
+  opacity: 0.9;
+}
+
+.crest-plate--word::before { background-size: 34px 34px; opacity: 0.3; }
+
+.article-card:hover .crest-plate__word,
+.video-card-full:hover .crest-plate__word,
+.product-card:hover .crest-plate__word {
+  color: color-mix(in srgb, var(--tint) 22%, transparent);
+  transition: color var(--transition-med);
+}
+
+.crest-plate--sm .crest-plate__word { font-size: clamp(0.9rem, 2vw, 1.3rem); -webkit-text-stroke-width: 1px; }

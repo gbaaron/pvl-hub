@@ -6,6 +6,7 @@
   <title>Articles — PVL Hub</title>
   <meta name="description" content="PVL Articles: Game recaps, features, news, opinion, and analysis from the Philippine Volleyball League.">
   <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/art.css">
   <link rel="stylesheet" href="css/articles.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
 </head>
@@ -76,7 +77,7 @@
           <!-- Article 1 -->
           <a href="#" class="article-card" onclick="Tracking.articleRead(1, this.querySelector('.card-title').textContent)">
             <div class="card-thumb">
-              <div class="thumb-placeholder">&#127951;</div>
+              <div class="crest-slot" data-crest="auto" data-crest-word="Game Recap" data-crest-text="Creamline Dominates in 3 Sets: Alyssa Valdez Returns to MVP Form"></div>
               <span class="category-badge recap">Game Recap</span>
             </div>
             <div class="card-body">
@@ -93,7 +94,7 @@
           <!-- Article 2 -->
           <a href="#" class="article-card" onclick="Tracking.articleRead(2, this.querySelector('.card-title').textContent)">
             <div class="card-thumb">
-              <div class="thumb-placeholder">&#127951;</div>
+              <div class="crest-slot" data-crest="auto" data-crest-word="Analysis" data-crest-text="Top 5 Setters to Watch This Conference: Breaking Down the Elite Playmakers"></div>
               <span class="category-badge analysis">Analysis</span>
             </div>
             <div class="card-body">
@@ -110,7 +111,7 @@
           <!-- Article 3 -->
           <a href="#" class="article-card" onclick="Tracking.articleRead(3, this.querySelector('.card-title').textContent)">
             <div class="card-thumb">
-              <div class="thumb-placeholder">&#127951;</div>
+              <div class="crest-slot" data-crest="auto" data-crest-word="Feature" data-crest-text="Behind the Scenes: Choco Mucho Training Camp Exclusive"></div>
               <span class="category-badge feature">Feature</span>
               <div class="tier-lock"><span class="tier-badge tier-fan">Fan Tier</span></div>
             </div>
@@ -128,7 +129,7 @@
           <!-- Article 4 -->
           <a href="#" class="article-card" onclick="Tracking.articleRead(4, this.querySelector('.card-title').textContent)">
             <div class="card-thumb">
-              <div class="thumb-placeholder">&#127951;</div>
+              <div class="crest-slot" data-crest="auto" data-crest-word="News" data-crest-text="PLDT Announces Major Roster Shake-Up Ahead of Mid-Season Transfer Window"></div>
               <span class="category-badge news">News</span>
             </div>
             <div class="card-body">
@@ -145,7 +146,7 @@
           <!-- Article 5 -->
           <a href="#" class="article-card" onclick="Tracking.articleRead(5, this.querySelector('.card-title').textContent)">
             <div class="card-thumb">
-              <div class="thumb-placeholder">&#127951;</div>
+              <div class="crest-slot" data-crest="auto" data-crest-word="Opinion" data-crest-text="Why the PVL Needs a Salary Cap: A Case for Competitive Balance"></div>
               <span class="category-badge opinion">Opinion</span>
             </div>
             <div class="card-body">
@@ -162,7 +163,7 @@
           <!-- Article 6 -->
           <a href="#" class="article-card" onclick="Tracking.articleRead(6, this.querySelector('.card-title').textContent)">
             <div class="card-thumb">
-              <div class="thumb-placeholder">&#127951;</div>
+              <div class="crest-slot" data-crest="auto" data-crest-word="Game Recap" data-crest-text="Cignal Stuns Petro Gazz in 5-Set Thriller at PhilSports Arena"></div>
               <span class="category-badge recap">Game Recap</span>
             </div>
             <div class="card-body">
@@ -179,7 +180,7 @@
           <!-- Article 7 -->
           <a href="#" class="article-card" onclick="Tracking.articleRead(7, this.querySelector('.card-title').textContent)">
             <div class="card-thumb">
-              <div class="thumb-placeholder">&#127951;</div>
+              <div class="crest-slot" data-crest="auto" data-crest-word="Analysis" data-crest-text="Film Study: Deconstructing Creamline's Block Defense System"></div>
               <span class="category-badge analysis">Analysis</span>
               <div class="tier-lock"><span class="tier-badge tier-superfan">Superfan</span></div>
             </div>
@@ -197,7 +198,7 @@
           <!-- Article 8 -->
           <a href="#" class="article-card" onclick="Tracking.articleRead(8, this.querySelector('.card-title').textContent)">
             <div class="card-thumb">
-              <div class="thumb-placeholder">&#127951;</div>
+              <div class="crest-slot" data-crest="auto" data-crest-word="Feature" data-crest-text="From Ateneo to the Pros: Rookie Spotlight on Faith Nisperos' PVL Debut Season"></div>
               <span class="category-badge feature">Feature</span>
             </div>
             <div class="card-body">
@@ -214,7 +215,7 @@
           <!-- Article 9 -->
           <a href="#" class="article-card" onclick="Tracking.articleRead(9, this.querySelector('.card-title').textContent)">
             <div class="card-thumb">
-              <div class="thumb-placeholder">&#127951;</div>
+              <div class="crest-slot" data-crest="auto" data-crest-word="News" data-crest-text="PVL 2026 All-Star Game Set for Cebu: League Expands Reach to the Visayas"></div>
               <span class="category-badge news">News</span>
             </div>
             <div class="card-body">
@@ -284,6 +285,7 @@
   </div>
 
   <script src="js/api.js"></script>
+  <script src="js/teams.js"></script>
   <script src="js/toast.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/tracking.js"></script>
