@@ -117,6 +117,46 @@ const Art = {
     </div>`;
   },
 
+
+  /**
+   * Build the hero crest wall from the registry — never paste tiles, so a new
+   * club in TEAMS lands on the wall with no second edit.
+   */
+  buildWall(el, count = 40) {
+    const node = typeof el === 'string' ? document.querySelector(el) : el;
+    if (!node) return;
+    const grid = document.createElement('div');
+    grid.className = 'artwall__grid';
+    grid.setAttribute('aria-hidden', 'true');
+    for (let i = 0; i < count; i++) {
+      const team = TEAMS[TEAM_KEYS[i % TEAM_KEYS.length]];
+      const tile = document.createElement('div');
+      tile.className = 'artwall__tile';
+      tile.innerHTML = team.logo
+        ? `<img src="${team.logo}" alt="" loading="lazy" decoding="async">`
+        : `<span>${team.short}</span>`;
+      grid.appendChild(tile);
+    }
+    node.appendChild(grid);
+  },
+
+  /** Marquee rail of all 12 clubs, duplicated for a seamless loop. */
+  buildRail(el) {
+    const node = typeof el === 'string' ? document.querySelector(el) : el;
+    if (!node) return;
+    const item = (t) => `<div class="crest-rail__item">${
+      t.logo ? `<img src="${t.logo}" alt="${t.full}" loading="lazy" decoding="async">`
+             : `<span class="mono">${t.short}</span>`
+    }<span class="nm">${t.name}</span></div>`;
+    const set = TEAM_KEYS.map((k) => item(TEAMS[k])).join('');
+    const track = document.createElement('div');
+    track.className = 'crest-rail__track';
+    track.innerHTML = set + set;   // second copy makes the -50% loop seamless
+    track.children.length && Array.from(track.children).slice(TEAM_KEYS.length)
+      .forEach((c) => c.setAttribute('aria-hidden', 'true'));
+    node.appendChild(track);
+  },
+
   /** Fill every [data-crest] slot on the page. */
   hydrate(root = document) {
     root.querySelectorAll('[data-crest]').forEach((el, idx) => {
@@ -137,4 +177,8 @@ const Art = {
 window.TEAMS = TEAMS;
 window.Art = Art;
 
-document.addEventListener('DOMContentLoaded', () => Art.hydrate());
+document.addEventListener('DOMContentLoaded', () => {
+  Art.hydrate();
+  Art.buildWall('#hero-artwall');
+  Art.buildRail('#crest-rail');
+});

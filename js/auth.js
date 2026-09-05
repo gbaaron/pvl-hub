@@ -103,6 +103,15 @@ const Auth = {
   },
 
   initScrollReveal() {
+    const targets = document.querySelectorAll('.reveal');
+
+    // No IntersectionObserver, or motion turned down: show everything now.
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!('IntersectionObserver' in window) || reduced) {
+      targets.forEach(el => el.classList.add('visible'));
+      return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -112,7 +121,16 @@ const Auth = {
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    targets.forEach(el => observer.observe(el));
+
+    // Safety net: .reveal starts at opacity 0, so anything the observer never
+    // reports on (background tab at load, odd viewport) would stay invisible.
+    setTimeout(() => {
+      targets.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+      });
+    }, 2500);
   },
 
   requireAuth() {

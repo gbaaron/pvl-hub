@@ -62,8 +62,8 @@
 
     <!-- Hero Section -->
     <section class="hero">
-      <!-- Giant watermark text -->
-      <div class="hero-watermark">VOLLEY</div>
+      <!-- Wall of real club marks — built from the TEAMS registry -->
+      <div class="artwall" id="hero-artwall"></div>
 
       <div class="container">
         <div class="hero-content">
@@ -78,7 +78,7 @@
               <span class="gold">HEADQUARTERS</span>
             </h1>
             <p class="hero-subtitle">
-              Every match. Every spike. Every prediction. The definitive fan platform for the PVL — <strong>play, predict, and win</strong> with thousands of volleyball fans across the Philippines.
+              Twelve clubs. One season. <strong>Pick the winners, build a roster, run a team.</strong>
             </p>
             <div class="hero-actions">
               <a href="predictions.html" class="btn btn-primary btn-lg">Make Predictions <span class="arrow-bounce">&rarr;</span></a>
@@ -181,8 +181,9 @@
           <!-- Card 1 - Featured -->
           <div class="card">
             <div>
-              <div class="card-image" style="background: linear-gradient(135deg, #ed1f24 0%, #8b171b 100%); min-height:380px; display:flex; align-items:flex-end; padding:24px; color:white; font-family: var(--font-display); font-size: 2.5rem; line-height:1; letter-spacing:2px;">
-                CREAMLINE<br>SWEEPS
+              <div class="card-image card-image--art" style="min-height:380px;">
+                <div class="crest-slot" data-crest="creamline" data-crest-size="lg"></div>
+                <span class="card-image__stamp">CREAMLINE<br>SWEEPS</span>
               </div>
             </div>
             <div class="card-body">
@@ -197,7 +198,7 @@
           </div>
           <!-- Card 2 -->
           <div class="card">
-            <div class="card-image" style="background: linear-gradient(135deg, #045397 0%, #0d1f3c 100%); min-height:160px;"></div>
+            <div class="card-image card-image--art" style="min-height:160px;"><div class="crest-slot" data-crest="auto" data-crest-word="Analysis" data-crest-text="Top 5 Setters to Watch This Conference"></div></div>
             <div class="card-body">
               <div class="card-meta">
                 <span class="badge badge-blue">Analysis</span>
@@ -209,7 +210,7 @@
           </div>
           <!-- Card 3 -->
           <div class="card">
-            <div class="card-image" style="background: linear-gradient(135deg, #f6b816 0%, #b8870e 100%); min-height:160px;"></div>
+            <div class="card-image card-image--art" style="min-height:160px;"><div class="crest-slot" data-crest="choco"></div></div>
             <div class="card-body">
               <div class="card-meta">
                 <span class="badge badge-gold">Feature</span>
@@ -221,7 +222,7 @@
           </div>
           <!-- Card 4 -->
           <div class="card">
-            <div class="card-image" style="background: linear-gradient(135deg, #1abc9c 0%, #0d6e5c 100%); min-height:160px;"></div>
+            <div class="card-image card-image--art" style="min-height:160px;"><div class="crest-slot" data-crest="pldt"></div></div>
             <div class="card-body">
               <div class="card-meta">
                 <span class="badge badge-green">News</span>
@@ -235,31 +236,15 @@
       </div>
     </section>
 
-    <!-- Teams Strip -->
-    <section class="home-section" style="padding: 40px 0; background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <!-- Teams Rail — full bleed, breaks the stacked-section rhythm -->
+    <section class="teams-rail-section bleed">
       <div class="container">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
-          <div>
-            <span class="kicker">The Contenders</span>
-            <h3 style="font-family: var(--font-display); font-size:1.6rem; letter-spacing:2px; margin:0;">ALL 12 PVL TEAMS</h3>
-          </div>
-          <a href="#" class="view-all">Team Rankings <span class="arrow-bounce">&rarr;</span></a>
-        </div>
-        <div class="teams-strip reveal">
-          <div class="team-chip"><div class="team-avatar"><img src="https://res.cloudinary.com/djngpyv15/image/upload/v1776369727/creamline_x3ooit.png" alt="Creamline"></div><div class="team-name">Creamline</div></div>
-          <div class="team-chip"><div class="team-avatar"><img src="https://res.cloudinary.com/djngpyv15/image/upload/v1776369734/choco_o0dgvs.png" alt="Choco Mucho"></div><div class="team-name">Choco Mucho</div></div>
-          <div class="team-chip"><div class="team-avatar"><img src="https://res.cloudinary.com/djngpyv15/image/upload/v1776369727/PLDT-highspeed-logo_ifvs7z.png" alt="PLDT"></div><div class="team-name">PLDT</div></div>
-          <div class="team-chip"><div class="team-avatar"><img src="https://res.cloudinary.com/djngpyv15/image/upload/v1776369727/Cignal_Super_Spikers_fw6lgj.png" alt="Cignal"></div><div class="team-name">Cignal</div></div>
-          <div class="team-chip"><div class="team-avatar"><img src="https://res.cloudinary.com/djngpyv15/image/upload/v1776369735/web-akari_v20tkw.png" alt="Akari"></div><div class="team-name">Akari</div></div>
-          <div class="team-chip"><div class="team-avatar team-avatar-fallback">PET</div><div class="team-name">Petro Gazz</div></div>
-          <div class="team-chip"><div class="team-avatar team-avatar-fallback">CHE</div><div class="team-name">Chery Tiggo</div></div>
-          <div class="team-chip"><div class="team-avatar"><img src="https://res.cloudinary.com/djngpyv15/image/upload/v1776369728/FarmFresh_200x200_cpqrbs.png" alt="Farm Fresh"></div><div class="team-name">Farm Fresh</div></div>
-          <div class="team-chip"><div class="team-avatar"><img src="https://res.cloudinary.com/djngpyv15/image/upload/v1776369728/NXC_nkfrug.png" alt="NXLED"></div><div class="team-name">NXLED</div></div>
-          <div class="team-chip"><div class="team-avatar"><img src="https://res.cloudinary.com/djngpyv15/image/upload/v1776369728/Capital1SolarSpikers_Logo_HiRes_8Rays_osvrmh.png" alt="Capital1"></div><div class="team-name">Capital1</div></div>
-          <div class="team-chip"><div class="team-avatar"><img src="https://res.cloudinary.com/djngpyv15/image/upload/v1776369727/0-02-06-0a67ed46d08fbcfa407da78ef2dff105c4258304deab09077148b6eedb98a651_9d271377f0f6eba6_x0clj4.png" alt="ZUS Thunderbelles"></div><div class="team-name">ZUS</div></div>
-          <div class="team-chip"><div class="team-avatar"><img src="https://res.cloudinary.com/djngpyv15/image/upload/v1776369728/GTH_rur7sc.png" alt="Galeries Tower"></div><div class="team-name">Galeries Tower</div></div>
+        <div class="rail-head">
+          <span class="kicker">The Contenders</span>
+          <h3>ALL 12 PVL TEAMS</h3>
         </div>
       </div>
+      <div class="crest-rail" id="crest-rail"></div>
     </section>
 
     <!-- Latest Videos -->

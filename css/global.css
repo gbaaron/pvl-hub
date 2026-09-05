@@ -1300,6 +1300,12 @@ h4 { font-size: 1.25rem; }
   transform: translateY(0);
 }
 
+/* Reveal is an enhancement, never a gate on the content. Anyone who asked for
+   less motion gets the page immediately, fully visible. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
 /* ============================================
    DECORATIVE ELEMENTS — Sports Magazine Feel
    ============================================ */

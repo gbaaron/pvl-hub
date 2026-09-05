@@ -48,9 +48,9 @@
 .crest-plate__mark {
   position: relative;
   z-index: 2;
-  width: 58%;
-  max-width: 190px;
-  aspect-ratio: 1 / 1;
+  width: 62%;
+  max-width: 210px;
+  aspect-ratio: 3 / 2;   /* wide club lockups need width, not a square */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,8 +83,8 @@
   color: var(--text-secondary);
 }
 
-.crest-plate--sm .crest-plate__mark { width: 46%; max-width: 78px; }
-.crest-plate--lg .crest-plate__mark { width: 62%; max-width: 260px; }
+.crest-plate--sm .crest-plate__mark { width: 52%; max-width: 92px; }
+.crest-plate--lg .crest-plate__mark { width: 66%; max-width: 290px; }
 
 .crest-plate--league::before { opacity: 0.16; }
 
@@ -136,8 +136,8 @@
   justify-content: center;
   padding: 14%;
   border-radius: 12px;
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.008));
+  border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .artwall__tile img {
@@ -145,7 +145,7 @@
   height: 100%;
   object-fit: contain;
   /* Many different club palettes must read as ONE surface, not a colour riot. */
-  filter: grayscale(0.68) contrast(1.1) brightness(0.62);
+  filter: grayscale(0.86) contrast(1.12) brightness(0.4);
 }
 
 .artwall__tile span {
@@ -161,8 +161,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(100deg, var(--bg-primary) 8%, rgba(6, 10, 16, 0.9) 44%, rgba(6, 10, 16, 0.66) 100%),
-    radial-gradient(ellipse 70% 90% at 20% 50%, rgba(6, 10, 16, 0.85), transparent 70%);
+    linear-gradient(100deg, var(--bg-primary) 4%, rgba(6, 10, 16, 0.95) 38%, rgba(6, 10, 16, 0.82) 100%),
+    radial-gradient(ellipse 76% 95% at 22% 50%, rgba(6, 10, 16, 0.9), transparent 72%);
 }
 
 @keyframes wallDrift {
@@ -199,8 +199,8 @@
 .crest-rail__item:hover { opacity: 1; }
 
 .crest-rail__item img {
-  width: 52px;
-  height: 52px;
+  width: 88px;          /* wide lockups (Capital1 is 2821px across) need room */
+  height: 50px;
   object-fit: contain;
 }
 

@@ -816,7 +816,9 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  padding: 56px 0;
+  /* .container sets 0 24px; keep the side gutter or the cards sit flush
+     against the viewport edge and read as a clipped layout. */
+  padding: 56px 24px;
   position: relative;
 }
 
@@ -1002,4 +1004,53 @@
   .stats-bar { grid-template-columns: 1fr 1fr; gap: 12px; }
   .stat-item .stat-value { font-size: 2rem; }
   .teams-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* --- Teams rail: replaced the hairline-fenced 12-chip strip --- */
+.teams-rail-section {
+  position: relative;
+  padding: 54px 0 46px;
+  background:
+    radial-gradient(ellipse 80% 120% at 50% 0%, rgba(246, 184, 22, 0.06), transparent 62%),
+    var(--bg-secondary);
+}
+
+.rail-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.rail-head h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* --- Featured card art: real crests replaced flat gradient blocks --- */
+.card-image--art {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image--art .crest-slot { position: absolute; inset: 0; }
+
+.card-image__stamp {
+  position: absolute;
+  left: 24px;
+  bottom: 22px;
+  z-index: 3;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 1;
+  letter-spacing: 2px;
+  color: var(--white);
+  text-shadow: 0 4px 22px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 768px) {
+  .rail-head { flex-direction: column; gap: 4px; align-items: flex-start; }
+  .card-image__stamp { font-size: 1.7rem; left: 16px; bottom: 16px; }
 }
