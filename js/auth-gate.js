@@ -15,7 +15,7 @@ const AuthGate = {
     const {
       title = 'Join The Hub To Play',
       subtitle = 'Create a free account to unlock this game.',
-      icon = '&#127918;',
+      icon = '<i data-lucide="gamepad-2"></i>',
       perks = [
         'Free to play — no credit card needed',
         'Earn credits across all 3 PVL games',
@@ -79,6 +79,10 @@ const AuthGate = {
 
     document.body.appendChild(gate);
     document.body.classList.add('auth-gate-active');
+
+    // The gate is injected after Auth.init() already ran createIcons(), so its
+    // own icons need a second pass or they stay as empty <i> placeholders.
+    if (typeof Auth !== 'undefined' && Auth.renderIcons) Auth.renderIcons();
 
     // Blur the main content behind
     const pageContent = document.querySelector('.page-content');

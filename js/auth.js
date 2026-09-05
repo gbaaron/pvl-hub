@@ -5,10 +5,19 @@
 const Auth = {
   init() {
     this.injectBgDecor();
+    this.renderIcons();
     this.updateNavUI();
     this.initThemeToggle();
     this.initMobileNav();
     this.initScrollReveal();
+    this.renderIcons();
+  },
+
+  /** Swap every [data-lucide] placeholder for its SVG. Safe to call repeatedly. */
+  renderIcons() {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
   },
 
   /**
@@ -70,16 +79,21 @@ const Auth = {
     const toggle = document.getElementById('theme-toggle');
     if (!toggle) return;
 
+    const setIcon = (theme) => {
+      toggle.innerHTML = `<i data-lucide="${theme === 'dark' ? 'sun' : 'moon'}"></i>`;
+      this.renderIcons();
+    };
+
     const saved = localStorage.getItem('pvl_theme') || 'dark';
     document.documentElement.setAttribute('data-theme', saved);
-    toggle.textContent = saved === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+    setIcon(saved);
 
     toggle.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('pvl_theme', next);
-      toggle.textContent = next === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+      setIcon(next);
     });
   },
 

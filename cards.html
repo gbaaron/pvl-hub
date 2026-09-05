@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/art.css">
   <link rel="stylesheet" href="css/games.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23040707'/><text x='50' y='58' font-family='Arial Black,Arial,sans-serif' font-size='38' font-weight='900' fill='%23f6b816' text-anchor='middle' dominant-baseline='middle'>PVL</text></svg>">
 </head>
 <body>
   <!-- Navigation -->
@@ -35,7 +35,7 @@
       <div class="nav-right">
         <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
           <div class="nav-credits">
-            <span class="coin-icon">&#x1FA99;</span>
+            <span class="coin-icon"><i data-lucide="coins"></i></span>
             <span id="nav-credits-amount">0</span>
           </div>
           <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
@@ -44,7 +44,7 @@
           <a href="login.html" class="nav-auth-btn login">Log In</a>
           <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
         </div>
-        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme"><i data-lucide="sun"></i></button>
         <div class="nav-toggle" id="nav-toggle">
           <span></span><span></span><span></span>
         </div>
@@ -57,7 +57,7 @@
     <!-- Hero Banner -->
     <section class="game-hero">
       <div class="container">
-        <div class="page-icon">&#127183;</div>
+        <div class="page-icon"><i data-lucide="layers"></i></div>
         <h1>PVL <span>FANTASY CARD GAME</span></h1>
         <p class="game-subtitle">Collect. Build. Compete.</p>
       </div>
@@ -69,19 +69,19 @@
         <div class="features-grid">
 
           <div class="feature-card">
-            <span class="feature-icon">&#127917;</span>
+            <span class="feature-icon"><i data-lucide="package-open"></i></span>
             <h3 class="feature-title">Collect Cards</h3>
             <p class="feature-desc">Pull packs to collect 100+ player cards across 5 rarities: Common, Rare, Epic, Legendary, and Mythic. Chase the rarest pulls.</p>
           </div>
 
           <div class="feature-card">
-            <span class="feature-icon">&#9917;</span>
+            <span class="feature-icon"><i data-lucide="users"></i></span>
             <h3 class="feature-title">Build Lineups</h3>
             <p class="feature-desc">Assemble the ultimate volleyball lineup. Pick your setter, hitters, blockers, and libero for maximum synergy and power.</p>
           </div>
 
           <div class="feature-card">
-            <span class="feature-icon">&#127942;</span>
+            <span class="feature-icon"><i data-lucide="trophy"></i></span>
             <h3 class="feature-title">Trade &amp; Win</h3>
             <p class="feature-desc">Trade cards with other fans and climb the weekly leaderboard. Top players earn bonus credits and exclusive cards.</p>
           </div>
@@ -90,7 +90,7 @@
 
         <!-- Credits Integration Notice -->
         <div class="credits-notice">
-          <span class="notice-icon">&#128176;</span>
+          <span class="notice-icon"><i data-lucide="coins"></i></span>
           <p class="notice-text">
             <strong>Credits earned here can be spent in the Manager Game, Predictions, or Shop!</strong>
             Your balance syncs across the entire PVL Hub platform. Collect smart, earn big.
@@ -103,7 +103,7 @@
             &#9654; Play Now
           </button>
           <button class="btn-howto" onclick="showHowToPlay()">
-            &#128218; How to Play
+            <i data-lucide="book-open"></i> How to Play
           </button>
         </div>
       </div>
@@ -115,7 +115,7 @@
         <!-- Credentials Panel (shown when logged in) -->
         <div class="game-credentials hidden" id="game-credentials">
           <div class="credentials-header">
-            <span class="credentials-icon">&#128273;</span>
+            <span class="credentials-icon"><i data-lucide="key-round"></i></span>
             <strong>Your Card Game Login</strong>
           </div>
           <div class="credentials-body">
@@ -132,9 +132,9 @@
         </div>
 
         <div class="game-container-label">
-          <h3>&#127183; Card Arena</h3>
+          <h3><i data-lucide="layers"></i> Card Arena</h3>
           <div class="game-credits">
-            <span class="coin-icon">&#x1FA99;</span>
+            <span class="coin-icon"><i data-lucide="coins"></i></span>
             <span class="credits-balance" id="game-credits-amount">0</span>
             Credits
           </div>
@@ -156,42 +156,42 @@
               </div>
               <div class="mock-card-grid">
                 <div class="mock-card rarity-legendary">
-                  <span class="card-emoji">&#127775;</span>
+                  <span class="card-emoji"><i data-lucide="sparkles"></i></span>
                   <span class="card-player">Alyssa Valdez</span>
                   <span class="card-rarity">Legendary</span>
                 </div>
                 <div class="mock-card rarity-epic">
-                  <span class="card-emoji">&#128156;</span>
+                  <span class="card-emoji"><i data-lucide="gem"></i></span>
                   <span class="card-player">Jia De Guzman</span>
                   <span class="card-rarity">Epic</span>
                 </div>
                 <div class="mock-card rarity-rare">
-                  <span class="card-emoji">&#128153;</span>
+                  <span class="card-emoji"><i data-lucide="hexagon"></i></span>
                   <span class="card-player">Tots Carlos</span>
                   <span class="card-rarity">Rare</span>
                 </div>
                 <div class="mock-card rarity-common">
-                  <span class="card-emoji">&#9898;</span>
+                  <span class="card-emoji"><i data-lucide="circle"></i></span>
                   <span class="card-player">Pangs Panaga</span>
                   <span class="card-rarity">Common</span>
                 </div>
                 <div class="mock-card rarity-epic">
-                  <span class="card-emoji">&#128156;</span>
+                  <span class="card-emoji"><i data-lucide="gem"></i></span>
                   <span class="card-player">Jema Galanza</span>
                   <span class="card-rarity">Epic</span>
                 </div>
                 <div class="mock-card rarity-rare">
-                  <span class="card-emoji">&#128153;</span>
+                  <span class="card-emoji"><i data-lucide="hexagon"></i></span>
                   <span class="card-player">Kyla Atienza</span>
                   <span class="card-rarity">Rare</span>
                 </div>
                 <div class="mock-card rarity-common">
-                  <span class="card-emoji">&#9898;</span>
+                  <span class="card-emoji"><i data-lucide="circle"></i></span>
                   <span class="card-player">Ces Molina</span>
                   <span class="card-rarity">Common</span>
                 </div>
                 <div class="mock-card rarity-legendary">
-                  <span class="card-emoji">&#127775;</span>
+                  <span class="card-emoji"><i data-lucide="sparkles"></i></span>
                   <span class="card-player">Angel Canino</span>
                   <span class="card-rarity">Legendary</span>
                 </div>
@@ -239,6 +239,7 @@
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
   <script src="js/api.js"></script>
   <script src="js/teams.js"></script>
   <script src="js/toast.js"></script>
@@ -252,7 +253,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Gate the page for non-logged-in users
       if (!AuthGate.guard({
-        icon: '&#127183;',
+        icon: '<i data-lucide="layers"></i>',
         title: 'Collect Every PVL Star',
         subtitle: 'Pull packs, build lineups, and compete with real-match scoring. Free to play.',
         perks: [

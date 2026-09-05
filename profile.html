@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/art.css">
   <link rel="stylesheet" href="css/profile.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23040707'/><text x='50' y='58' font-family='Arial Black,Arial,sans-serif' font-size='38' font-weight='900' fill='%23f6b816' text-anchor='middle' dominant-baseline='middle'>PVL</text></svg>">
 </head>
 <body>
   <!-- Navigation -->
@@ -35,7 +35,7 @@
       <div class="nav-right">
         <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
           <div class="nav-credits">
-            <span class="coin-icon">&#x1FA99;</span>
+            <span class="coin-icon"><i data-lucide="coins"></i></span>
             <span id="nav-credits-amount">0</span>
           </div>
           <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
@@ -44,7 +44,7 @@
           <a href="login.html" class="nav-auth-btn login">Log In</a>
           <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
         </div>
-        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme"><i data-lucide="sun"></i></button>
         <div class="nav-toggle" id="nav-toggle">
           <span></span><span></span><span></span>
         </div>
@@ -56,7 +56,7 @@
 
     <!-- Login Required State (shown when not logged in) -->
     <div class="login-required" id="login-required" style="display:none;">
-      <div class="lock-icon">&#128274;</div>
+      <div class="lock-icon"><i data-lucide="lock"></i></div>
       <h2>Profile Requires Login</h2>
       <p>Sign in to view your profile, stats, predictions history, and achievements.</p>
       <div class="login-actions">
@@ -86,11 +86,11 @@
                 <div class="profile-bio" id="profile-bio">Die-hard PVL fan since day one. Creamline or nothing. Making predictions and collecting cards daily.</div>
                 <div class="profile-meta">
                   <div class="profile-meta-item">
-                    <span class="meta-icon">&#127952;</span>
+                    <span class="meta-icon"><i data-lucide="volleyball"></i></span>
                     <span id="profile-fav-team">Creamline Cool Smashers</span>
                   </div>
                   <div class="profile-meta-item">
-                    <span class="meta-icon">&#128197;</span>
+                    <span class="meta-icon"><i data-lucide="calendar-days"></i></span>
                     <span id="profile-joined">Joined Apr 2026</span>
                   </div>
                 </div>
@@ -109,7 +109,7 @@
         <div class="stats-dashboard">
           <!-- Total Credits -->
           <div class="stat-card reveal">
-            <div class="stat-card-icon">&#x1FA99;</div>
+            <div class="stat-card-icon"><i data-lucide="coins"></i></div>
             <div class="stat-card-value" id="stat-credits">2,450</div>
             <div class="stat-card-label">Total Credits</div>
             <div class="stat-card-breakdown">
@@ -126,7 +126,7 @@
 
           <!-- Prediction Accuracy -->
           <div class="stat-card reveal">
-            <div class="stat-card-icon">&#127919;</div>
+            <div class="stat-card-icon"><i data-lucide="target"></i></div>
             <div class="accuracy-circle-wrap">
               <div class="accuracy-circle" id="accuracy-circle" style="--accuracy-deg: 248deg;">
                 <div class="accuracy-circle-inner">
@@ -150,7 +150,7 @@
 
           <!-- Engagement Score -->
           <div class="stat-card reveal">
-            <div class="stat-card-icon">&#128200;</div>
+            <div class="stat-card-icon"><i data-lucide="trending-up"></i></div>
             <div class="stat-card-value" id="stat-engagement">347</div>
             <div class="stat-card-label">Engagement Score</div>
             <div class="stat-card-breakdown">
@@ -335,72 +335,72 @@
           </div>
           <div class="achievements-grid">
             <div class="achievement-badge unlocked">
-              <div class="achievement-icon">&#127919;</div>
+              <div class="achievement-icon"><i data-lucide="target"></i></div>
               <div class="achievement-name">First Prediction</div>
               <div class="achievement-desc">Make your first match prediction</div>
             </div>
             <div class="achievement-badge unlocked">
-              <div class="achievement-icon">&#128172;</div>
+              <div class="achievement-icon"><i data-lucide="message-circle"></i></div>
               <div class="achievement-name">Voice Heard</div>
               <div class="achievement-desc">Post your first comment</div>
             </div>
             <div class="achievement-badge unlocked">
-              <div class="achievement-icon">&#127775;</div>
+              <div class="achievement-icon"><i data-lucide="sparkles"></i></div>
               <div class="achievement-name">Perfect Day</div>
               <div class="achievement-desc">Get all predictions right in a day</div>
             </div>
             <div class="achievement-badge unlocked">
-              <div class="achievement-icon">&#128176;</div>
+              <div class="achievement-icon"><i data-lucide="coins"></i></div>
               <div class="achievement-name">First Purchase</div>
               <div class="achievement-desc">Buy your first shop item</div>
             </div>
             <div class="achievement-badge locked">
-              <div class="achievement-icon">&#128175;</div>
+              <div class="achievement-icon"><i data-lucide="badge-check"></i></div>
               <div class="achievement-name">100 Comments</div>
               <div class="achievement-desc">Post 100 comments</div>
-              <div class="lock-indicator">&#128274; 89/100</div>
+              <div class="lock-indicator"><i data-lucide="lock"></i> 89/100</div>
             </div>
             <div class="achievement-badge locked">
-              <div class="achievement-icon">&#127183;</div>
+              <div class="achievement-icon"><i data-lucide="layers"></i></div>
               <div class="achievement-name">Card Collector</div>
               <div class="achievement-desc">Collect 50 unique player cards</div>
-              <div class="lock-indicator">&#128274; 23/50</div>
+              <div class="lock-indicator"><i data-lucide="lock"></i> 23/50</div>
             </div>
             <div class="achievement-badge locked">
-              <div class="achievement-icon">&#128293;</div>
+              <div class="achievement-icon"><i data-lucide="flame"></i></div>
               <div class="achievement-name">Hot Streak</div>
               <div class="achievement-desc">Win 10 predictions in a row</div>
-              <div class="lock-indicator">&#128274; 4/10</div>
+              <div class="lock-indicator"><i data-lucide="lock"></i> 4/10</div>
             </div>
             <div class="achievement-badge locked">
-              <div class="achievement-icon">&#127942;</div>
+              <div class="achievement-icon"><i data-lucide="trophy"></i></div>
               <div class="achievement-name">Top Predictor</div>
               <div class="achievement-desc">Reach #1 on the leaderboard</div>
-              <div class="lock-indicator">&#128274; Locked</div>
+              <div class="lock-indicator"><i data-lucide="lock"></i> Locked</div>
             </div>
             <div class="achievement-badge locked">
-              <div class="achievement-icon">&#128218;</div>
+              <div class="achievement-icon"><i data-lucide="book-open"></i></div>
               <div class="achievement-name">Bookworm</div>
               <div class="achievement-desc">Read 50 articles</div>
-              <div class="lock-indicator">&#128274; 31/50</div>
+              <div class="lock-indicator"><i data-lucide="lock"></i> 31/50</div>
             </div>
             <div class="achievement-badge locked">
-              <div class="achievement-icon">&#127908;</div>
+              <div class="achievement-icon"><i data-lucide="mic"></i></div>
               <div class="achievement-name">Podcast Fan</div>
               <div class="achievement-desc">Listen to 20 podcast episodes</div>
-              <div class="lock-indicator">&#128274; 8/20</div>
+              <div class="lock-indicator"><i data-lucide="lock"></i> 8/20</div>
             </div>
             <div class="achievement-badge locked">
-              <div class="achievement-icon">&#129351;</div>
+              <div class="achievement-icon"><i data-lucide="medal"></i></div>
               <div class="achievement-name">Season Champion</div>
               <div class="achievement-desc">Finish a season in top 3</div>
-              <div class="lock-indicator">&#128274; Locked</div>
+              <div class="lock-indicator"><i data-lucide="lock"></i> Locked</div>
             </div>
             <div class="achievement-badge locked">
-              <div class="achievement-icon">&#128142;</div>
+              <div class="achievement-icon"><i data-lucide="gem"></i></div>
               <div class="achievement-name">VIP Status</div>
               <div class="achievement-desc">Earn 10,000 total credits</div>
-              <div class="lock-indicator">&#128274; 4,200/10,000</div>
+              <div class="lock-indicator"><i data-lucide="lock"></i> 4,200/10,000</div>
             </div>
           </div>
         </div>
@@ -498,6 +498,7 @@
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
   <script src="js/api.js"></script>
   <script src="js/teams.js"></script>
   <script src="js/toast.js"></script>

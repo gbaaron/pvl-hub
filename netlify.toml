@@ -9,3 +9,21 @@
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+
+# Short caches while the design is still moving, so a deploy is visible
+# immediately instead of behind a stale css/js copy. Raise once stable.
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=60"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=60"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

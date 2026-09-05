@@ -4,8 +4,8 @@
     {
       "name": "pvl-hub",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8912"],
-      "port": 8912
+      "runtimeArgs": ["-m", "http.server", "8947"],
+      "port": 8947
     }
   ]
 }

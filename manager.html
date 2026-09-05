@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/art.css">
   <link rel="stylesheet" href="css/games.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23040707'/><text x='50' y='58' font-family='Arial Black,Arial,sans-serif' font-size='38' font-weight='900' fill='%23f6b816' text-anchor='middle' dominant-baseline='middle'>PVL</text></svg>">
 </head>
 <body>
   <!-- Navigation -->
@@ -35,7 +35,7 @@
       <div class="nav-right">
         <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
           <div class="nav-credits">
-            <span class="coin-icon">&#x1FA99;</span>
+            <span class="coin-icon"><i data-lucide="coins"></i></span>
             <span id="nav-credits-amount">0</span>
           </div>
           <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
@@ -44,7 +44,7 @@
           <a href="login.html" class="nav-auth-btn login">Log In</a>
           <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
         </div>
-        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme"><i data-lucide="sun"></i></button>
         <div class="nav-toggle" id="nav-toggle">
           <span></span><span></span><span></span>
         </div>
@@ -57,7 +57,7 @@
     <!-- Hero Banner -->
     <section class="game-hero">
       <div class="container">
-        <div class="page-icon">&#128203;</div>
+        <div class="page-icon"><i data-lucide="clipboard-list"></i></div>
         <h1>PVL <span>MANAGER GAME</span></h1>
         <p class="game-subtitle">Build your dynasty. Manage your team. Win championships.</p>
       </div>
@@ -69,19 +69,19 @@
         <div class="features-grid">
 
           <div class="feature-card">
-            <span class="feature-icon">&#129309;</span>
+            <span class="feature-icon"><i data-lucide="handshake"></i></span>
             <h3 class="feature-title">Draft &amp; Trade</h3>
             <p class="feature-desc">Build your perfect roster from 200+ PVL players. Scout talent, make trades, and assemble a championship-caliber squad.</p>
           </div>
 
           <div class="feature-card">
-            <span class="feature-icon">&#128250;</span>
+            <span class="feature-icon"><i data-lucide="tv"></i></span>
             <h3 class="feature-title">Live Matches</h3>
             <p class="feature-desc">Watch your strategies play out in real-time simulated matches. Adjust lineups, call timeouts, and outcoach your opponents.</p>
           </div>
 
           <div class="feature-card">
-            <span class="feature-icon">&#x1FA99;</span>
+            <span class="feature-icon"><i data-lucide="coins"></i></span>
             <h3 class="feature-title">Earn Credits</h3>
             <p class="feature-desc">Win achievements and earn credits to use across PVL Hub. Climb the rankings to unlock bonus rewards every season.</p>
           </div>
@@ -90,7 +90,7 @@
 
         <!-- Credits Integration Notice -->
         <div class="credits-notice">
-          <span class="notice-icon">&#128176;</span>
+          <span class="notice-icon"><i data-lucide="coins"></i></span>
           <p class="notice-text">
             <strong>Credits earned here can be spent in the Card Game, Predictions, or Shop!</strong>
             Your balance syncs across the entire PVL Hub platform. Play smart, earn big.
@@ -103,7 +103,7 @@
             &#9654; Play Now
           </button>
           <button class="btn-howto" onclick="showHowToPlay()">
-            &#128218; How to Play
+            <i data-lucide="book-open"></i> How to Play
           </button>
         </div>
       </div>
@@ -115,7 +115,7 @@
         <!-- Credentials Panel (shown when logged in) -->
         <div class="game-credentials hidden" id="game-credentials">
           <div class="credentials-header">
-            <span class="credentials-icon">&#128273;</span>
+            <span class="credentials-icon"><i data-lucide="key-round"></i></span>
             <strong>Your Manager Game Login</strong>
           </div>
           <div class="credentials-body">
@@ -126,16 +126,16 @@
             <div class="credential-row">
               <span class="credential-label">PIN</span>
               <span class="credential-value credential-pin" id="cred-pin">—</span>
-              <button class="credential-copy" onclick="copyPin()" title="Copy PIN">&#128203; Copy</button>
+              <button class="credential-copy" onclick="copyPin()" title="Copy PIN"><i data-lucide="clipboard-list"></i> Copy</button>
             </div>
           </div>
           <p class="credentials-note">Use these credentials when the game prompts you to log in.</p>
         </div>
 
         <div class="game-container-label">
-          <h3>&#127918; Game Arena</h3>
+          <h3><i data-lucide="gamepad-2"></i> Game Arena</h3>
           <div class="game-credits">
-            <span class="coin-icon">&#x1FA99;</span>
+            <span class="coin-icon"><i data-lucide="coins"></i></span>
             <span class="credits-balance" id="game-credits-amount">0</span>
             Credits
           </div>
@@ -235,6 +235,7 @@
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
   <script src="js/api.js"></script>
   <script src="js/teams.js"></script>
   <script src="js/toast.js"></script>
@@ -246,7 +247,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Gate the page for non-logged-in users
       if (!AuthGate.guard({
-        icon: '&#127918;',
+        icon: '<i data-lucide="gamepad-2"></i>',
         title: 'Run Your Own PVL Team',
         subtitle: 'Sign manager contracts, draft stars, and simulate matches. Free to play.',
         perks: [

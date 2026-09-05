@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/art.css">
   <link rel="stylesheet" href="css/auth.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏐</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23040707'/><text x='50' y='58' font-family='Arial Black,Arial,sans-serif' font-size='38' font-weight='900' fill='%23f6b816' text-anchor='middle' dominant-baseline='middle'>PVL</text></svg>">
 </head>
 <body>
   <!-- Navigation -->
@@ -35,7 +35,7 @@
       <div class="nav-right">
         <div id="nav-user-section" class="hidden" style="display:flex;align-items:center;gap:12px;">
           <div class="nav-credits">
-            <span class="coin-icon">&#x1FA99;</span>
+            <span class="coin-icon"><i data-lucide="coins"></i></span>
             <span id="nav-credits-amount">0</span>
           </div>
           <a href="profile.html" class="nav-avatar" id="nav-avatar">U</a>
@@ -44,7 +44,7 @@
           <a href="login.html" class="nav-auth-btn login">Log In</a>
           <a href="register.html" class="nav-auth-btn signup">Sign Up</a>
         </div>
-        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9728;&#65039;</button>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme"><i data-lucide="sun"></i></button>
         <div class="nav-toggle" id="nav-toggle">
           <span></span><span></span><span></span>
         </div>
@@ -69,7 +69,7 @@
           <div class="form-group">
             <label class="form-label" for="email">Email Address</label>
             <div class="input-wrapper">
-              <span class="input-icon">&#9993;</span>
+              <span class="input-icon"><i data-lucide="mail"></i></span>
               <input
                 type="email"
                 id="email"
@@ -117,7 +117,7 @@
           <div class="form-group">
             <label class="form-label" for="password">Password</label>
             <div class="input-wrapper">
-              <span class="input-icon">&#128274;</span>
+              <span class="input-icon"><i data-lucide="lock"></i></span>
               <input
                 type="password"
                 id="password"
@@ -126,7 +126,7 @@
                 autocomplete="new-password"
                 required
               >
-              <button type="button" class="password-toggle" id="toggle-password" title="Show password">&#128065;</button>
+              <button type="button" class="password-toggle" id="toggle-password" title="Show password"><i data-lucide="eye"></i></button>
             </div>
             <div class="password-strength" id="password-strength">
               <div class="strength-bar"></div>
@@ -142,7 +142,7 @@
           <div class="form-group">
             <label class="form-label" for="confirm_password">Confirm Password</label>
             <div class="input-wrapper">
-              <span class="input-icon">&#128274;</span>
+              <span class="input-icon"><i data-lucide="lock"></i></span>
               <input
                 type="password"
                 id="confirm_password"
@@ -182,7 +182,7 @@
               <!-- Free -->
               <label class="tier-card selected" data-tier="free">
                 <input type="radio" name="tier" value="Free" checked>
-                <span class="tier-icon">&#127944;</span>
+                <span class="tier-icon"><i data-lucide="user"></i></span>
                 <span class="tier-name">Free</span>
                 <span class="tier-price">$0 / forever</span>
                 <ul class="tier-perks">
@@ -195,7 +195,7 @@
               <!-- Fan -->
               <label class="tier-card" data-tier="fan">
                 <input type="radio" name="tier" value="Fan">
-                <span class="tier-icon">&#127941;</span>
+                <span class="tier-icon"><i data-lucide="award"></i></span>
                 <span class="tier-name">Fan</span>
                 <span class="tier-price">$4.99 / month</span>
                 <ul class="tier-perks">
@@ -209,7 +209,7 @@
               <!-- Superfan -->
               <label class="tier-card" data-tier="superfan">
                 <input type="radio" name="tier" value="Superfan">
-                <span class="tier-icon">&#11088;</span>
+                <span class="tier-icon"><i data-lucide="star"></i></span>
                 <span class="tier-name">Superfan</span>
                 <span class="tier-price">$9.99 / month</span>
                 <ul class="tier-perks">
@@ -223,7 +223,7 @@
               <!-- VIP -->
               <label class="tier-card" data-tier="vip">
                 <input type="radio" name="tier" value="VIP">
-                <span class="tier-icon">&#128081;</span>
+                <span class="tier-icon"><i data-lucide="crown"></i></span>
                 <span class="tier-name">VIP</span>
                 <span class="tier-price">$19.99 / month</span>
                 <ul class="tier-perks">
@@ -286,6 +286,7 @@
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
   <script src="js/api.js"></script>
   <script src="js/teams.js"></script>
   <script src="js/toast.js"></script>
@@ -319,7 +320,7 @@
       togglePwdBtn.addEventListener('click', () => {
         const isPassword = passwordInput.type === 'password';
         passwordInput.type = isPassword ? 'text' : 'password';
-        togglePwdBtn.innerHTML = isPassword ? '&#128064;' : '&#128065;';
+        togglePwdBtn.innerHTML = isPassword ? '<i data-lucide="eye-off"></i>' : '<i data-lucide="eye"></i>';
         togglePwdBtn.title = isPassword ? 'Hide password' : 'Show password';
       });
 

@@ -288,3 +288,29 @@
 }
 
 .crest-plate--sm .crest-plate__word { font-size: clamp(0.9rem, 2vw, 1.3rem); -webkit-text-stroke-width: 1px; }
+
+/* --- Lucide icons: inherit the size of whatever they replaced --- */
+[data-lucide],
+.lucide,
+svg.lucide {
+  width: 1em;
+  height: 1em;
+  stroke-width: 1.75;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+}
+
+/* The icon slots that used to hold a big emoji carry their own font-size,
+   so 1em keeps every one of them at the size it already was. */
+.feature-icon, .page-icon, .stat-card-icon, .achievement-icon, .insight-icon,
+.tier-icon, .reward-icon, .receipt-icon, .mic-icon, .gate-icon, .lock-icon,
+.notice-icon, .credentials-icon, .info-icon, .meta-icon, .card-emoji,
+.cart-icon, .coin-icon, .lock-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; }
+.theme-toggle [data-lucide], .theme-toggle .lucide { width: 1.05em; height: 1.05em; }
