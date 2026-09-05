@@ -1054,3 +1054,29 @@
   .rail-head { flex-direction: column; gap: 4px; align-items: flex-start; }
   .card-image__stamp { font-size: 1.7rem; left: 16px; bottom: 16px; }
 }
+
+/* The stats bar rides up into the hero's lower padding — a single overlap is
+   what stops a page reading as a stack of separate bands. */
+.stats-bar.riser {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-lg);
+  padding: 34px 24px;
+  max-width: calc(var(--container-width) - 48px);
+}
+
+.stats-bar.riser .stat-item {
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--border-color);
+  border-radius: 0;
+  padding: 6px 24px;
+}
+
+.stats-bar.riser .stat-item:last-child { border-right: 0; }
+
+@media (max-width: 768px) {
+  .stats-bar.riser { grid-template-columns: repeat(2, 1fr); row-gap: 22px; }
+  .stats-bar.riser .stat-item:nth-child(2n) { border-right: 0; }
+}

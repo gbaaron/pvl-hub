@@ -73,6 +73,7 @@
         <div class="profile-card reveal">
           <div class="profile-banner" id="profile-banner">
             <div class="profile-banner-pattern"></div>
+            <div class="profile-banner-crest" id="profile-banner-crest"></div>
           </div>
           <div class="profile-header">
             <div class="profile-header-row">
@@ -552,6 +553,12 @@
       // Favorite team
       if (user.favorite_team) {
         document.getElementById('profile-fav-team').textContent = user.favorite_team;
+        // Put the member's own club mark in the banner.
+        const crestEl = document.getElementById('profile-banner-crest');
+        const key = window.Art && Art.match(user.favorite_team);
+        if (crestEl && key && Art.get(key).logo) {
+          crestEl.innerHTML = `<img src="${Art.get(key).logo}" alt="${Art.get(key).full}" loading="lazy">`;
+        }
       }
 
       // Stats (use demo data if not available)

@@ -181,4 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Art.hydrate();
   Art.buildWall('#hero-artwall');
   Art.buildRail('#crest-rail');
+  // teams.js is on every page; auth.js is not (admin.html skips it), so icon
+  // rendering lives here rather than depending on Auth.init().
+  if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
 });

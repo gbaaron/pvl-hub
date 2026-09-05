@@ -314,3 +314,33 @@ svg.lucide {
 
 .theme-toggle { display: inline-flex; align-items: center; justify-content: center; }
 .theme-toggle [data-lucide], .theme-toggle .lucide { width: 1.05em; height: 1.05em; }
+
+/* --- Podcast cover: real crest behind the episode number --- */
+.ep-cover { position: relative; overflow: hidden; }
+.ep-cover .crest-slot { position: absolute; inset: 0; z-index: 0; }
+.ep-cover .mic-icon,
+.ep-cover .ep-number-badge { position: relative; z-index: 2; }
+
+/* --- Profile banner: the member's own club, large and knocked back --- */
+.profile-banner-crest {
+  position: absolute;
+  right: -3%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-8deg);
+  width: 240px;
+  height: 240px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.profile-banner-crest img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.3;
+  filter: grayscale(0.3) drop-shadow(0 8px 26px rgba(0, 0, 0, 0.45));
+}
+
+@media (max-width: 768px) {
+  .profile-banner-crest { width: 150px; height: 150px; right: -6%; }
+}
