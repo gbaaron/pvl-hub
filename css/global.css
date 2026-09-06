@@ -1243,6 +1243,15 @@ h4 { font-size: 1.25rem; }
 @media (max-width: 480px) {
   h1 { font-size: 1.75rem; }
   .btn-lg { padding: 14px 28px; font-size: 0.95rem; }
+
+  /* At phone width the wordmark, both auth buttons, the theme toggle and the
+     hamburger run out of bar and "Log In" breaks across two lines. Give the
+     brand block less room and hold every control on one line. */
+  .nav-brand .logo-text { font-size: 1.5rem; letter-spacing: 2px; }
+  .nav-brand .powered-by { font-size: 0.5rem; letter-spacing: 0.5px; gap: 4px; }
+  .nav-brand .powered-by::before { width: 12px; }
+  .nav-right { gap: 6px; }
+  .nav-auth-btn { white-space: nowrap; padding: 7px 12px; font-size: 0.78rem; }
 }
 
 /* ============================================
@@ -1840,4 +1849,52 @@ h4 { font-size: 1.25rem; }
   .auth-gate-perks li { font-size: 0.82rem; }
   .auth-gate-socialproof { flex-direction: column; gap: 8px; text-align: center; }
   .sp-text { text-align: center; }
+}
+
+/* ========================================
+   NATIVE SHELL (iOS / Capacitor)
+   js/native-bridge.js puts .is-native on <html> only inside the app, so none
+   of this touches the website. The status bar does not overlay the webview,
+   so the top needs nothing — the bottom does, or the home indicator sits on
+   top of the footer.
+   ======================================== */
+
+html.is-native body {
+  padding-bottom: env(safe-area-inset-bottom);
+  overscroll-behavior-y: none;
+}
+
+html.is-native .site-footer {
+  padding-bottom: calc(32px + env(safe-area-inset-bottom));
+}
+
+/* A fixed overlay measures from the screen edge, not the padded body. */
+html.is-native .auth-gate-overlay,
+html.is-native .modal-overlay,
+html.is-native .cms-modal-overlay,
+html.is-native .toast-container {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Chrome should feel like chrome: no blue flash, no magnifier, no accidental
+   text selection when someone means to tap. Body copy stays selectable. */
+html.is-native {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html.is-native button,
+html.is-native .btn,
+html.is-native .nav-links a,
+html.is-native .nav-auth-btn,
+html.is-native .nav-avatar,
+html.is-native .nav-toggle {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* The keyboard resizes the webview natively; a fixed footer would ride up on
+   top of it. */
+html.is-native body.kb-open .site-footer {
+  display: none;
 }

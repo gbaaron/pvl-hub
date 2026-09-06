@@ -2,7 +2,10 @@
    PVL HUB — Centralized API Helper
    ======================================== */
 
-const API_BASE = '/.netlify/functions';
+/* In a browser this stays relative. Inside the Capacitor shell js/native-bridge.js
+   has already set NativeBridge.API_BASE to the live Netlify origin, because a
+   root-relative path would resolve against the app's own bundle and 404. */
+const API_BASE = (window.NativeBridge && window.NativeBridge.API_BASE || '') + '/.netlify/functions';
 
 const PVLApi = {
   /**

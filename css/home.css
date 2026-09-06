@@ -882,6 +882,7 @@
 
 .stat-item .stat-label {
   font-size: 0.75rem;
+  display: block;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -891,6 +892,7 @@
 
 .stat-item .stat-trend {
   margin-top: 8px;
+  display: block;
   font-size: 0.72rem;
   color: var(--green);
   font-weight: 700;

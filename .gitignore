@@ -2,3 +2,16 @@ node_modules/
 .env
 .netlify/
 .DS_Store
+
+# Capacitor — generated from the site on every sync, never edited by hand
+www/
+ios/App/App/public/
+
+# Xcode build output
+ios/App/build*/
+ios/App/DerivedData/
+ios/App/Pods/
+ios/App/App.xcodeproj/xcuserdata/
+ios/App/App.xcworkspace/xcuserdata/
+ios/build*/
+*.mobileprovision

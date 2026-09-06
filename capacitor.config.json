@@ -1,0 +1,43 @@
+{
+  "appId": "com.globallyballin.pvlhub",
+  "appName": "PVL Hub",
+  "webDir": "www",
+  "server": {
+    "iosScheme": "https",
+    "androidScheme": "https"
+  },
+  "ios": {
+    "contentInset": "always",
+    "backgroundColor": "#060a10",
+    "preferredContentMode": "mobile",
+    "allowsLinkPreview": false,
+    "scrollEnabled": true,
+    "limitsNavigationsToAppBoundDomains": false
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": true,
+      "launchShowDuration": 1500,
+      "backgroundColor": "#060a10",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true
+    },
+    "StatusBar": {
+      "overlaysWebView": false,
+      "style": "DARK",
+      "backgroundColor": "#060a10",
+      "_comment": "Style DARK = light glyphs. The enum is named for the background, not the text."
+    },
+    "Keyboard": {
+      "resize": "native",
+      "resizeOnFullScreen": true
+    },
+    "LocalNotifications": {
+      "iconColor": "#f6b816"
+    },
+    "Preferences": {
+      "group": "group.com.globallyballin.pvlhub"
+    }
+  }
+}
